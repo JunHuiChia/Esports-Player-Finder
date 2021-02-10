@@ -1,0 +1,36 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor User
+rectangle Web_App {
+	Chat_App .up.> (Login) : includes
+	Freinds_List .up.> (Login) : includes
+	:User: -down-> (Team Finder)
+	(Team Finder) .down...> (Login) : includes
+	(Team Finder) .down.> (Game Role Selection) : includes
+	(Game Role Selection) .down.> (Select Game) : includes
+	:User: -down-> (Account Details)
+	(Account Details) .down...> (Login) : includes
+	(Login) <.down. (User not found) : extends
+	(Login) -down-> (Register)
+	(Register) .down. (User already exists) : extends
+	rectangle Chat_App {
+		:User: -down-> (Private Chat)
+		(Private Chat) .down.> (Group Chat) : extends
+		:User: -down-> (Group Chat)
+		(Group Chat) .down.> (Send Message) : includes
+		(Group Chat) .down.> (Delete Message) : includes
+		(Group Chat) .down.> (Select User) : includes
+		(Select User) .down.> (Block User) : includes
+		(Select User) .down.> (Add Freind) : includes
+		(Select User) .down.> (Remove From Chat) : includes
+		(Remove From Chat) .down.> (User Not Leader) : extends
+	}
+	rectangle Freinds_List{
+		User -down-> (Add New Freind)
+		User -down-> (Remove Freind)
+		(Add New Freind) .down.> (Select Friend) : includes
+		(Remove Freind) .down.> (Select Friend) : includes
+	}	
+}
+@enduml
