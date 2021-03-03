@@ -1,17 +1,16 @@
+import React from 'react';
+
 import './App.css';
+
+import Header from './components/Header/header.js';
+//import LoginPage from './HeaderProfile/header.js'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Esports player finder
-        </p>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-
-      </header>
+    <div>
+    <Header/>
+    {/* <LoginPage/> */}
+    {/* <RegisterPage/> */}
     </div>
   );
 }

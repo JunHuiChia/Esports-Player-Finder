@@ -1,0 +1,43 @@
+body{
+    background-color: grey;
+}
+
+header{
+    display:flex;
+    width: 100%;
+    padding: 1.5rem;
+    border-bottom: 2px solid black;
+    background: linear-gradient(360deg, rgba(0,0,0,1) 45%, rgba(15,0,0,1) 65%, rgba(41,0,0,1) 100%);
+    justify-content: space-between;
+}
+
+a{
+    text-decoration:solid;
+    font-size: 1.5rem;
+    color: white;
+}
+
+a:hover{
+    font-size: 1.5rem;
+    border-bottom: 0.2rem solid;
+    border-bottom-color: rgb(128, 4, 4);
+    color: red;
+}
+
+div .navButton{
+    padding: 0.5rem;
+    margin-left: 1rem;
+}
+
+div .userArea{
+    margin-right: 2.5rem;
+}
+
+div .topRight{
+    padding: 0.5rem;
+    margin-right: 1rem;
+}
+
+div .loggedIn{
+    display: none;
+}
