@@ -2,14 +2,8 @@ package com.example.esportsplayerfinder;
 
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-import android.view.MenuInflater;
-import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,7 +13,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.landing_page);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.Dashbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setLogo(R.drawable.logo6);
+        getSupportActionBar().setTitle(R.string.Empty_String);
 
 
 
@@ -38,11 +37,11 @@ public class MainActivity extends AppCompatActivity {
         switch(item.getItemId()){
             case R.id.myProfile:
                 // NEED TO CHANGE TO PROFILE PAGE WHEN MADE
-                setContentView(R.layout.fragment_second);
+                setContentView(R.layout.activity_main);
                 return true;
             case R.id.friendsList:
                 // NEED TO CHANGE TO FRIENDS LIST WHEN MADE
-                setContentView(R.layout.fragment_first);
+                setContentView(R.layout.activity_main);
                 return true;
 
         }

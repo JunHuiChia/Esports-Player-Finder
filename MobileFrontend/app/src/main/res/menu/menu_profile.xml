@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:icon="@drawable/logo6">
 
 
     <item android:id="@+id/profileMenu"
@@ -10,11 +11,11 @@
         <menu>
             <item
                 android:id="@+id/myProfile"
-                android:title="my_Profile">
+                android:title="My Profile">
             </item>
             <item
                 android:id="@+id/friendsList"
-                android:title="friends_List">
+                android:title="Friends List">
             </item>
         </menu>
 
@@ -24,8 +25,28 @@
 
 
 
-    <item android:id="dashboard_menu"
+    <item android:id="@+id/dashboard_Menu"
         android:icon="@drawable/burger_menu"
-        android:title="@string/Dashboard_Menu"
-        app:showAsAction="ifRoom"/>
+        android:title="dash_Menu"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/dashboard"
+                android:title="Dashboard">
+            </item>
+            <item
+                android:id="@+id/games"
+                android:title="Games">
+            </item>
+            <item
+                android:id="@+id/about"
+                android:title="About Us">
+            </item>
+            <item
+                android:id="@+id/help"
+                android:title="Help">
+            </item>
+        </menu>
+    </item>
+
 </menu>
