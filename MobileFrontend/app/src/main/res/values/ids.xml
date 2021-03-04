@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="constraintLayout" type="id">constraintLayout</item>
+    <item name="toolbar" type="id">toolbar</item>
+    <item name="menuButton" type="id">menuButton</item>
+    <item name="ProfileButton" type="id">profileButton</item>
+    <item name="profileButton" type="id">profileButton</item>
+    <item name="logo" type="id">logo</item>
+    <item name="whiteFadingBar" type="id">whiteFadingBar</item>
+</resources>
