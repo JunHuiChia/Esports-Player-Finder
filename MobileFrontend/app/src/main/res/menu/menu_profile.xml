@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item android:id="@+id/profileMenu"
+        android:icon="@drawable/person_male"
+        android:title="profile_menu"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/myProfile"
+                android:title="my_Profile">
+            </item>
+            <item
+                android:id="@+id/friendsList"
+                android:title="friends_List">
+            </item>
+        </menu>
+
+
+    </item>
+
+
+
+
+    <item android:id="dashboard_menu"
+        android:icon="@drawable/burger_menu"
+        android:title="@string/Dashboard_Menu"
+        app:showAsAction="ifRoom"/>
+</menu>
