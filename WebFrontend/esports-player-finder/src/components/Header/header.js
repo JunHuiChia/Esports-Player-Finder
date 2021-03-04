@@ -1,4 +1,5 @@
 import './header.css';
+import logo from '../images/logo.png';
 import React from 'react';
 
 export default function header() {
@@ -14,16 +15,17 @@ export default function header() {
 
     return (
         <header className="header">
+            <img alt="logo" src={logo} id="logo"></img>
             <div className="navArea">
-                <a href="." className="navButton">Dashboard</a>
+                <a href="." className="navButton active">Dashboard</a>
                 <a href="." className="navButton">Games</a>
                 <a href="." className="navButton">About</a>
                 <a href="." className="navButton">Help</a>
             </div>
             <div className="userArea">
-            <a href="." className="loginButton topRight notLoggedIn">Login</a>
-            <a href="." className="registerButton topRight notLoggedIn">Register</a>
-            <a href="." className="profileButton topRight loggedIn">Profile</a>
+                <a href="." className="loginButton topRight notLoggedIn">Login</a>
+                <a href="." className="registerButton topRight notLoggedIn">Register</a>
+                <a href="." className="profileButton topRight loggedIn">Profile</a>
             </div>
         </header>
     )
