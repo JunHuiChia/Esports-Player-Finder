@@ -20,7 +20,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="popupTheme">@style/MyPopUpStyle</item>
-        <item name="popupMenuBackground">@color/dark_gray</item>
+        <item name="popupMenuBackground">@color/dark_grey</item>
 
     </style>
 

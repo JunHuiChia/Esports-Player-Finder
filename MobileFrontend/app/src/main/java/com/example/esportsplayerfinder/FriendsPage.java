@@ -10,25 +10,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 
-public class MainActivity extends AppCompatActivity {
+public class FriendsPage extends AppCompatActivity {
 
     float x1,x2,y1,y2;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_landing);
-
-
+        setContentView(R.layout.activity_friends_page);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.Dashbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setLogo(R.drawable.logo6);
         getSupportActionBar().setTitle(R.string.Empty_String);
 
-        };
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -65,10 +61,10 @@ public class MainActivity extends AppCompatActivity {
             case MotionEvent.ACTION_UP:
                 x2 = touchEvent.getX();
                 y2 = touchEvent.getY();
-                if(x1>x2){
-                    Intent i = new Intent(MainActivity.this, FriendsPage.class);
+                if(x1<x2){
+                    Intent i = new Intent(FriendsPage.this, MainActivity.class);
                     startActivity(i);
-            }
+                }
                 break;
         }
         return false;
