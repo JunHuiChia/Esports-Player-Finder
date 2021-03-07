@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 
 class UserController extends Controller
@@ -86,5 +87,29 @@ class UserController extends Controller
     {
         Auth::logout();
         return response()->json(['message' => 'Logged Out'], 200);
+    }
+    
+    /**
+     * Attempt to create an API token for a user
+     *
+     * @param  Illuminate\Http\Request $request
+     * @return string 
+     */
+    public function createToken(Request $request) {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+            'device_name' => 'required',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (! $user || ! Hash::check($request->password, $user->password)) {
+            throw ValidationException::withMessages([
+                'email' => ['The provided credentials are incorrect.'],
+            ]);
+        }
+
+        return $user->createToken($request->device_name)->plainTextToken;
     }
 }
