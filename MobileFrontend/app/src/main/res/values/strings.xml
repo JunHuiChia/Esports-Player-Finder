@@ -17,6 +17,6 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
 
-    <string name="new_user_question">New user? <u>Sign up</u></string>
+    <string name="new_user_question">New user? <u>Register</u></string>
     <string name="existing_user_question">Existing user? <u>Login</u></string>
 </resources>
