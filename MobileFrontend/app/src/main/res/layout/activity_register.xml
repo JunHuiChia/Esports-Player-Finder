@@ -7,8 +7,8 @@
     android:background="@color/eerie_black"
     tools:context=".Register">
 
-    <EditText
-        android:id="@+id/etUsername3"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/regName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -19,7 +19,7 @@
         android:drawableEnd="@drawable/ic_baseline_person_24"
         android:drawableRight="@drawable/ic_baseline_person_24"
         android:ems="10"
-        android:hint="@string/username"
+        android:hint="@string/username_hint"
         android:inputType="textPersonName"
         android:textColor="@color/white"
         android:textColorHighlight="@color/white"
@@ -31,8 +31,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.281" />
 
-    <EditText
-        android:id="@+id/etEmail"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/regEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -43,7 +43,7 @@
         android:drawableEnd="@drawable/ic_baseline_person_24"
         android:drawableRight="@drawable/ic_baseline_person_24"
         android:ems="10"
-        android:hint="Email:"
+        android:hint="@string/email_hint"
         android:inputType="textEmailAddress"
         android:textColor="@color/white"
         android:textColorHighlight="@color/white"
@@ -55,8 +55,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.402" />
 
-    <EditText
-        android:id="@+id/etPassword3"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/regPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -67,7 +67,7 @@
         android:drawableEnd="@drawable/ic_baseline_lock_24"
         android:drawableRight="@drawable/ic_baseline_lock_24"
         android:ems="10"
-        android:hint="@string/password"
+        android:hint="@string/password_hint"
         android:inputType="textPassword"
         android:textColor="@color/white"
         android:textColorHighlight="@color/white"
@@ -76,14 +76,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etUsername3"
+        app:layout_constraintTop_toBottomOf="@+id/regName"
         app:layout_constraintVertical_bias="0.272" />
 
     <Button
-        android:id="@+id/btnLogin3"
+        android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="register"
+        android:text="@string/register"
         android:textColor="@color/white"
         android:textColorHighlight="@color/davy_grey"
         android:textColorHint="@color/eerie_black"
@@ -92,19 +92,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword3"
+        app:layout_constraintTop_toBottomOf="@+id/regPassword"
         app:layout_constraintVertical_bias="0.269" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textExistingUserQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New user? Register"
+        android:text="@string/existing_user_question"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin3"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister"
         app:layout_constraintVertical_bias="0.142" />
 </androidx.constraintlayout.widget.ConstraintLayout>

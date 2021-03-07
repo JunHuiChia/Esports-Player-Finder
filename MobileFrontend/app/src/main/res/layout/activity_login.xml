@@ -8,17 +8,18 @@
     tools:context=".Login">
 
     <EditText
-        android:id="@+id/etUsername"
+        android:id="@+id/loginUsername"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
+        android:autofillHints=""
         android:drawableEnd="@drawable/ic_baseline_person_24"
         android:drawableRight="@drawable/ic_baseline_person_24"
         android:ems="10"
-        android:hint="@string/username"
+        android:hint="@string/username_hint"
         android:inputType="textPersonName"
         android:textColor="@color/white"
         android:textColorHighlight="@color/white"
@@ -28,11 +29,10 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.281"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="0.281" />
 
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/loginPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -43,7 +43,7 @@
         android:drawableEnd="@drawable/ic_baseline_lock_24"
         android:drawableRight="@drawable/ic_baseline_lock_24"
         android:ems="10"
-        android:hint="@string/password"
+        android:hint="@string/password_hint"
         android:inputType="textPassword"
         android:textColor="@color/white"
         android:textColorHighlight="@color/white"
@@ -52,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etUsername"
+        app:layout_constraintTop_toBottomOf="@+id/loginUsername"
         app:layout_constraintVertical_bias="0.062" />
 
     <Button
@@ -69,14 +69,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword"
+        app:layout_constraintTop_toBottomOf="@+id/loginPassword"
         app:layout_constraintVertical_bias="0.08" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textNewUserQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New user? Register"
+        android:text="@string/new_user_question"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

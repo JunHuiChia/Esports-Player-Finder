@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class Login extends AppCompatActivity {
 
@@ -20,8 +19,8 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        eUsername = findViewById(R.id.etUsername);
-        ePassword = findViewById(R.id.etPassword);
+        eUsername = findViewById(R.id.loginUsername);
+        ePassword = findViewById(R.id.loginPassword);
         eLogin = findViewById(R.id.btnLogin);
 
         eLogin.setOnClickListener(new View.OnClickListener()
