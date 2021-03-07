@@ -1,6 +1,15 @@
 import './header.css';
 import logo from '../images/logo.png';
-import React from 'react';
+import React, { useContext } from "react";
+
+import {
+  NOT_LOGGED_IN,
+  LOG_IN_FORM,
+  SIGN_UP_FORM,
+  LOGGED_IN,
+} from "../../constants/AuthStatus";
+import { AppContext } from "../../contexts/AppContext";
+
 
 import {
     BrowserRouter as Router,
@@ -30,7 +39,6 @@ export default class header extends React.Component {
         const currentState = this.state.active;
         this.setState({active: !currentState});
         this.setState({class: this.state.active ? "active" : " "})
-        console.log("status");
     }
 
     // loggedIn(){
@@ -58,7 +66,7 @@ export default class header extends React.Component {
                     
                     <Link to="/login" className="loginButton topRight notLoggedIn">Login</Link>
                     <Link to="/register" className="registerButton topRight notLoggedIn">Register</Link>
-                    <a href="." className="profileButton topRight loggedIn">Profile</a>
+                    <a href="/" className="profileButton topRight loggedIn">My Profile</a>
                 </div>
             </header>
 
