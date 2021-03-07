@@ -1,3 +1,136 @@
-div{
-    font-size: 3rem;
+
+
+html, body ,#root{
+    height: 97%;
+    width: 100%;
+}
+
+.page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+div #loginArea{
+    flex-direction: column;
+    border-radius: 8px;
+    width: 500px;
+    height: 611px;
+    box-shadow: 2px 2px 10px var(--shadow-black);
+}
+
+#loginArea img{
+    width: 330px;
+    height: 70px;
+}
+
+#headingArea{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 0 25px 0;
+    font-size: 2.25rem;
+    width: 100%;
+    background-color: var(--content-background-colour-primary);
+    border-radius: 8px 8px 0px 0px;
+}
+
+#headingArea span{
+    padding: 12px 0;
+    font-weight: 600;
+    border-bottom: 3px solid var(--red-0);
+    color: var(--text-colour-tertiary);
+}
+
+
+#inputArea{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+    font-size: 1.5rem;
+    padding: 30px 50px;
+    background-color: var(--content-background-colour-secondary);
+}
+
+#inputArea input{
+    width: 100%;
+    height: 1.5rem;
+    background-color: var(--input-form-background-colour);
+    border: 0px solid;
+    color: var(--text-colour-primary);
+    font-size: 1rem;
+}
+
+#inputArea{
+    color: var(--text-colour-tertiary);
+}
+
+#inputArea p{
+    display: inline-block;
+    padding-left: 6px;
+    margin: 0;
+    color: rgba(207, 33, 33, 0.897);
+}
+
+#inputArea button{
+    align-self: center;
+    width: 120px;
+    height: 45px;
+    background-color: inherit;
+    border: solid 2px white;
+    border-radius: 20px;
+    color: var(--button-text-colour-primary);
+    font-size: 1.1rem;
+    font-weight: 550;
+    margin: 16px;
+}
+
+#inputArea button:hover{
+    background-color: var(--button-highlight-colour-primary);
+    border-color: var(--button-highlight-colour-secondary);
+    color: var(--button-text-colour-secondary);
+}
+
+#inputArea button:focus, #inputArea input:focus{
+    outline: none;
+}
+
+
+#inputArea .emailContent, .passwordContent{
+    padding: 10px 0;
+}
+
+#emailInput, #passwordInput {
+    padding: 6px 6px;
+}
+
+.forgotPassword{
+    margin: 10px 0;
+    font-size: 1rem;
+    color: var(--red-0);
+}
+
+.forgotPassword:hover{
+    border: none;
+    font-size: 1rem;
+    color: var(--red-0);
+}
+
+#inputArea span , .joinNow{
+    margin-top: 16px;
+    align-self: center;
+    font-size: 1rem;
+}
+
+.joinNow{
+    color: var(--text-colour-secondary);
+}
+
+.joinNow:hover{
+    border: none;
+    font-size: 1rem;
+    color: var(--red-light-0);
 }

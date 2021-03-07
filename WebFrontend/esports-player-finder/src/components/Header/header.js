@@ -30,7 +30,6 @@ export default class header extends React.Component {
         const currentState = this.state.active;
         this.setState({active: !currentState});
         this.setState({class: this.state.active ? "active" : " "})
-        console.log("status");
     }
 
     // loggedIn(){
