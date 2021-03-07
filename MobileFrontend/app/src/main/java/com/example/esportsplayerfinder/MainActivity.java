@@ -43,11 +43,12 @@ public class MainActivity extends AppCompatActivity {
         switch(item.getItemId()){
             case R.id.myProfile:
                 // NEED TO CHANGE TO PROFILE PAGE WHEN MADE
-                setContentView(R.layout.activity_landing);
+                Intent intentProfile = new Intent(MainActivity.this, FriendsPage.class);
+                startActivity(intentProfile);;
                 return true;
             case R.id.friendsList:
-                // NEED TO CHANGE TO FRIENDS LIST WHEN MADE
-                setContentView(R.layout.activity_friends_page);
+                Intent intentFriend = new Intent(MainActivity.this, FriendsPage.class);
+                startActivity(intentFriend);
                 return true;
 
         }
