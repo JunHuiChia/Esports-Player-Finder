@@ -57,7 +57,7 @@ export default class header extends React.Component {
                     
                     <Link to="/login" className="loginButton topRight notLoggedIn">Login</Link>
                     <Link to="/register" className="registerButton topRight notLoggedIn">Register</Link>
-                    <a href="." className="profileButton topRight loggedIn">Profile</a>
+                    <a href="/" className="profileButton topRight loggedIn">My Profile</a>
                 </div>
             </header>
 

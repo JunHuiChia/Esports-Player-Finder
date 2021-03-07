@@ -1,3 +1,80 @@
-div{
-    font-size: 3rem;
+
+div #registerArea{
+    flex-direction: column;
+    border-radius: 8px;
+    width: 500px;
+    height: fit-content;
+    box-shadow: 2px 2px 10px var(--shadow-black);
+}
+
+#registerArea img{
+    width: 330px;
+    height: 70px;
+}
+
+#inputArea{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+    font-size: 1.5rem;
+    padding: 30px 50px;
+    background-color: var(--content-background-colour-secondary);
+}
+
+#inputArea input{
+    width: 100%;
+    height: 1.5rem;
+    background-color: var(--input-form-background-colour);
+    border: 0px solid;
+    color: var(--text-colour-primary);
+    font-size: 1rem;
+}
+
+#inputArea{
+    color: var(--text-colour-tertiary);
+}
+
+#inputArea p{
+    display: inline-block;
+    padding-left: 6px;
+    margin: 0;
+    color: rgba(207, 33, 33, 0.897);
+}
+
+#inputArea button{
+    margin: 8px;
+}
+
+.agreement{
+    font-size: 0.8rem;
+    width: 75%;
+    align-self: center;
+    padding: 12px 0;
+    padding-left: 0;
+}
+
+
+#inputArea .registerUsernameText, .registerEmailText, .registerPasswordText {
+    padding: 10px 0;
+}
+
+#registerUsernameInput, #registerEmailInput, #registerPasswordInput {
+    padding: 6px 6px;
+}
+
+#inputArea span , .sign-in{
+    margin-top: 16px;
+    align-self: center;
+    font-size: 1rem;
+}
+
+.sign-in{
+    color: var(--text-colour-secondary);
+}
+
+.sign-in:hover{
+    border: none;
+    font-size: 1rem;
+    color: var(--red-light-0);
 }
