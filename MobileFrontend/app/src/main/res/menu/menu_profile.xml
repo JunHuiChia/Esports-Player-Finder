@@ -6,18 +6,12 @@
     android:layout_gravity="end"
     android:gravity="end">
 
-    <group
-        android:layout_gravity="left"
-        android:checkableBehavior="single"
-        android:gravity="left">
+    <group>
         <item
             android:id="@+id/dashboard_Menu"
             android:icon="@drawable/burger_menu"
             android:title="dash_Menu"
-            app:showAsAction="ifRoom"
-            android:layout_gravity="left"
-            android:checkableBehavior="single"
-            android:gravity="left">
+            app:showAsAction="ifRoom">
             <menu>
                 <item
                     android:id="@+id/dashboard"
@@ -33,7 +27,6 @@
                     android:title="Help"></item>
             </menu>
         </item>
-
     </group>
     <group
         android:checkableBehavior="single"

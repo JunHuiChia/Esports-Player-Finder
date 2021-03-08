@@ -2,9 +2,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.esportsplayerfinder.MainActivity">
+
+    <group
+        android:layout_gravity="left"
+        android:checkableBehavior="single"
+        android:gravity="left">
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:id="@+id/dashboard_Menu"
+        android:icon="@drawable/burger_menu"
+        android:title="dash_Menu"
+        app:showAsAction="ifRoom"
+        android:layout_gravity="left"
+        android:checkableBehavior="single"
+        android:gravity="left">
+        <menu>
+            <item
+                android:id="@+id/dashboard"
+                android:title="Dashboard"></item>
+            <item
+                android:id="@+id/games"
+                android:title="Games"></item>
+            <item
+                android:id="@+id/about"
+                android:title="About Us"></item>
+            <item
+                android:id="@+id/help"
+                android:title="Help"></item>
+        </menu>
+    </item>
+    </group>
 </menu>
