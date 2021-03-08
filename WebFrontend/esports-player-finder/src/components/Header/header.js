@@ -8,6 +8,7 @@ import {
   SIGN_UP_FORM,
   LOGGED_IN,
 } from "../../constants/AuthStatus";
+
 import { AppContext } from "../../contexts/AppContext";
 
 
@@ -25,32 +26,48 @@ import Games from '../games/games.js';
 import About from '../about/about.js';
 import Help from '../help/help.js';
 
-export default class header extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            active: true,
-            class: " ",
-        };
-        this.toggleActiveClass = this.toggleActiveClass.bind(this);
-    }
+// export default class header extends React.Component {
+    const Header = () => {
+        const appContext = useContext(AppContext);
+        const { 
+            userName, 
+            logout, 
+            checkDetails, 
+            authStatus 
+            } 
+            = appContext;
+        const showNotLoggedIn = authStatus === NOT_LOGGED_IN ? "" : "hidden";
+        const showLoggedIn = authStatus === LOGGED_IN ? "" : "hidden";
 
-    toggleActiveClass(){
-        const currentState = this.state.active;
-        this.setState({active: !currentState});
-        this.setState({class: this.state.active ? "active" : " "})
-    }
-
+    // constructor(props){
+    //     super(props);
+    //     this.state = {
+    //         active: true,
+    //         class: " ",
+    //     };
+    //     this.toggleActiveClass = this.toggleActiveClass.bind(this);
+    // }
+    
+    // toggleActiveClass(){
+    //     const currentState = this.state.active;
+    //     this.setState({active: !currentState});
+    //     this.setState({class: this.state.active ? "active" : " "})
+    // }
+    
     // loggedIn(){
-    //     const loginButtons = document.querySelectorAll('.notLoggedIn');
-    //     for(const button of loginButtons){
-    //         button.style.display = 'none';
-    //     }
-    //     const profile = document.querySelector('.loggedIn')
-    //     profile.style.display = 'block'
-    // };
-
-    render() {
+        //     const loginButtons = document.querySelectorAll('.notLoggedIn');
+        //     for(const button of loginButtons){
+            //         button.style.display = 'none';
+            //     }
+            //     const profile = document.querySelector('.loggedIn')
+            //     profile.style.display = 'block'
+            // };
+            
+            
+            
+    
+        // render() {
+        
         return (
             <Router>
         
@@ -60,13 +77,14 @@ export default class header extends React.Component {
                     <Link to="/" className="navButton active" >Dashboard</Link>
                     <Link to="/games" className="navButton">Games</Link>
                     <Link to="/about" className="navButton">About</Link>
-                    <Link to="/help" className={`${this.state.class} navButton`} onClick={this.toggleActiveClass}>Help</Link>
+                    <Link to="/help" className= "navButton">Help</Link>
                 </div>
                 <div className="userArea">
                     
-                    <Link to="/login" className="loginButton topRight notLoggedIn">Login</Link>
-                    <Link to="/register" className="registerButton topRight notLoggedIn">Register</Link>
-                    <a href="/" className="profileButton topRight loggedIn">My Profile</a>
+                    <Link to="/login" className={`loginButton topRight ${showNotLoggedIn}`}>Login</Link>
+                    <Link to="/register" className={`registerButton topRight ${showNotLoggedIn}`}>Register</Link>
+                    <a href="/" className={`profileButton topRight ${showLoggedIn}`}>{userName}</a>
+                    <a href="/" className={`logoutButton topRight ${showLoggedIn}`}>Log out</a>
                 </div>
             </header>
 
@@ -84,5 +102,8 @@ export default class header extends React.Component {
 
         </Router>
     )
+// }
 }
-}
+
+
+export default Header;

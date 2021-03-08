@@ -29,11 +29,11 @@ a:hover{
     border-bottom-color: var(--text-colour-secondary);
     color: var(--text-colour-secondary);
 }
-
+/* 
 div .active{
     border-bottom: 3px solid;
     color:var(--text-colour-secondary);
-}
+} */
 
 div .navArea{
     display: flex;

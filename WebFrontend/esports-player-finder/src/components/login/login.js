@@ -4,13 +4,16 @@ import logo from '../images/logo.png';
 
 import { AppContext } from "../../contexts/AppContext";
 
+import { useAlert } from 'react-alert'
+
 
 // export default class Login extends React.Component{
 
     const Login = () => {
-
+    const alert = useAlert();
     const appContext = useContext(AppContext);
     let {
+        userName,
         userEmail,
         userPassword,
         handleUserEmail,
@@ -27,14 +30,11 @@ import { AppContext } from "../../contexts/AppContext";
     setHidePassword(!hidePassword);
     }
 
-    function loggedIn(){
-        const loginButtons = document.querySelectorAll('.notLoggedIn');
-        for(const button of loginButtons){
-            button.style.display = 'none';
-        }
-        const profile = document.querySelector('.loggedIn')
-        profile.style.display = 'block'
-    };
+    function loginMsg(){
+        login();
+        console.log(errorMessage);
+        alert.show(<div className="text-sm">{errorMessage}</div>)
+    }
 
     // render(){
         return(
@@ -77,7 +77,7 @@ import { AppContext } from "../../contexts/AppContext";
                             />
                         <a href="." className="forgotPassword">Forgot password?</a>
                         
-                        <button onClick={() => login()}>Log In</button>
+                        <button onClick={() => loginMsg()}>Log In</button>
                         <span>New to ESPFinder?<a href="/register" className="joinNow"> Join now</a></span>
                     </div>
                 </div>

@@ -4,9 +4,12 @@ import logo from '../images/logo.png';
 
 import { AppContext } from "../../contexts/AppContext";
 
+import { useAlert } from 'react-alert'
+
 
 // export default class Register extends React.Component{
     const Register = () => {
+    const alert = useAlert();
 
     const appContext = useContext(AppContext);
     const {
@@ -18,6 +21,7 @@ import { AppContext } from "../../contexts/AppContext";
         handleUserPassword,
         signup,
         errorMessage,
+        checkDetails,
     } = appContext;
 
     const [hidePassword, setHidePassword] = useState(true);
@@ -25,6 +29,18 @@ import { AppContext } from "../../contexts/AppContext";
     const showRevealedPassword = hidePassword ? "hidden" : "";
     function togglePassword() {
     setHidePassword(!hidePassword);
+    }
+
+    function signupMsg(){
+        signup();
+        delay();
+        console.log(errorMessage);
+    }
+    
+    const delay = () => {
+        setTimeout(() => {
+            alert.show(<div className="text-sm">{errorMessage}</div>)
+        }, 1000)
     }
     // render(){
         return(
@@ -84,10 +100,11 @@ import { AppContext } from "../../contexts/AppContext";
                             <div id="showPassword" onClick={() => togglePassword()} href=".">Show</div>
                         </div>
                         <p className="agreement">By clicking Agree & Join, you agree to our User Agreement, Privacy Policy, and Cookie Policy.</p>
-                        <button onClick={() => signup()}>Agree & Join</button>
+                        <button onClick={() => signupMsg()}>Agree & Join</button>
                         <span>Already on ESPFinder? <a href="/login" className="sign-in">Log in</a></span>
                     </div>
                 </div>
+                
             </div>
         )
     // }

@@ -55,7 +55,7 @@ const AppProvider = (props) => {
             name: userNameInput,
             email: userEmail,
             password: userPassword,
-          })
+          },() => setErrorMessage("Signup successful!"))
           .then(
             (response) => {
               //console.log(response);
