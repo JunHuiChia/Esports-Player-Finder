@@ -10,31 +10,26 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 
-public class MainActivity extends AppCompatActivity {
+public class FriendsPage extends AppCompatActivity {
 
     float x1,x2,y1,y2;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_landing);
-
-
+        setContentView(R.layout.activity_friends_page);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.Dashbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setLogo(R.drawable.logo6);
         getSupportActionBar().setTitle(R.string.Empty_String);
 
-        };
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_profile, menu);
-
         return true;
     }
 
@@ -44,12 +39,11 @@ public class MainActivity extends AppCompatActivity {
         switch(item.getItemId()){
             case R.id.myProfile:
                 // NEED TO CHANGE TO PROFILE PAGE WHEN MADE
-                Intent intentProfile = new Intent(MainActivity.this, FriendsPage.class);
-                startActivity(intentProfile);;
+                setContentView(R.layout.activity_landing);
                 return true;
             case R.id.friendsList:
-                Intent intentFriend = new Intent(MainActivity.this, FriendsPage.class);
-                startActivity(intentFriend);
+                // NEED TO CHANGE TO FRIENDS LIST WHEN MADE
+                setContentView(R.layout.activity_friends_page);
                 return true;
 
         }
@@ -67,10 +61,10 @@ public class MainActivity extends AppCompatActivity {
             case MotionEvent.ACTION_UP:
                 x2 = touchEvent.getX();
                 y2 = touchEvent.getY();
-                if(x1>x2){
-                    Intent i = new Intent(MainActivity.this, FriendsPage.class);
+                if(x1<x2){
+                    Intent i = new Intent(FriendsPage.this, MainActivity.class);
                     startActivity(i);
-            }
+                }
                 break;
         }
         return false;

@@ -11,10 +11,11 @@
         android:theme="@style/Theme.ESportsPlayerFinder">
         <activity android:name=".Register"></activity>
         <activity android:name=".Login" />
+        <activity android:name=".FriendsPage"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.ESportsPlayerFinder.NoActionBar">
+            android:theme="@style/Theme.ESportsPlayerFinder.ActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
