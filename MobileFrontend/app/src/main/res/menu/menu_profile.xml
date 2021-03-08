@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layoutDirection="ltr"
-    android:icon="@drawable/logo6"
-    android:layout_gravity="end"
-    android:gravity="end">
+    android:icon="@drawable/logo6">
 
     <group>
         <item
@@ -45,6 +42,15 @@
                     android:id="@+id/friendsList"
                     android:title="Friends List">
                 </item>
+                <item
+                    android:id="@+id/loginOption"
+                    android:title="Login">
+                </item>
+                <item
+                    android:id="@+id/registerOption"
+                    android:title="Register">
+                </item>
+
             </menu>
 
 

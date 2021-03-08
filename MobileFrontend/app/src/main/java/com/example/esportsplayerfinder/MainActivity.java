@@ -51,6 +51,16 @@ public class MainActivity extends AppCompatActivity {
                 Intent intentFriend = new Intent(MainActivity.this, FriendsPage.class);
                 startActivity(intentFriend);
                 return true;
+                case R.id.loginOption:
+                // NEED TO CHANGE TO PROFILE PAGE WHEN MADE
+                Intent intentLogin = new Intent(MainActivity.this, Login.class);
+                startActivity(intentLogin);;
+                return true;
+            case R.id.registerOption:
+                Intent intentRegister = new Intent(MainActivity.this, Register.class);
+                startActivity(intentRegister);
+                return true;
+
 
         }
 
