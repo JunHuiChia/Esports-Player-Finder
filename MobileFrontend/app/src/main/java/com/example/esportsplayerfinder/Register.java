@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -37,6 +38,12 @@ public class Register extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.Empty_String);
 
     }
+
+    public void changeToLoginPage(View view) {
+        Intent intentLogin = new Intent(Register.this, Login.class);
+        startActivity(intentLogin);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

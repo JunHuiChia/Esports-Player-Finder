@@ -17,6 +17,7 @@ public class Login extends AppCompatActivity {
     private EditText eUsername;
     private EditText ePassword;
     private Button eLogin;
+    private Button registerLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -27,6 +28,7 @@ public class Login extends AppCompatActivity {
         eUsername = findViewById(R.id.loginUsername);
         ePassword = findViewById(R.id.loginPassword);
         eLogin = findViewById(R.id.btnLogin);
+        registerLink = findViewById(R.id.linkToRegister);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.Dashbar);
         setSupportActionBar(myToolbar);
@@ -47,12 +49,17 @@ public class Login extends AppCompatActivity {
             }
         });
 
+
     }
 
 //    private boolean validate(String username, String password)
 //    {
 //
 //    }
+public void changeToRegisterPage(View view) {
+    Intent intentRegister = new Intent(Login.this, Register.class);
+    startActivity(intentRegister);
+}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -78,7 +85,7 @@ public class Login extends AppCompatActivity {
             case R.id.loginOption:
                 // NEED TO CHANGE TO PROFILE PAGE WHEN MADE
                 Intent intentLogin = new Intent(Login.this, Login.class);
-                startActivity(intentLogin);;
+                startActivity(intentLogin);
                 return true;
             case R.id.registerOption:
                 Intent intentRegister = new Intent(Login.this, Register.class);
