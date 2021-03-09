@@ -18,7 +18,7 @@ class LinkedAccounts extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('account_UUID')->unique();
-            $table->string('account_type');
+            $table->string('game_name');
             $table->timestamps();
         });
     }
