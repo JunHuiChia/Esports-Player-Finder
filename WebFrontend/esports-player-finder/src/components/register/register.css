@@ -55,7 +55,7 @@ div #registerArea{
     display: flex;
 }
 
-#showPassword{
+.showPassword{
     font-size: inherit;
     align-self: center;
     padding: 0 8px;
@@ -63,6 +63,6 @@ div #registerArea{
     transition: all 0.1s;
 }
 
-#showPassword:hover{
+.showPassword:hover{
     color: var(--red-0);
 }

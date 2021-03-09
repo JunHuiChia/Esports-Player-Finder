@@ -58,7 +58,7 @@ div #loginArea{
 
 }
 
-#inputArea input, .registerPasswordSpan{
+#inputArea input, .registerPasswordSpan, .loginPasswordSpan{
     width: 100%;
     background-color: var(--input-form-background-colour);
     border: 0px solid;
@@ -92,6 +92,7 @@ div #loginArea{
     border-color: var(--button-highlight-colour-secondary);
     color: var(--button-text-colour-secondary);
 }
+
 
 #inputArea button:focus, #inputArea input:focus{
     outline: none;
@@ -134,4 +135,8 @@ div #loginArea{
     border: none;
     font-size: 1rem;
     color: var(--red-light-0);
+}
+
+.loginPasswordSpan{
+    display: flex;
 }

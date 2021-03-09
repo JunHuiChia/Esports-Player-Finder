@@ -46,12 +46,6 @@ import PrivateRoute from '../routes/PrivateRoute.js';
     function logthis(){
         console.log(loginStatus);
         console.log(authStatus);
-        if(loginStatus){
-            console.log("true");
-        }
-        if(!loginStatus){
-            console.log("false");
-        }
     }
 
 

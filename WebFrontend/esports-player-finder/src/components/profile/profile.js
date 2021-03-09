@@ -1,11 +1,20 @@
-import React from 'react';
+import {React, useContext} from 'react';
+import { AppContext } from "../../contexts/AppContext";
 
 
 const Profile = () => {
+    const appContext = useContext(AppContext);
+    const {
+        userName
+    } = appContext;
+
+
     return(
         <div>
-            Profile Page
+            <div>Profile Page</div>
+            <span>Welcome {userName}</span>
         </div>
+        
     );
 };
 

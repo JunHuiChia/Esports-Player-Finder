@@ -6,7 +6,7 @@ import { AppContext } from "../../contexts/AppContext";
 
 import { useAlert } from 'react-alert'
 
-import {Link, Redirect, useHistory} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 // export default class Login extends React.Component{
 
@@ -35,17 +35,10 @@ import {Link, Redirect, useHistory} from "react-router-dom";
 
 
     function loginMsg(){
-        login();
-        console.log(errorMessage);
-        if(errorMessage !== ""){
-            alert.show(<div className="text-sm">{errorMessage}</div>)
-        }else{
-            alert.show(<div className="text-sm">Successful Login</div>)
-            if(loginStatus){
-                console.log("Logged in");
-                history.push("/");
-            }
-        }
+        login(function (statusMsg){
+            alert.show(<div className="text-sm">{statusMsg}</div>)
+            return history.push("/profile");
+            })
     }
 
     const handleKeyDown = (event) => {
@@ -87,14 +80,17 @@ import {Link, Redirect, useHistory} from "react-router-dom";
                                 *
                             </p>
                         </label>
-                        <input 
-                            type="password" 
+                        <div className="loginPasswordSpan">
+                            <input 
+                            type={(hidePassword) ? "password":"text"} 
                             name="password" 
                             id="passwordInput"
                             value={userPassword}
                             onChange={handleUserPassword}
-                            onKeyDown={handleKeyDown}
-                            />
+                            onKeyDown={handleKeyDown}>
+                            </input>
+                            <div className="showPassword" onClick={() => togglePassword()}>Show</div>
+                        </div>
                         <a href="." className="forgotPassword">Forgot password?</a>
                         <button onClick={() => loginMsg()}>Log In</button>
                         <span>New to ESPFinder?<Link to="/register" className="joinNow"> Join now</Link></span>
@@ -104,5 +100,7 @@ import {Link, Redirect, useHistory} from "react-router-dom";
         )
     // }
 }
+
+
 
 export default Login;

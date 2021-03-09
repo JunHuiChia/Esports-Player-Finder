@@ -7,6 +7,8 @@ import {
   LOGGED_IN,
 } from "../constants/AuthStatus";
 
+import { loginMsg } from '../components/login/login.js';
+
 const loggedIn_key = 'loggedin';
 
 const AppContext = React.createContext();
@@ -23,14 +25,13 @@ const AppProvider = (props) => {
   const [userPassword, setUserPassword] = useState("");
   const [loginStatus, setLoginStatus] = useState("");
   
-  useEffect(() => {
-    if(localStorage.getItem(loggedIn_key)){
-        setLoginStatus(true);
-      }else{
-        setLoginStatus(false);
-      }
-    
-  })
+  // useEffect(() => {
+  //   if(localStorage.getItem(loggedIn_key)){
+  //       setLoginStatus(true);
+  //     }else{
+  //       setLoginStatus(false);
+  //     }
+  // })
 
   function isLogin(){
     if(localStorage.getItem(loggedIn_key)){
@@ -63,7 +64,7 @@ const AppProvider = (props) => {
     setUserPassword(updatedUserPassword);
   }
 
-  const signup = () => {
+  const signup = (statusMsg) => {
     axios.defaults.withCredentials = true;
     // CSRF COOKIE
     axios.get(hostName + "sanctum/csrf-cookie").then(
@@ -87,10 +88,13 @@ const AppProvider = (props) => {
                   setUserName(response.data.name);
                   setErrorMessage("");
                   setAuthStatus(LOGGED_IN);
+                  setLoginStatus(true);
+                  statusMsg("Successful Sign Up")
                 },
                 // GET USER ERROR
                 (error) => {
                   setErrorMessage("Could not complete the sign up");
+                  statusMsg("Could not complete the sign up")
                 }
               );
             },
@@ -98,14 +102,19 @@ const AppProvider = (props) => {
             (error) => {
               if (error.response.data.errors.name) {
                 setErrorMessage(error.response.data.errors.name[0]);
+                statusMsg(error.response.data.errors.name[0]);
               } else if (error.response.data.errors.email) {
                 setErrorMessage(error.response.data.errors.email[0]);
+                statusMsg(error.response.data.errors.email[0]);
               } else if (error.response.data.errors.password) {
                 setErrorMessage(error.response.data.errors.password[0]);
+                statusMsg(error.response.data.errors.password[0]);
               } else if (error.response.data.message) {
                 setErrorMessage(error.response.data.message);
+                statusMsg(error.response.data.message);
               } else {
                 setErrorMessage("Could not complete the sign up");
+                statusMsg("Could not complete the sign up");
               }
             }
           );
@@ -113,11 +122,12 @@ const AppProvider = (props) => {
       // COOKIE ERROR
       (error) => {
         setErrorMessage("Could not complete the sign up");
+        statusMsg("Could not complete the sign up");
       }
     );
   };
 
-  const login = () => {
+  const login = (statusMsg) => {
     axios.defaults.withCredentials = true;
     // CSRF COOKIE
     axios.get(hostName + "sanctum/csrf-cookie").then(
@@ -142,6 +152,7 @@ const AppProvider = (props) => {
                   setAuthStatus(LOGGED_IN);
                   localStorage.setItem(loggedIn_key, 'LoggedIn')
                   setLoginStatus(true);
+                  statusMsg("Successful Login");
                 },
                 // GET USER ERROR
                 (error) => {
@@ -153,8 +164,10 @@ const AppProvider = (props) => {
             (error) => {
               if (error.response) {
                 setErrorMessage(error.response.data.message);
+                statusMsg(error.response.data.message)
               } else {
                 setErrorMessage("Could not complete the login");
+                statusMsg("Could not complete the login")
               }
             }
           );
@@ -162,6 +175,7 @@ const AppProvider = (props) => {
       // COOKIE ERROR
       (error) => {
         setErrorMessage("Could not complete the login");
+        statusMsg("Could not complete the login");
       }
     );
   };

@@ -5,11 +5,12 @@ import logo from '../images/logo.png';
 import { AppContext } from "../../contexts/AppContext";
 import { useAlert } from 'react-alert'
 
-import {Link} from "react-router-dom";
+import {Link , useHistory} from "react-router-dom";
 
 // export default class Register extends React.Component{
     const Register = () => {
     const alert = useAlert();
+    const history = useHistory();
 
     const appContext = useContext(AppContext);
     const {
@@ -33,15 +34,13 @@ import {Link} from "react-router-dom";
     }
 
     function signupMsg(){
-        signup();
-        if(errorMessage !== ""){
-            delay()
-        }
-        console.log(errorMessage);
-    }
-    
-    function delay(){
-        alert.show(<div className="text-sm">{errorMessage}</div>)
+        signup(function (statusMsg){
+            console.log(statusMsg);
+            alert.show(<div className="text-sm">{statusMsg}</div>)
+            if(statusMsg == "Successful Sign Up"){
+                return history.push("/profile");
+            }
+        })
     }
     // render(){
         return(
@@ -98,7 +97,7 @@ import {Link} from "react-router-dom";
                                 value={userPassword}
                                 onChange={handleUserPassword}>
                                 </input>
-                                <div id="showPassword" onClick={() => togglePassword()} href=".">Show</div>
+                                <div className="showPassword" onClick={() => togglePassword()}>Show</div>
                             </div>
                             <p className="agreement">By clicking Agree & Join, you agree to our User Agreement, Privacy Policy, and Cookie Policy.</p>
                             <button onClick={() => signupMsg()}>Agree & Join</button>
