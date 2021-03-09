@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
   NOT_LOGGED_IN,
@@ -6,6 +6,8 @@ import {
   SIGN_UP_FORM,
   LOGGED_IN,
 } from "../constants/AuthStatus";
+
+const loggedIn_key = 'loggedin';
 
 const AppContext = React.createContext();
 
@@ -19,6 +21,24 @@ const AppProvider = (props) => {
   const [userNameInput, setUserNameInput] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [loginStatus, setLoginStatus] = useState("");
+  
+  useEffect(() => {
+    if(localStorage.getItem(loggedIn_key)){
+        setLoginStatus(true);
+      }else{
+        setLoginStatus(false);
+      }
+    
+  })
+
+  function isLogin(){
+    if(localStorage.getItem(loggedIn_key)){
+      setLoginStatus(true);
+    }else{
+      setLoginStatus(false);
+    }
+  }
 
   function changeAuthStatusLogin() {
     setAuthStatus(LOG_IN_FORM);
@@ -55,7 +75,7 @@ const AppProvider = (props) => {
             name: userNameInput,
             email: userEmail,
             password: userPassword,
-          },() => setErrorMessage("Signup successful!"))
+          })
           .then(
             (response) => {
               //console.log(response);
@@ -120,6 +140,8 @@ const AppProvider = (props) => {
                   setUserName(response.data.name);
                   setErrorMessage("");
                   setAuthStatus(LOGGED_IN);
+                  localStorage.setItem(loggedIn_key, 'LoggedIn')
+                  setLoginStatus(true);
                 },
                 // GET USER ERROR
                 (error) => {
@@ -153,6 +175,8 @@ const AppProvider = (props) => {
     setUserEmail("");
     setUserPassword("");
     setAuthStatus(NOT_LOGGED_IN);
+    localStorage.removeItem(loggedIn_key);
+    setLoginStatus(false);
   }
     
     
@@ -172,19 +196,22 @@ const AppProvider = (props) => {
             }
         );
   };
-    
 
+
+  
   return (
     <AppContext.Provider
-      value={{
-        authStatus,
-        changeAuthStatusLogin,
+    value={{
+      authStatus,
+      changeAuthStatusLogin,
         changeAuthStatusSignup,
         userId,
         userName,
         userNameInput,
         userEmail,
         userPassword,
+        loginStatus,
+        setLoginStatus,
         handleUserNameInput,
         handleUserEmail,
         handleUserPassword,
@@ -193,8 +220,9 @@ const AppProvider = (props) => {
         checkDetails,
         logout,
         errorMessage,
+        isLogin,
       }}
-    >
+      >
       {props.children}
     </AppContext.Provider>
   );

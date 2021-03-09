@@ -16,7 +16,8 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link,
+    Redirect
 } from "react-router-dom";
 
 import LoginPage from '../login/login.js';
@@ -25,7 +26,9 @@ import Dashboard from '../dashboard/dashboard.js';
 import Games from '../games/games.js';
 import About from '../about/about.js';
 import Help from '../help/help.js';
+import Profile from '../profile/profile.js';
 
+import PrivateRoute from '../routes/PrivateRoute.js';
 // export default class header extends React.Component {
     const Header = () => {
         const appContext = useContext(AppContext);
@@ -33,11 +36,24 @@ import Help from '../help/help.js';
             userName, 
             logout, 
             checkDetails, 
-            authStatus 
+            authStatus,
+            loginStatus,
             } 
             = appContext;
         const showNotLoggedIn = authStatus === NOT_LOGGED_IN ? "" : "hidden";
         const showLoggedIn = authStatus === LOGGED_IN ? "" : "hidden";
+
+    function logthis(){
+        console.log(loginStatus);
+        console.log(authStatus);
+        if(loginStatus){
+            console.log("true");
+        }
+        if(!loginStatus){
+            console.log("false");
+        }
+    }
+
 
     // constructor(props){
     //     super(props);
@@ -72,31 +88,32 @@ import Help from '../help/help.js';
             <Router>
         
             <header className="header">
-                <img alt="logo" src={logo} id="logo"></img>
+                <Link to="/" className="logo"><img alt="logo" src={logo} id="logo"></img></Link>
                 <div className="navArea">
-                    <Link to="/" className="navButton active" >Dashboard</Link>
+                    <Link to="/" className="navButton active hidden" >Dashboard</Link>
                     <Link to="/games" className="navButton">Games</Link>
                     <Link to="/about" className="navButton">About</Link>
                     <Link to="/help" className= "navButton">Help</Link>
                 </div>
                 <div className="userArea">
-                    
+                    <div onClick={logthis}>log</div>
                     <Link to="/login" className={`loginButton topRight ${showNotLoggedIn}`}>Login</Link>
                     <Link to="/register" className={`registerButton topRight ${showNotLoggedIn}`}>Register</Link>
-                    <a href="/" className={`profileButton topRight ${showLoggedIn}`}>{userName}</a>
-                    <a href="/" className={`logoutButton topRight ${showLoggedIn}`}>Log out</a>
+                    <Link to="/profile" className={`profileButton topRight ${showLoggedIn}`}>{userName}</Link>
+                    <Link to="/" onClick={logout} className={`logoutButton topRight ${showLoggedIn}`}>Log out</Link>
                 </div>
             </header>
 
             <Switch>
-                <Route path="/games"><Games/></Route>
+                <Route path="/games" component={Games}></Route>
                 <Route path="/about"><About/></Route>
                 <Route path="/help"><Help/></Route>
 
                 <Route path="/login"><LoginPage/></Route>
                 <Route path="/register"><RegisterPage/></Route>
-                <Route path="/profile"></Route>
                 
+                <PrivateRoute component={Profile} path="/profile" exact/>
+
                 <Route path="/"><Dashboard/></Route>
             </Switch>
 
@@ -105,5 +122,5 @@ import Help from '../help/help.js';
 // }
 }
 
-
+// {loggedIn ? <Redirect to="/" /> : <LoginPage />}
 export default Header;

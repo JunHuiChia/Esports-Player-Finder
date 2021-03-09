@@ -17,17 +17,22 @@ header{
     width: 180px;
 }
 
-a{
+.logo:hover{
+    border-bottom: none;
+}
+
+a, .logoutButton{
     text-decoration:solid;
     font-size: 1.5rem;
     color: var(--text-colour-primary);
 }
 
-a:hover{
+a:hover, .logoutButton:hover{
     font-size: 1.5rem;
     border-bottom: 2px solid;
     border-bottom-color: var(--text-colour-secondary);
     color: var(--text-colour-secondary);
+    cursor: pointer;
 }
 /* 
 div .active{

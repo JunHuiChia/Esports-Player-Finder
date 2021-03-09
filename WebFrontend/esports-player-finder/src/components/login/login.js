@@ -6,12 +6,14 @@ import { AppContext } from "../../contexts/AppContext";
 
 import { useAlert } from 'react-alert'
 
+import {Link, Redirect, useHistory} from "react-router-dom";
 
 // export default class Login extends React.Component{
 
     const Login = () => {
     const alert = useAlert();
     const appContext = useContext(AppContext);
+    const history = useHistory();
     let {
         userName,
         userEmail,
@@ -21,6 +23,7 @@ import { useAlert } from 'react-alert'
         login,
         checkDetails,
         errorMessage,
+        loginStatus,
     } = appContext;
 
     const [hidePassword, setHidePassword] = useState(true);
@@ -30,11 +33,27 @@ import { useAlert } from 'react-alert'
     setHidePassword(!hidePassword);
     }
 
+
     function loginMsg(){
         login();
         console.log(errorMessage);
-        alert.show(<div className="text-sm">{errorMessage}</div>)
+        if(errorMessage !== ""){
+            alert.show(<div className="text-sm">{errorMessage}</div>)
+        }else{
+            alert.show(<div className="text-sm">Successful Login</div>)
+            if(loginStatus){
+                console.log("Logged in");
+                history.push("/");
+            }
+        }
     }
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            loginMsg();
+        }
+    }
+
 
     // render(){
         return(
@@ -74,11 +93,11 @@ import { useAlert } from 'react-alert'
                             id="passwordInput"
                             value={userPassword}
                             onChange={handleUserPassword}
+                            onKeyDown={handleKeyDown}
                             />
                         <a href="." className="forgotPassword">Forgot password?</a>
-                        
                         <button onClick={() => loginMsg()}>Log In</button>
-                        <span>New to ESPFinder?<a href="/register" className="joinNow"> Join now</a></span>
+                        <span>New to ESPFinder?<Link to="/register" className="joinNow"> Join now</Link></span>
                     </div>
                 </div>
             </div>
