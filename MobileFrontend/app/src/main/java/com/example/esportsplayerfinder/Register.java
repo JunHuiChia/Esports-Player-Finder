@@ -57,24 +57,22 @@ public class Register extends AppCompatActivity {
         // Handle action bar item clicks here.
         switch(item.getItemId()){
             case R.id.myProfile:
-                // NEED TO CHANGE TO PROFILE PAGE WHEN MADE
-                Intent intentProfile = new Intent(Register.this, FriendsPage.class);
+                // Redirect to profile page
+                Intent intentProfile = new Intent(Register.this, Activity_Profile.class);
                 startActivity(intentProfile);;
                 return true;
-            case R.id.friendsList:
-                Intent intentFriend = new Intent(Register.this, FriendsPage.class);
-                startActivity(intentFriend);
-                return true;
             case R.id.loginOption:
-                // NEED TO CHANGE TO PROFILE PAGE WHEN MADE
+                // Redirect to Login page
                 Intent intentLogin = new Intent(Register.this, Login.class);
                 startActivity(intentLogin);;
                 return true;
             case R.id.registerOption:
+                //Redirect to register page
                 Intent intentRegister = new Intent(Register.this, Register.class);
                 startActivity(intentRegister);
                 return true;
             case R.id.dashboard:
+                //Redirect to dashboard
                 Intent intentDashboard = new Intent(Register.this, MainActivity.class);
                 startActivity(intentDashboard);
                 return true;

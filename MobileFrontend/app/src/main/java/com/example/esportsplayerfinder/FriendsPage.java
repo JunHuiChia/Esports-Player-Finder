@@ -41,10 +41,10 @@ public class FriendsPage extends AppCompatActivity {
                 // NEED TO CHANGE TO PROFILE PAGE WHEN MADE
                 setContentView(R.layout.activity_landing);
                 return true;
-            case R.id.friendsList:
-                // NEED TO CHANGE TO FRIENDS LIST WHEN MADE
-                setContentView(R.layout.activity_friends_page);
-                return true;
+//            case R.id.friendsList:
+//                // NEED TO CHANGE TO FRIENDS LIST WHEN MADE
+//                setContentView(R.layout.activity_friends_page);
+//                return true;
 
         }
 

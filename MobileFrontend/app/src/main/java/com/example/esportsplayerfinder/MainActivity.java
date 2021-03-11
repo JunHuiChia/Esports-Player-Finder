@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 public class MainActivity extends AppCompatActivity {
 
     float x1,x2,y1,y2;
+    Menu menu;
 
 
 
@@ -22,18 +23,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_landing);
 
 
-
+// initialise toolbar in activity.
         Toolbar myToolbar = (Toolbar) findViewById(R.id.Dashbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setLogo(R.drawable.logo6);
         getSupportActionBar().setTitle(R.string.Empty_String);
+
+
+
 
         };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        this.menu = menu;
         getMenuInflater().inflate(R.menu.menu_profile, menu);
+// Checks if the user is logged in and edits menu options
+        if(ProfileMan.username==null){
+            this.menu.findItem(R.id.myProfile).setVisible(false);
+            this.menu.findItem(R.id.loginOption).setVisible(true);
+            this.menu.findItem(R.id.registerOption).setVisible(true);
+        }else{
+            this.menu.findItem(R.id.myProfile).setVisible(true);
+            this.menu.findItem(R.id.loginOption).setVisible(false);
+            this.menu.findItem(R.id.registerOption).setVisible(false);
+        }
 
         return true;
     }
@@ -43,20 +58,17 @@ public class MainActivity extends AppCompatActivity {
         // Handle action bar item clicks here.
         switch(item.getItemId()){
             case R.id.myProfile:
-                // NEED TO CHANGE TO PROFILE PAGE WHEN MADE
+                // Redirect to profile page
                 Intent intentProfile = new Intent(MainActivity.this, Activity_Profile.class);
                 startActivity(intentProfile);;
                 return true;
-            case R.id.friendsList:
-                Intent intentFriend = new Intent(MainActivity.this, FriendsPage.class);
-                startActivity(intentFriend);
-                return true;
                 case R.id.loginOption:
-                // NEED TO CHANGE TO PROFILE PAGE WHEN MADE
+                // Redirect to Login page
                 Intent intentLogin = new Intent(MainActivity.this, Login.class);
                 startActivity(intentLogin);;
                 return true;
             case R.id.registerOption:
+                //Redirect to register page
                 Intent intentRegister = new Intent(MainActivity.this, Register.class);
                 startActivity(intentRegister);
                 return true;

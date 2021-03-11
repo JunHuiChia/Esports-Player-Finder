@@ -34,22 +34,36 @@
             android:title="profile_menu"
             app:showAsAction="ifRoom">
             <menu>
-                <item
-                    android:id="@+id/myProfile"
-                    android:title="My Profile">
-                </item>
-                <item
-                    android:id="@+id/friendsList"
-                    android:title="Friends List">
-                </item>
-                <item
-                    android:id="@+id/loginOption"
-                    android:title="Login">
-                </item>
-                <item
-                    android:id="@+id/registerOption"
-                    android:title="Register">
-                </item>
+                <group
+                    android:id="@+id/onlyProfile">
+                    <item
+                        android:id="@+id/myProfile"
+                        android:title="My Profile"
+                        app:showAsAction="ifRoom">
+                    </item>
+<!--                    <item-->
+<!--                        android:id="@+id/friendsList"-->
+<!--                        android:title="Friends List">-->
+<!--                    </item>-->
+
+                </group>
+
+                <group
+                    android:id="@+id/loginOrRegister">
+
+                    <item
+                        android:id="@+id/loginOption"
+                        android:title="Login"
+                        app:showAsAction="ifRoom">
+                    </item>
+                    <item
+                        android:id="@+id/registerOption"
+                        android:title="Register"
+                        app:showAsAction="ifRoom">
+                    </item>
+
+                </group>
+
 
             </menu>
 
