@@ -27,4 +27,8 @@ class teams extends Model
     protected $casts = [
         'team_created_at' => 'datetime',
     ];
+    public function matches()
+    {
+        return $this->hasMany(matches::class);
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Teams;
 
 class matches extends Model
 {
@@ -27,4 +28,8 @@ class matches extends Model
     protected $casts = [
         'game_ended_at' => 'datetime',
     ];
+    public function teams()
+    {
+        return $this->belongsTo(Teams::class);
+    }
 }

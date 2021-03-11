@@ -17,7 +17,7 @@ class linked_accounts extends Model
     protected $fillable = [
         'user_id',
         'account_token',
-        'account_type',
+        'game_name',
     ];
 
     /**
@@ -28,4 +28,8 @@ class linked_accounts extends Model
     protected $casts = [
         'linked_account_at' => 'datetime',
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -19,5 +19,12 @@ class team_participants extends Model
         'team_id',
         'status',
     ];
-
+    public function teams()
+    {
+        return $this->hasOne(teams::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
