@@ -51,14 +51,14 @@ public class SharedPrefManager {
     }
 
     //this method will give the logged in user
-    public User getUser() {
-        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return new User(
-                sharedPreferences.getInt(KEY_ID, -1),
-                sharedPreferences.getString(KEY_USERNAME, null),
-                sharedPreferences.getString(KEY_EMAIL, null),
-        );
-    }
+//    public User getUser() {
+//        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+//        return new User(
+//                sharedPreferences.getInt(KEY_ID, -1),
+//                sharedPreferences.getString(KEY_USERNAME, null),
+//                sharedPreferences.getEmail(KEY_EMAIL, null),
+//        );
+//    }
 
     //this method will logout the user
     public void logout() {

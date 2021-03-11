@@ -1,34 +1,37 @@
 package com.example.esportsplayerfinder;
 
-import android.content.Intent;
-import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class Activity_Profile extends AppCompatActivity {
 
-    float x1,x2,y1,y2;
-
-
+    private TextView usernameTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_landing);
+        setContentView(R.layout.activity__profile);
 
 
+
+        usernameTextView = findViewById(R.id.username);
+        usernameTextView.setText(ProfileMan.username);
+        Log.d("Username test:", ProfileMan.username);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.Dashbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setLogo(R.drawable.logo6);
         getSupportActionBar().setTitle(R.string.Empty_String);
 
-        };
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -44,20 +47,20 @@ public class MainActivity extends AppCompatActivity {
         switch(item.getItemId()){
             case R.id.myProfile:
                 // NEED TO CHANGE TO PROFILE PAGE WHEN MADE
-                Intent intentProfile = new Intent(MainActivity.this, Activity_Profile.class);
+                Intent intentProfile = new Intent(Activity_Profile.this, Activity_Profile.class);
                 startActivity(intentProfile);;
                 return true;
             case R.id.friendsList:
-                Intent intentFriend = new Intent(MainActivity.this, FriendsPage.class);
+                Intent intentFriend = new Intent(Activity_Profile.this, FriendsPage.class);
                 startActivity(intentFriend);
                 return true;
-                case R.id.loginOption:
+            case R.id.loginOption:
                 // NEED TO CHANGE TO PROFILE PAGE WHEN MADE
-                Intent intentLogin = new Intent(MainActivity.this, Login.class);
+                Intent intentLogin = new Intent(Activity_Profile.this, Login.class);
                 startActivity(intentLogin);;
                 return true;
             case R.id.registerOption:
-                Intent intentRegister = new Intent(MainActivity.this, Register.class);
+                Intent intentRegister = new Intent(Activity_Profile.this, Register.class);
                 startActivity(intentRegister);
                 return true;
 
@@ -66,23 +69,5 @@ public class MainActivity extends AppCompatActivity {
 
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public boolean onTouchEvent(MotionEvent touchEvent){
-        switch (touchEvent.getAction()){
-            case MotionEvent.ACTION_DOWN:
-                x1 = touchEvent.getX();
-                y1 = touchEvent.getY();
-                break;
-            case MotionEvent.ACTION_UP:
-                x2 = touchEvent.getX();
-                y2 = touchEvent.getY();
-                if(x1>x2){
-                    Intent i = new Intent(MainActivity.this, FriendsPage.class);
-                    startActivity(i);
-            }
-                break;
-        }
-        return false;
     }
 }
