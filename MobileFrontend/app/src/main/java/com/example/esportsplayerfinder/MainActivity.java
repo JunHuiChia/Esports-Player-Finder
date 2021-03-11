@@ -42,10 +42,13 @@ public class MainActivity extends AppCompatActivity {
 // Checks if the user is logged in and edits menu options
         if(ProfileMan.username==null){
             this.menu.findItem(R.id.myProfile).setVisible(false);
+            this.menu.findItem(R.id.logout).setVisible(false);
             this.menu.findItem(R.id.loginOption).setVisible(true);
             this.menu.findItem(R.id.registerOption).setVisible(true);
+
         }else{
             this.menu.findItem(R.id.myProfile).setVisible(true);
+            this.menu.findItem(R.id.logout).setVisible(true);
             this.menu.findItem(R.id.loginOption).setVisible(false);
             this.menu.findItem(R.id.registerOption).setVisible(false);
         }
@@ -71,6 +74,15 @@ public class MainActivity extends AppCompatActivity {
                 //Redirect to register page
                 Intent intentRegister = new Intent(MainActivity.this, Register.class);
                 startActivity(intentRegister);
+                return true;
+            case R.id.logout:
+                //Reset stored information
+                ProfileMan.username = null;
+                ProfileMan.ID = -1;
+                ProfileMan.email = null;
+                //Redirect to register page
+                Intent intentDashboard = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(intentDashboard);
                 return true;
 
 

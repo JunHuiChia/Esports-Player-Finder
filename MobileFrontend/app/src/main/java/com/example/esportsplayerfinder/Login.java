@@ -34,6 +34,7 @@ public class Login extends AppCompatActivity {
     private EditText ePassword;
     private Button eLogin;
     private Button registerLink;
+    Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -82,6 +83,7 @@ public class Login extends AppCompatActivity {
                                     Log.d("name:", response.getString("name"));
                                     ProfileMan.email = ( response.getString("email"));
                                     Log.d("email:", response.getString("email"));
+                                    changeToProfilePage(findViewById(R.id.btnLogin));
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -124,12 +126,28 @@ public void changeToRegisterPage(View view) {
     Intent intentRegister = new Intent(Login.this, Register.class);
     startActivity(intentRegister);
 }
+    public void changeToProfilePage(View view) {
+        Intent intentProfile = new Intent(Login.this, Activity_Profile.class);
+        startActivity(intentProfile);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        this.menu = menu;
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_profile, menu);
-
+// Checks if the user is logged in and edits menu options
+        if(ProfileMan.username==null){
+            this.menu.findItem(R.id.myProfile).setVisible(false);
+            this.menu.findItem(R.id.logout).setVisible(false);
+            this.menu.findItem(R.id.loginOption).setVisible(true);
+            this.menu.findItem(R.id.registerOption).setVisible(true);
+        }else{
+            this.menu.findItem(R.id.myProfile).setVisible(true);
+            this.menu.findItem(R.id.logout).setVisible(true);
+            this.menu.findItem(R.id.loginOption).setVisible(false);
+            this.menu.findItem(R.id.registerOption).setVisible(false);
+        }
         return true;
     }
 
@@ -156,6 +174,15 @@ public void changeToRegisterPage(View view) {
                 //Redirect to dashboard
                 Intent intentDashboard = new Intent(Login.this, MainActivity.class);
                 startActivity(intentDashboard);
+                return true;
+            case R.id.logout:
+                //Reset stored information
+                ProfileMan.username = null;
+                ProfileMan.ID = -1;
+                ProfileMan.email = null;
+                //Redirect to register page
+                Intent intentLogout = new Intent(Login.this, MainActivity.class);
+                startActivity(intentLogout);
                 return true;
 
 

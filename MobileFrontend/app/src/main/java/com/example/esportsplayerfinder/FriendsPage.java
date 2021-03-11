@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 public class FriendsPage extends AppCompatActivity {
 
     float x1,x2,y1,y2;
+    Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +29,19 @@ public class FriendsPage extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        this.menu = menu;
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_profile, menu);
+        // Checks if the user is logged in and edits menu options
+        if(ProfileMan.username==null){
+            this.menu.findItem(R.id.myProfile).setVisible(false);
+            this.menu.findItem(R.id.loginOption).setVisible(true);
+            this.menu.findItem(R.id.registerOption).setVisible(true);
+        }else{
+            this.menu.findItem(R.id.myProfile).setVisible(true);
+            this.menu.findItem(R.id.loginOption).setVisible(false);
+            this.menu.findItem(R.id.registerOption).setVisible(false);
+        }
         return true;
     }
 
