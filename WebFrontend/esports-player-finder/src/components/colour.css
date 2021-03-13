@@ -1,0 +1,42 @@
+/* Use the following import on the local CSS file to import the colours
+
+@import url('../colour.css'); 
+
+*/
+
+:root{
+    --header-colour-primary: #3a3a3a;
+    --background-colour-primary: #333333;
+
+    --text-colour-primary: #bebebe;
+    --text-colour-secondary: #ffffff;
+    --text-colour-tertiary: #aaaaaa;
+
+    --input-form-background-colour: #252525;
+    
+
+    --content-background-colour-primary: #464646;
+    --content-background-colour-secondary: #2b2b2b;
+
+
+    --button-text-colour-primary: #a8a8a8;
+    --button-text-colour-secondary: #ffffff;
+    --button-highlight-colour-primary: #b92020;
+    --button-highlight-colour-secondary: #881d1d;
+
+    --red-light-0: #ff0606;
+    --red-0: #ff0000;
+    --red-9: #810000;
+
+    --shadow-black: #0a0a0a;
+
+
+
+
+
+
+
+
+
+
+}
