@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:icon="@drawable/logo6">
+
+    <group>
+        <item
+            android:id="@+id/dashboard_Menu"
+            android:icon="@drawable/burger_menu"
+            android:title="dash_Menu"
+            app:showAsAction="ifRoom">
+            <menu>
+                <item
+                    android:id="@+id/dashboard"
+                    android:title="Dashboard"></item>
+                <item
+                    android:id="@+id/games"
+                    android:title="Games"></item>
+                <item
+                    android:id="@+id/about"
+                    android:title="About Us"></item>
+                <item
+                    android:id="@+id/help"
+                    android:title="Help"></item>
+            </menu>
+        </item>
+    </group>
+    <group
+        android:checkableBehavior="single"
+        android:layout_gravity="end"
+        android:gravity="end">
+        <item android:id="@+id/profileMenu"
+            android:icon="@drawable/person_male"
+            android:title="profile_menu"
+            app:showAsAction="ifRoom">
+            <menu>
+                <group
+                    android:id="@+id/onlyProfile">
+                    <item
+                        android:id="@+id/myProfile"
+                        android:title="My Profile"
+                        app:showAsAction="ifRoom">
+                    </item>
+                    <item android:id="@+id/logout"
+            android:title="Logout"
+            app:showAsAction="ifRoom">
+                    </item>
+<!--                    <item-->
+<!--                        android:id="@+id/friendsList"-->
+<!--                        android:title="Friends List">-->
+<!--                    </item>-->
+
+                </group>
+
+                <group
+                    android:id="@+id/loginOrRegister">
+
+                    <item
+                        android:id="@+id/loginOption"
+                        android:title="Login"
+                        app:showAsAction="ifRoom">
+                    </item>
+                    <item
+                        android:id="@+id/registerOption"
+                        android:title="Register"
+                        app:showAsAction="ifRoom">
+                    </item>
+
+                </group>
+
+
+            </menu>
+
+
+        </item>
+
+    </group>
+
+
+</menu>
