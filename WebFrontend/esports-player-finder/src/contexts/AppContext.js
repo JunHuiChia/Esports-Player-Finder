@@ -67,7 +67,7 @@ const AppProvider = (props) => {
   const signup = (statusMsg) => {
     axios.defaults.withCredentials = true;
     // CSRF COOKIE
-    axios.get(hostName + "sanctum/csrf-cookie").then(
+    axios.get(hostName + "api/sanctum/csrf-cookie").then(
       (response) => {
         //console.log(response);
         // SIGNUP / REGISTER
@@ -130,7 +130,7 @@ const AppProvider = (props) => {
   const login = (statusMsg) => {
     axios.defaults.withCredentials = true;
     // CSRF COOKIE
-    axios.get(hostName + "sanctum/csrf-cookie").then(
+    axios.get(hostName + "api/sanctum/csrf-cookie").then(
       (response) => {
         //console.log(response);
         // LOGIN
