@@ -14,7 +14,15 @@ class UserController extends Controller
 {
     /**
      * Register a new user
-     *
+     * 
+     * @Authenticated
+     * 
+     * @group User
+     * 
+     * @queryParam name required The name of the user
+     * @queryParam email required The email address of the user
+     * @queryParam password required The password of the user
+     * 
      * @param Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
@@ -46,7 +54,7 @@ class UserController extends Controller
 
     /**
      * Create a new user instance after a valid registration.
-     *
+     * 
      * @param  array  $data
      * @return \App\User
      */
@@ -60,7 +68,7 @@ class UserController extends Controller
     }
 
     /**
-     * Attempt to login as a user
+     * Attempt to login as a user (SPA Only)
      *
      * @param Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -79,8 +87,12 @@ class UserController extends Controller
     }
 
     /**
-     * Logout from a user account
-     *
+     * Logout from a user account (SPA Only)
+     *  
+     * @response {
+     *      "message": "Logged Out"
+     *   }
+     * 
      * @return \Illuminate\Http\JsonResponse
      */
     public function logout()
@@ -88,10 +100,15 @@ class UserController extends Controller
         Auth::logout();
         return response()->json(['message' => 'Logged Out'], 200);
     }
-    
+
     /**
-     * Attempt to create an API token for a user
-     *
+     * Attempt to create an API token for a user (Non SPA Login)
+     * 
+     * @queryParam email required The email address of the user
+     * @queryParam password required The password of the user
+     * @queryParam device_name required The device name for this token
+     * @response 1|TOKEN_RESPONSE_EXAMPLE
+     * 
      * @param  Illuminate\Http\Request $request
      * @return string 
      */
@@ -111,5 +128,25 @@ class UserController extends Controller
         }
 
         return $user->createToken($request->device_name)->plainTextToken;
+    }
+
+    /**
+     * Get the currently logged in user
+     * 
+     * @authenticated
+     * 
+     * @response {
+     *      "id": 2,
+     *      "name": "Billss",
+     *      "email": "bill@gmail.com",
+     *      "email_verified_at": "2021-03-06T18:17:27.000000Z",
+     *      "created_at": "2021-03-06T17:02:16.000000Z",
+     *      "updated_at": "2021-03-06T17:02:16.000000Z"
+     *   }
+     * 
+     * @group User
+     */
+    public function get(Request $request) {
+        return $request->user();
     }
 }
