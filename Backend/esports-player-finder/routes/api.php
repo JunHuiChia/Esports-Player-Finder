@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
+//Authentication
+Route::middleware('auth:sanctum')->get('/user', [App\Http\Controllers\UserController::class, 'get']);
+Route::post('/login', [App\Http\Controllers\UserController::class, 'login']);
+Route::post('/register', [App\Http\Controllers\UserController::class, 'register']);
+Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout']);
+
+// API token generation
+Route::post('/sanctum/token', [App\Http\Controllers\UserController::class, 'createToken']);

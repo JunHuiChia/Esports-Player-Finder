@@ -1,0 +1,68 @@
+
+div #registerArea{
+    flex-direction: column;
+    border-radius: 8px;
+    width: 500px;
+    height: fit-content;
+    box-shadow: 2px 2px 10px var(--shadow-black);
+}
+
+#registerArea img{
+    width: 330px;
+    height: 70px;
+}
+
+#inputArea button{
+    margin: 8px;
+}
+
+.agreement{
+    font-size: 0.8rem;
+    width: 75%;
+    align-self: center;
+    padding: 12px 0;
+    padding-left: 0;
+    color: var(--red-0);
+}
+
+
+#inputArea .registerUsernameText, .registerEmailText, .registerPasswordText {
+    padding: 10px 0;
+}
+
+#registerUsernameInput, #registerEmailInput, #registerPasswordInput {
+    padding: 6px 6px;
+}
+
+#inputArea span , .sign-in{
+    margin-top: 16px;
+    align-self: center;
+    font-size: 1rem;
+}
+
+.sign-in{
+    color: var(--text-colour-secondary);
+    transition: all 0.1s;
+}
+
+.sign-in:hover{
+    border: none;
+    font-size: 1rem;
+    color: var(--red-light-0);
+}
+
+.registerPasswordSpan{
+    display: flex;
+}
+
+.showPassword{
+    font-size: inherit;
+    align-self: center;
+    padding: 0 8px;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+.showPassword:hover{
+    color: var(--red-0);
+}

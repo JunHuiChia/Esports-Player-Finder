@@ -1,41 +1,67 @@
+@import url('../../css/colour.css');
+
 body{
-    background-color: grey;
+    background-color:  var(--background-colour-primary);
 }
 
 header{
     display:flex;
-    width: 100%;
-    padding: 1.5rem;
-    border-bottom: 2px solid black;
-    background: linear-gradient(360deg, rgba(0,0,0,1) 45%, rgba(15,0,0,1) 65%, rgba(41,0,0,1) 100%);
-    justify-content: space-between;
+    height: 60px;
+    box-shadow: 0px 1px 11px 0 var(--shadow-black);
+    background: var(--header-colour-primary);
+    align-items: center;
+    padding: 0 16px;
 }
 
-a{
+#logo{
+    width: 180px;
+}
+
+.logo:hover{
+    border-bottom: none;
+}
+
+a, .logoutButton{
     text-decoration:solid;
     font-size: 1.5rem;
-    color: white;
+    color: var(--text-colour-primary);
 }
 
-a:hover{
+a:hover, .logoutButton:hover{
     font-size: 1.5rem;
-    border-bottom: 0.2rem solid;
-    border-bottom-color: rgb(128, 4, 4);
-    color: red;
+    border-bottom: 2px solid;
+    border-bottom-color: var(--text-colour-secondary);
+    color: var(--text-colour-secondary);
+    cursor: pointer;
+}
+/* 
+div .active{
+    border-bottom: 3px solid;
+    color:var(--text-colour-secondary);
+} */
+
+div .navArea{
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    height: 100%;
 }
 
 div .navButton{
-    padding: 0.5rem;
-    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0 1rem;
 }
 
 div .userArea{
-    margin-right: 2.5rem;
+    display: flex;
+    margin-left: auto;
+    align-items: center;
 }
 
 div .topRight{
-    padding: 0.5rem;
-    margin-right: 1rem;
+    margin: 0 1rem;
 }
 
 div .loggedIn{
