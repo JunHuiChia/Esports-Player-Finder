@@ -19,9 +19,20 @@ class UserController extends Controller
      * 
      * @group User
      * 
-     * @queryParam name required The name of the user
+     * @queryParam username required The username of the user
      * @queryParam email required The email address of the user
      * @queryParam password required The password of the user
+     * 
+     * @response {
+     *     "user": {
+     *         "username": "voluptas",
+     *         "email": "illum@gmail.com",
+     *         "updated_at": "2021-03-16T14:12:56.000000Z",
+     *         "created_at": "2021-03-16T14:12:56.000000Z",
+     *         "id": 9
+     *     },
+     *     "message": "registration successful"
+     * }
      * 
      * @param Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -46,7 +57,7 @@ class UserController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:4'],
         ]);
@@ -61,7 +72,7 @@ class UserController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
@@ -137,7 +148,7 @@ class UserController extends Controller
      * 
      * @response {
      *      "id": 2,
-     *      "name": "Billss",
+     *      "username": "Billss",
      *      "email": "bill@gmail.com",
      *      "email_verified_at": "2021-03-06T18:17:27.000000Z",
      *      "created_at": "2021-03-06T17:02:16.000000Z",

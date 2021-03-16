@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Esports Player Finder",
-        "_postman_id": "09b90d2f-7690-4d9e-8b5f-78ce64c64c4a",
+        "_postman_id": "c0c97d2d-567c-43f4-8ecb-d80e25f2c437",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -116,24 +116,24 @@
                             "query": [
                                 {
                                     "key": "email",
-                                    "value": "dolorum",
+                                    "value": "sit",
                                     "description": "The email address of the user",
                                     "disabled": false
                                 },
                                 {
                                     "key": "password",
-                                    "value": "porro",
+                                    "value": "quis",
                                     "description": "The password of the user",
                                     "disabled": false
                                 },
                                 {
                                     "key": "device_name",
-                                    "value": "autem",
+                                    "value": "debitis",
                                     "description": "The device name for this token",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/sanctum\/token?email=dolorum&password=porro&device_name=autem"
+                            "raw": "http:\/\/{{baseUrl}}\/api\/sanctum\/token?email=sit&password=quis&device_name=debitis"
                         },
                         "method": "POST",
                         "header": [
@@ -195,25 +195,25 @@
                             "path": "api\/register",
                             "query": [
                                 {
+                                    "key": "username",
+                                    "value": "et",
+                                    "description": "The username of the user",
+                                    "disabled": false
+                                },
+                                {
                                     "key": "email",
-                                    "value": "voluptatum",
+                                    "value": "voluptas",
                                     "description": "The email address of the user",
                                     "disabled": false
                                 },
                                 {
                                     "key": "password",
-                                    "value": "ea",
+                                    "value": "enim",
                                     "description": "The password of the user",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "device_name",
-                                    "value": "voluptas",
-                                    "description": "The device name for this token",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/register?email=voluptatum&password=ea&device_name=voluptas"
+                            "raw": "http:\/\/{{baseUrl}}\/api\/register?username=et&email=voluptas&password=enim"
                         },
                         "method": "POST",
                         "header": [
