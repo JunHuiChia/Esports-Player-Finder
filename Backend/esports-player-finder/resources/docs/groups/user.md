@@ -41,7 +41,7 @@ fetch(url, {
 ```json
 {
     "id": 2,
-    "name": "Billss",
+    "username": "Billss",
     "email": "bill@gmail.com",
     "email_verified_at": "2021-03-06T18:17:27.000000Z",
     "created_at": "2021-03-06T17:02:16.000000Z",
@@ -83,7 +83,7 @@ fetch(url, {
 
 ```bash
 curl -X POST \
-    "http://backend.setap.local/api/register?email=voluptatum&password=ea&device_name=voluptas" \
+    "http://backend.setap.local/api/register?username=et&email=voluptas&password=enim" \
     -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -95,9 +95,9 @@ const url = new URL(
 );
 
 let params = {
-    "email": "voluptatum",
-    "password": "ea",
-    "device_name": "voluptas",
+    "username": "et",
+    "email": "voluptas",
+    "password": "enim",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -116,6 +116,20 @@ fetch(url, {
 ```
 
 
+> Example response (200):
+
+```json
+{
+    "user": {
+        "username": "voluptas",
+        "email": "illum@gmail.com",
+        "updated_at": "2021-03-16T14:12:56.000000Z",
+        "created_at": "2021-03-16T14:12:56.000000Z",
+        "id": 9
+    },
+    "message": "registration successful"
+}
+```
 <div id="execution-results-POSTapi-register" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-register"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-register"></code></pre>
@@ -140,6 +154,11 @@ fetch(url, {
 </p>
 <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
 <p>
+<b><code>username</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="username" data-endpoint="POSTapi-register" data-component="query" required  hidden>
+<br>
+The username of the user</p>
+<p>
 <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
 <input type="text" name="email" data-endpoint="POSTapi-register" data-component="query" required  hidden>
 <br>
@@ -149,11 +168,6 @@ The email address of the user</p>
 <input type="text" name="password" data-endpoint="POSTapi-register" data-component="query" required  hidden>
 <br>
 The password of the user</p>
-<p>
-<b><code>device_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="device_name" data-endpoint="POSTapi-register" data-component="query" required  hidden>
-<br>
-The device name for this token</p>
 </form>
 
 

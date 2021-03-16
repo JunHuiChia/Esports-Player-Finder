@@ -128,3 +128,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 Backend/esports-player-finder/package-lock.json
+Backend/esports-player-finder/.env.example

@@ -42,7 +42,7 @@
                             <li><a href="./collection.json">View Postman collection</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: March 15 2021</li>
+            <li>Last updated: March 16 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -293,7 +293,7 @@ fetch(url, {
 </blockquote>
 <pre><code class="language-json">{
     "id": 2,
-    "name": "Billss",
+    "username": "Billss",
     "email": "bill@gmail.com",
     "email_verified_at": "2021-03-06T18:17:27.000000Z",
     "created_at": "2021-03-06T17:02:16.000000Z",
@@ -328,7 +328,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://backend.setap.local/api/register?email=voluptatum&amp;password=ea&amp;device_name=voluptas" \
+    "http://backend.setap.local/api/register?username=et&amp;email=voluptas&amp;password=enim" \
     -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
@@ -337,9 +337,9 @@ fetch(url, {
 );
 
 let params = {
-    "email": "voluptatum",
-    "password": "ea",
-    "device_name": "voluptas",
+    "username": "et",
+    "email": "voluptas",
+    "password": "enim",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -354,6 +354,19 @@ fetch(url, {
     method: "POST",
     headers,
 }).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "user": {
+        "username": "voluptas",
+        "email": "illum@gmail.com",
+        "updated_at": "2021-03-16T14:12:56.000000Z",
+        "created_at": "2021-03-16T14:12:56.000000Z",
+        "id": 9
+    },
+    "message": "registration successful"
+}</code></pre>
 <div id="execution-results-POSTapi-register" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-register"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-register"></code></pre>
@@ -378,6 +391,11 @@ fetch(url, {
 </p>
 <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
 <p>
+<b><code>username</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="username" data-endpoint="POSTapi-register" data-component="query" required  hidden>
+<br>
+The username of the user</p>
+<p>
 <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
 <input type="text" name="email" data-endpoint="POSTapi-register" data-component="query" required  hidden>
 <br>
@@ -387,11 +405,6 @@ The email address of the user</p>
 <input type="text" name="password" data-endpoint="POSTapi-register" data-component="query" required  hidden>
 <br>
 The password of the user</p>
-<p>
-<b><code>device_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="device_name" data-endpoint="POSTapi-register" data-component="query" required  hidden>
-<br>
-The device name for this token</p>
 </form>
     </div>
     <div class="dark-box">
