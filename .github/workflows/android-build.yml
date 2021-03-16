@@ -12,7 +12,7 @@ jobs:
     
     defaults:
       run:
-        working-directory: ./MobileFrontend/app
+        working-directory: ./MobileFrontend
     
     steps:
       - uses: actions/checkout@v2
