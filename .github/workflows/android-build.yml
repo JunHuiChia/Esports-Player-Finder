@@ -2,11 +2,6 @@ name: Android Build
 
 on:
   workflow_dispatch:
-    inputs:
-      branch:
-        description: Specify branch to build.
-        required: true
-        default: 'main'
 
 jobs:
   build:
@@ -18,9 +13,8 @@ jobs:
         working-directory: ./MobileFrontend
     
     steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.inputs.branch }}
+      - name: Checkout Repository
+        uses: actions/checkout@v2
       
       - name: Setup JDK
         uses: actions/setup-java@v1
@@ -38,3 +32,9 @@ jobs:
         
       - name: Build Project
         run: ./gradlew assemble
+
+      - name: Upload Reports
+        uses: actions/upload-artifact@v1
+        with:
+          name: reports
+          path: MobileFrontend/app/build/reports
