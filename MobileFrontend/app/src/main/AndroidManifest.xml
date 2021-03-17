@@ -23,9 +23,8 @@
             android:theme="@style/Theme.ESportsPlayerFinder.ActionBar" />
         <activity
             android:name=".FriendsPage"
-            android:theme="@style/Theme.ESportsPlayerFinder.ActionBar">
-            >
-        </activity>
+            android:theme="@style/Theme.ESportsPlayerFinder.ActionBar" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
