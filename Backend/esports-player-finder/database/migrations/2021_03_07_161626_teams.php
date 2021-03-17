@@ -16,8 +16,6 @@ class Teams extends Migration
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->bigInteger('team_chat_id')->unsigned();
-            $table->foreign('team_chat_id')->references('id')->on('chats');
             $table->timestamps();
         });
     }
