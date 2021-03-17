@@ -2,11 +2,6 @@ name: Android Build
 
 on:
   workflow_dispatch:
-    inputs:
-      branch:
-        description: Specify branch to build.
-        required: true
-        default: 'main'
 
 jobs:
   build:
@@ -18,10 +13,8 @@ jobs:
         working-directory: ./MobileFrontend
     
     steps:
-      - name: Checkout Specified Repo
+      - name: Checkout Repository
         uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.inputs.branch }}
       
       - name: Setup JDK
         uses: actions/setup-java@v1
