@@ -18,7 +18,7 @@ jobs:
         working-directory: ./MobileFrontend
     
     steps:
-      - name: Checkout ${{ github.event.inputs.branch }} Repo
+      - name: Checkout Specified Repo
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.inputs.branch }}
@@ -40,7 +40,7 @@ jobs:
       - name: Build Project
         run: ./gradlew assemble
 
-      - name: Upload Artifacts
+      - name: Upload Reports
         uses: actions/upload-artifact@v1
         with:
           name: reports
