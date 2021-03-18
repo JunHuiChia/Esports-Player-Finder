@@ -7,14 +7,28 @@ import {Link} from "react-router-dom";
 
 
 
+function test(){
+
+    const teamName = "Team Gamer"
+    const teamName2 = "Team Noobs"
+
+    return (
+    <div className="userTeams my-6">
+        <TeamContent teamName={teamName}/>
+        <TeamContent teamName={teamName2}/>
+    </div>
+    );
+}
+
+
+
 const Profile = () => {
     const appContext = useContext(AppContext);
     const {
         userName
     } = appContext;
 
-    const teamName = "Team Gamer"
-    const teamName2 = "Team Noobs"
+    
 
     return(
         <div id="profilePage" className="rounded-md">
@@ -24,11 +38,7 @@ const Profile = () => {
             </div>
             <div className="profilePageTeamContent mx-16 mt-5 mb-10 p-8"> 
                 <span className="my-8 underline">Teams</span>
-                <div className="userTeams my-6">
-                    <TeamContent teamName={teamName}/>
-                    <TeamContent teamName={teamName2}/> 
-                </div>
-                
+                {test()}
             </div>
         </div>
     );
