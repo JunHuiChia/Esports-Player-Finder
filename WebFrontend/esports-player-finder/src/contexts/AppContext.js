@@ -71,7 +71,7 @@ const AppProvider = (props) => {
         // SIGNUP / REGISTER
         axios
           .post(hostName + "api/register", {
-            name: userNameInput,
+            username: userNameInput,
             email: userEmail,
             password: userPassword,
           })
@@ -83,7 +83,7 @@ const AppProvider = (props) => {
                 (response) => {
                   //console.log(response);
                   setUserId(response.data.id);
-                  setUserName(response.data.name);
+                  setUserName(response.data.username);
                   setErrorMessage("");
                   setAuthStatus(LOGGED_IN);
                   setLoginStatus(true);
@@ -98,9 +98,9 @@ const AppProvider = (props) => {
             },
             // SIGNUP ERROR
             (error) => {
-              if (error.response.data.errors.name) {
-                setErrorMessage(error.response.data.errors.name[0]);
-                statusMsg(error.response.data.errors.name[0]);
+              if (error.response.data.errors.username) {
+                setErrorMessage(error.response.data.errors.username[0]);
+                statusMsg(error.response.data.errors.username[0]);
               } else if (error.response.data.errors.email) {
                 setErrorMessage(error.response.data.errors.email[0]);
                 statusMsg(error.response.data.errors.email[0]);
@@ -145,7 +145,7 @@ const AppProvider = (props) => {
                 (response) => {
                   //console.log(response);
                   setUserId(response.data.id);
-                  setUserName(response.data.name);
+                  setUserName(response.data.username);
                   setErrorMessage("");
                   setAuthStatus(LOGGED_IN);
                   localStorage.setItem(loggedIn_key, 'LoggedIn')
@@ -199,7 +199,7 @@ const AppProvider = (props) => {
             (response) => {
                 console.log(response);
                 setUserId(response.data.id);
-                setUserName(response.data.name);
+                setUserName(response.data.username);
                 setErrorMessage("");
             },
             // GET USER ERROR
