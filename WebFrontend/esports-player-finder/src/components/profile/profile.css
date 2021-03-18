@@ -111,7 +111,7 @@
 
 .gameRoles{
     display: flex;
-    width: max-content;
+    width: 200px;
     flex-direction: column;
     border: 2px blue solid;
     margin: 1rem;

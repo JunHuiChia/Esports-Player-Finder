@@ -1,4 +1,4 @@
-import {React, useContext} from 'react';
+import {React, useContext, useState} from 'react';
 import './profile.css';
 import { AppContext } from "../../contexts/AppContext";
 
@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 
 import GameRole from './gameRole/gameRole.js';
 import AddGameRole from './gameRole/addGameRole.js';
+import NewGameRole from './gameRole/newGameRole.js';
 
 function ProfileEdit(){
     const appContext = useContext(AppContext);
@@ -20,6 +21,22 @@ function ProfileEdit(){
         errorMessage,
         loginStatus,
     } = appContext;
+
+    let [gameRole, setGameRole] = useState({})
+
+    const newGameRole = {
+        ...gameRole,
+        "game1": {
+            "game": "League of legends",
+            "role": "ADC",
+        },
+        "game2":{
+            "game": "CSGO",
+            "role": "sniper",
+        }
+        }
+
+
 
 
     return (
@@ -42,10 +59,8 @@ function ProfileEdit(){
                 </div>
                 <div className="editContent mx-10 mt-10 gameSection">
                     <span className="contentTitle">Game Roles</span>
-                    <AddGameRole games={["League of legends"]} roles={["ADC"]}/>
-                    <div className="userGameRoles">
-                        <GameRole game="League of legends" role="ADC"/>
-                    </div>
+                    <AddGameRole games={["League of legends","csgo"]} roles={["ADC"]}/>
+                    <NewGameRole games={newGameRole}/>
                 </div>
                 <div className="editContent mx-10 mt-10">
                     <span className="contentTitle">Email</span>

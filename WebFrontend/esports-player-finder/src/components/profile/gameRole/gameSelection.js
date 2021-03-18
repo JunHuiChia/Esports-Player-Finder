@@ -1,6 +1,5 @@
 import React from 'react';
 
-export default function gameSelection(gameList){
-        console.log(gameList);
-        return <option value={gameList}>{gameList}</option>
+export default function GameSelection(game){
+        return <option value={game.game}>{game.game}</option>
     }
