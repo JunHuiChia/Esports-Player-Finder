@@ -59,7 +59,16 @@
     border-radius: 0.5rem;
     min-width: 400px;
     background-color: var(--profile-background-colour);
+    text-align: center;
+    width: 90%;
 }
+
+.editProfileSection{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 
 .contentTitle{
     border-bottom: 3px solid;
@@ -100,8 +109,54 @@
     outline: none;
 }
 
-.editProfileSection{
+.gameRoles{
+    display: flex;
+    width: max-content;
+    flex-direction: column;
+    border: 2px blue solid;
+    margin: 1rem;
+}
+
+.gameRoles .profileGame{
+    padding: 0 0.5rem;
+}
+
+.gameRoles p {
+    font-weight: 600;
+}
+
+.addGameRoleSection {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+    width: max-content;
+    align-self: center;
+    padding: 0.5rem 0;
+}
+
+.addGameRole{
+    margin: 1rem 0;
+    background-color: var(--button-background-colour);
+    width: 50%;
+    align-self: center;
+    border-radius: 5px;
+}
+
+.addGameRole select{
+    padding: 1rem 0;
+}
+
+.addGameRole:hover{
+    background-color: var(--gray-7);
+}
+
+.gameSection{
+    display: flex;
+    flex-direction: column;
+}
+
+.userGameRoles{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
 }

@@ -4,6 +4,8 @@ import { AppContext } from "../../contexts/AppContext";
 
 import {Link} from "react-router-dom";
 
+import GameRole from './gameRole/gameRole.js';
+import AddGameRole from './gameRole/addGameRole.js';
 
 function ProfileEdit(){
     const appContext = useContext(AppContext);
@@ -19,6 +21,7 @@ function ProfileEdit(){
         loginStatus,
     } = appContext;
 
+
     return (
         <div id="profilePageEdit" className="rounded-md">
             <div className="mx-16 mt-8 profileTitle">
@@ -27,7 +30,7 @@ function ProfileEdit(){
             </div>
 
             <div className="mb-8 editProfileSection">
-                <div className="editContent mx-10 my-10">
+                <div className="editContent mx-10 mt-10">
                     <span className="contentTitle">Profile</span>
                     <div className="userDetails">
                         <div className="profileUsername ">Username: {userName}</div>
@@ -37,14 +40,14 @@ function ProfileEdit(){
                         </div>
                     </div>
                 </div>
-                <div className="editContent mx-10 my-10">
+                <div className="editContent mx-10 mt-10 gameSection">
                     <span className="contentTitle">Game Roles</span>
-                    <div className="userDetails">
-                        <div className="profileGame ">Game: League of legends</div>
-                        <div className="profileGame Role ">Role: ADC</div>
+                    <AddGameRole games={["League of legends"]} roles={["ADC"]}/>
+                    <div className="userGameRoles">
+                        <GameRole game="League of legends" role="ADC"/>
                     </div>
                 </div>
-                <div className="editContent mx-10 my-10">
+                <div className="editContent mx-10 mt-10">
                     <span className="contentTitle">Email</span>
                     <div className="userDetails">
                         <div className="profileEmail">Email: {userEmail}</div>
@@ -54,7 +57,7 @@ function ProfileEdit(){
                         </div>
                     </div>
                 </div>
-                <div className="editContent mx-10 my-10">
+                <div className="editContent mx-10 mt-10">
                     <span className="contentTitle">Password</span>
                     <div className="userDetails">
                         <label htmlFor="currentPassword">Current password: </label>

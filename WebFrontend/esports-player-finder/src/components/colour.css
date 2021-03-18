@@ -24,6 +24,7 @@
 
     --button-text-colour-primary: #a8a8a8;
     --button-text-colour-secondary: #ffffff;
+    --button-background-colour: #7e7e7ea4;
     --button-highlight-colour-primary: #b92020;
     --button-highlight-colour-secondary: #881d1d;
 
@@ -33,7 +34,15 @@
 
     --shadow-black: #0a0a0a;
 
-
+    --gray-0: #c0c0c0;
+    --gray-1: #b1b1b1;
+    --gray-2: #999999;
+    --gray-3: #858585;
+    --gray-4: #6d6d6d;
+    --gray-5: #505050;
+    --gray-6: #464646;
+    --gray-7: #3b3b3b;
+    --gray-8: #272727;
 
 
 
