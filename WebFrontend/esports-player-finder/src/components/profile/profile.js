@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 
 
 
-function test(){
+function userTeams(){
 
     const teamName = "Team Gamer"
     const teamName2 = "Team Noobs"
@@ -38,7 +38,7 @@ const Profile = () => {
             </div>
             <div className="profilePageTeamContent mx-16 mt-5 mb-10 p-8"> 
                 <span className="my-8 underline">Teams</span>
-                {test()}
+                {userTeams()}
             </div>
         </div>
     );
