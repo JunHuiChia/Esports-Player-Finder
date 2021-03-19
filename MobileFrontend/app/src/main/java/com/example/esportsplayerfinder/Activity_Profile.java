@@ -83,6 +83,7 @@ public class Activity_Profile extends AppCompatActivity {
                 ProfileMan.username = null;
                 ProfileMan.ID = -1;
                 ProfileMan.email = null;
+                ProfileMan.token = "";
                 //Redirect to register page
                 Intent intentLogout = new Intent(Activity_Profile.this, MainActivity.class);
                 startActivity(intentLogout);
