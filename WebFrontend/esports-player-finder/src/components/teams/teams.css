@@ -1,0 +1,32 @@
+#teamPage{
+    background-color: var(--content-background-colour-primary);
+    min-height: max-content;
+    display: flex;
+    width: 1100px;
+    margin: 0 auto;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+
+#teamList{
+    flex-grow: 4;
+    background-color: var(--content-background-colour-tertiary);
+    width: 20rem;
+    min-height: max-content;
+    margin: 2rem;
+}
+
+#createTeam{
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    margin: 2rem 1rem;
+    width: max-content;
+}
+
+.createTeamBtn{
+    background-color: #dfb4b4;
+}
