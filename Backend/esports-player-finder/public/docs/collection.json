@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Esports Player Finder",
-        "_postman_id": "c0c97d2d-567c-43f4-8ecb-d80e25f2c437",
+        "_postman_id": "db91bf86-fd0c-4d36-882d-f2ee59ed7ec6",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -116,24 +116,24 @@
                             "query": [
                                 {
                                     "key": "email",
-                                    "value": "sit",
+                                    "value": "voluptas",
                                     "description": "The email address of the user",
                                     "disabled": false
                                 },
                                 {
                                     "key": "password",
-                                    "value": "quis",
+                                    "value": "tempore",
                                     "description": "The password of the user",
                                     "disabled": false
                                 },
                                 {
                                     "key": "device_name",
-                                    "value": "debitis",
+                                    "value": "ex",
                                     "description": "The device name for this token",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/sanctum\/token?email=sit&password=quis&device_name=debitis"
+                            "raw": "http:\/\/{{baseUrl}}\/api\/sanctum\/token?email=voluptas&password=tempore&device_name=ex"
                         },
                         "method": "POST",
                         "header": [
@@ -151,6 +151,38 @@
                         "auth": {
                             "type": "noauth"
                         }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Game",
+            "description": "",
+            "item": [
+                {
+                    "name": "Get all games",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/games",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/games"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
                     },
                     "response": []
                 }
@@ -196,24 +228,24 @@
                             "query": [
                                 {
                                     "key": "username",
-                                    "value": "et",
+                                    "value": "aliquam",
                                     "description": "The username of the user",
                                     "disabled": false
                                 },
                                 {
                                     "key": "email",
-                                    "value": "voluptas",
+                                    "value": "veritatis",
                                     "description": "The email address of the user",
                                     "disabled": false
                                 },
                                 {
                                     "key": "password",
-                                    "value": "enim",
+                                    "value": "aut",
                                     "description": "The password of the user",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/register?username=et&email=voluptas&password=enim"
+                            "raw": "http:\/\/{{baseUrl}}\/api\/register?username=aliquam&email=veritatis&password=aut"
                         },
                         "method": "POST",
                         "header": [

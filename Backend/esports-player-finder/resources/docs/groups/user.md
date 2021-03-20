@@ -83,7 +83,7 @@ fetch(url, {
 
 ```bash
 curl -X POST \
-    "http://backend.setap.local/api/register?username=et&email=voluptas&password=enim" \
+    "http://backend.setap.local/api/register?username=aliquam&email=veritatis&password=aut" \
     -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -95,9 +95,9 @@ const url = new URL(
 );
 
 let params = {
-    "username": "et",
-    "email": "voluptas",
-    "password": "enim",
+    "username": "aliquam",
+    "email": "veritatis",
+    "password": "aut",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));

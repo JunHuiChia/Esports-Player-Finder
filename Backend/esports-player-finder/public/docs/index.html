@@ -263,6 +263,72 @@ The password of the user</p>
 <input type="text" name="device_name" data-endpoint="POSTapi-sanctum-token" data-component="query" required  hidden>
 <br>
 The device name for this token</p>
+</form><h1>Game</h1>
+<h2>Get all games</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://backend.setap.local/api/games" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://backend.setap.local/api/games"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "games": [
+        {
+            "id": 1,
+            "name": "test",
+            "created_at": "2021-03-20T18:55:52.000000Z",
+            "updated_at": "2021-03-20T18:55:53.000000Z"
+        },
+        {
+            "id": 2,
+            "name": "league",
+            "created_at": "2021-03-20T18:55:57.000000Z",
+            "updated_at": "2021-03-20T18:55:58.000000Z"
+        }
+    ]
+}</code></pre>
+<div id="execution-results-GETapi-games" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-games"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-games"></code></pre>
+</div>
+<div id="execution-error-GETapi-games" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-games"></code></pre>
+</div>
+<form id="form-GETapi-games" data-method="GET" data-path="api/games" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-games', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-games" onclick="tryItOut('GETapi-games');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-games" onclick="cancelTryOut('GETapi-games');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-games" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/games</code></b>
+</p>
+<p>
+<label id="auth-GETapi-games" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-games" data-component="header"></label>
+</p>
 </form><h1>User</h1>
 <h2>Get the currently logged in user</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
@@ -328,7 +394,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://backend.setap.local/api/register?username=et&amp;email=voluptas&amp;password=enim" \
+    "http://backend.setap.local/api/register?username=aliquam&amp;email=veritatis&amp;password=aut" \
     -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
@@ -337,9 +403,9 @@ fetch(url, {
 );
 
 let params = {
-    "username": "et",
-    "email": "voluptas",
-    "password": "enim",
+    "username": "aliquam",
+    "email": "veritatis",
+    "password": "aut",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));

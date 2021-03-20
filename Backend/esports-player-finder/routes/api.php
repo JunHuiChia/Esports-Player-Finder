@@ -23,3 +23,6 @@ Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout']);
 
 // API token generation
 Route::post('/sanctum/token', [App\Http\Controllers\UserController::class, 'createToken']);
+
+// Games
+Route::middleware('auth:sanctum')->get('/games', [App\Http\Controllers\GameController::class, 'all']);
