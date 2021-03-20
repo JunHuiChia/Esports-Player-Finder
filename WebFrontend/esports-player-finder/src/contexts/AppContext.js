@@ -7,11 +7,17 @@ import {
   LOGGED_IN,
 } from "../constants/AuthStatus";
 
-import { loginMsg } from '../components/login/login.js';
-
 const loggedIn_key = 'loggedin';
 
 const AppContext = React.createContext();
+
+/**
+ * Used for logging in, registering and logging out users
+ * @component
+ * @returns 
+ * <AppContext.Provider></AppContext.Provider>
+ * Used for wrapping around other components for login/register/logout
+ */
 
 const AppProvider = (props) => {
     let hostName = process.env.REACT_APP_API_URL
@@ -28,7 +34,6 @@ const AppProvider = (props) => {
   /**
    * @function isLogin
    * @description Changes the login status of user
-   * 
    * 
    */
   function isLogin(){
@@ -47,21 +52,41 @@ const AppProvider = (props) => {
     setAuthStatus(SIGN_UP_FORM);
   }
 
+  /**
+   * @function handleUserNameInput
+   * @description Updates the value of username state
+   * @param {event} onChangeEvent - When the input form has a change of data
+   */
   function handleUserNameInput(changeEvent) {
     let updatedUserName = changeEvent.target.value;
     setUserNameInput(updatedUserName);
   }
 
+    /**
+   * @function handleUserEmail
+   * @description Updates the value of email state
+   * @param {event} onChangeEvent - When the input form has a change of data
+   */
   function handleUserEmail(changeEvent) {
     let updatedUserEmail = changeEvent.target.value;
     setUserEmail(updatedUserEmail);
   }
-
+    /**
+   * @function handleUserPassword
+   * @description Updates the value of password state
+   * @param {event} onChangeEvent - When the input form has a change of data
+   */
   function handleUserPassword(changeEvent) {
     let updatedUserPassword = changeEvent.target.value;
     setUserPassword(updatedUserPassword);
   }
 
+  /**
+   * @function signup
+   * @description HTTP requests using axios for signing up users
+   * @param {string} statusMsg - status of the signup 
+   * 
+   */
   const signup = (statusMsg) => {
     axios.defaults.withCredentials = true;
     // CSRF COOKIE
@@ -125,6 +150,12 @@ const AppProvider = (props) => {
     );
   };
 
+    /**
+   * @function login
+   * @description HTTP requests using axios for logging in users
+   * @param {string} statusMsg - status of the login 
+   * 
+   */
   const login = (statusMsg) => {
     axios.defaults.withCredentials = true;
     // CSRF COOKIE
@@ -178,6 +209,10 @@ const AppProvider = (props) => {
     );
   };
 
+  /**
+   * @function logout
+   * @description Used for logging the user out and resets all forms
+   */
   function logout() {
     axios.defaults.withCredentials = true;
     axios.get(hostName + "api/logout");

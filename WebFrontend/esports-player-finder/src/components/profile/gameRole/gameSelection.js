@@ -1,5 +1,22 @@
 import React from 'react';
 
-export default function GameSelection(game){
+/**
+ *  Returns a list of options for choosing games
+ *  @component
+ *  @example
+ *  const game = 'League of legends'
+ *  return (
+ *      <option value={game.game}>{game.game}</option>
+ *  )
+ * @prop {string} game - The name of the game
+ * @returns
+ * <select> 
+ *      <option value="League of legends">League of Legends</option>
+ * </select>
+ */
+
+function GameSelection(game){
         return <option value={game.game}>{game.game}</option>
     }
+
+export default GameSelection

@@ -2,9 +2,17 @@
 import React from 'react';
 import GameSelection from './gameSelection';
 
-export default function AddGameRole({games, roles}){
+/**
+ *  Component for adding new game roles
+ *  @component
+ * 
+ * @prop {string} games - List of game names
+ * @prop {string} roles - List of game roles
+ * @returns 
+ * HTML of select for choosing games and roles to add
+ */
 
-
+function AddGameRole({games, roles}){
 
 
     return (
@@ -25,3 +33,4 @@ export default function AddGameRole({games, roles}){
     )
 }
 
+export default AddGameRole;
