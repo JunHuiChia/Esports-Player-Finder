@@ -2,17 +2,24 @@
 import React from 'react';
 import GameSelection from './gameSelection';
 
-export default function AddGameRole({games, roles}){
+/**
+ *  Component for adding new game roles
+ *  @component
+ * 
+ * @prop {string} games - List of game names
+ * @prop {string} roles - List of game roles
+ * @returns 
+ * HTML of select for choosing games and roles to add
+ */
 
-
-
+function AddGameRole({games, roles}){
 
     return (
         <div className="addGameRoleSection">
             <label htmlFor="selectGame">Choose a game: </label>
             <select name="selectGame" id="selectGame">
                 {games.map(game => {
-                    return <GameSelection game={game}/>
+                    return <GameSelection game={game.name}/>
                 })}
             </select>
             <label htmlFor="selectRole">Choose your role: </label>
@@ -25,3 +32,4 @@ export default function AddGameRole({games, roles}){
     )
 }
 
+export default AddGameRole;

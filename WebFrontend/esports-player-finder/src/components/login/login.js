@@ -10,38 +10,20 @@ import {Link, useHistory} from "react-router-dom";
 
 // export default class Login extends React.Component{
 
-/**
- * Component for showing login page
- * @component
- * @example
- * 
- * return (
- *  <Login/>
- * )
- * 
- */
-
-
     const Login = () => {
         
     const alert = useAlert();
     const appContext = useContext(AppContext);
     const history = useHistory();
     let {
-        userName,
         userEmail,
         userPassword,
         handleUserEmail,
         handleUserPassword,
         login,
-        checkDetails,
-        errorMessage,
-        loginStatus,
     } = appContext;
 
     const [hidePassword, setHidePassword] = useState(true);
-    const showHiddenPassword = hidePassword ? "" : "hidden";
-    const showRevealedPassword = hidePassword ? "hidden" : "";
     function togglePassword() {
     setHidePassword(!hidePassword);
     }

@@ -9,7 +9,7 @@ export default function newGameRole({games}){
     for (let [key,value] of Object.entries(games)){
         gameRole.push(value)
 
-        console.log(gameRole);
+        // console.log(gameRole);
         // return <GameRole game={value.game} role={value.role}/>
     }
 
