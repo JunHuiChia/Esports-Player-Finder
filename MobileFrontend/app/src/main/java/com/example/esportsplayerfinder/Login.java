@@ -20,6 +20,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.RequestFuture;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
@@ -27,12 +29,16 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public class Login extends AppCompatActivity {
 
-    private EditText eUsername;
+    private EditText eEMail;
     private EditText ePassword;
     private Button eLogin;
+    private Button eAuthenticate;
     private Button registerLink;
     Menu menu;
 
@@ -42,7 +48,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        eUsername = findViewById(R.id.loginUsername);
+        eEMail = findViewById(R.id.loginEMail);
         ePassword = findViewById(R.id.loginPassword);
         eLogin = findViewById(R.id.btnLogin);
         registerLink = findViewById(R.id.linkToRegister);
@@ -52,76 +58,121 @@ public class Login extends AppCompatActivity {
         getSupportActionBar().setLogo(R.drawable.logo6);
         getSupportActionBar().setTitle(R.string.Empty_String);
 
-        eLogin.setOnClickListener(new View.OnClickListener()
-        {
+        eLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String inputUsername = eUsername.getText().toString();
+
+                String inputEmail = eEMail.getText().toString();
                 String inputPassword = ePassword.getText().toString();
 
-//                if inputUsername.isEmpty() || inputPassword.isEmpty()
-//                {
-//                    Toast.makeText( context: MainActivity.this, resId: "Please enter all details correctly.", Toast.LENGTH_SHORT).show()
-//                }
+                if (validPassword(inputPassword)){
+                    getToken(inputEmail, inputPassword);
 
+                }
 
-
-                RequestQueue queue = Volley.newRequestQueue(Login.this);
-                String url = "http://192.168.0.15:80/api/user";
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                        (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                Toast.makeText(Login.this, "works", Toast.LENGTH_SHORT).show();
-                                Toast.makeText(Login.this, response.toString(), Toast.LENGTH_LONG).show();
-                                Log.d("load up profile suc:", response.toString());
-                                try {
-                                    ProfileMan.ID = (new Integer( response.getString("id")));
-                                    Log.d("ID:", response.getString("id"));
-                                    ProfileMan.username = ( response.getString("name"));
-                                    Log.d("name:", response.getString("name"));
-                                    ProfileMan.email = ( response.getString("email"));
-                                    Log.d("email:", response.getString("email"));
-                                    changeToProfilePage(findViewById(R.id.btnLogin));
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }, new Response.ErrorListener() {
-
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                // TODO: Handle error
-                                Toast.makeText(Login.this, error.toString(), Toast.LENGTH_LONG).show();
-                                Log.d("load up profile error:", error.toString());
-                                error.printStackTrace();
-
-                            }
-                        }){
-                    @Override
-                    public Map<String, String> getHeaders() throws AuthFailureError {
-                        Map<String, String>  params = new HashMap<String, String>();
-                        params.put("Authorization", "Bearer " + ProfileMan.token);
-
-                        return params;
-                    }
-                };
-                jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 2, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
-                queue.add(jsonObjectRequest);
             }
         });
-
-
-
-
     }
 
-//    private boolean validate(String username, String password)
-//    {
-//
-//    }
+    private boolean validPassword(String inputPassword) {
+        if (!(inputPassword.equals(""))){
+            Log.d("Valid Password:", "valid Password");
+            return true;
+        }else{
+            Log.d("Login", "Invalid Password");
+            return false;
+        }
+    }
+
+
+public void getUserDetails()
+{
+
+    RequestQueue queue = Volley.newRequestQueue(Login.this);
+    String url = "http://13.81.62.62/api/user";
+    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+            (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+                @Override
+                public void onResponse(JSONObject response) {
+                    Toast.makeText(Login.this, "works", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, response.toString(), Toast.LENGTH_LONG).show();
+                    Log.d("load up profile suc:", response.toString());
+                    try {
+                        ProfileMan.ID = (new Integer( response.getString("id")));
+                        Log.d("ID:", response.getString("id"));
+                        ProfileMan.username = ( response.getString("username"));
+                        Log.d("name:", response.getString("username"));
+                        ProfileMan.email = ( response.getString("email"));
+                        Log.d("email:", response.getString("email"));
+                        changeToProfilePage(findViewById(R.id.btnLogin));
+                    } catch (JSONException e) {
+                        Log.d("login", "onResponse:"+ e.toString());
+                    }
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(Login.this, error.toString(), Toast.LENGTH_LONG).show();
+                    Log.d("login error:", error.toString());
+                    error.printStackTrace();
+
+                }
+            }){
+        @Override
+        public Map<String, String> getHeaders() throws AuthFailureError {
+            Map<String, String>  params = new HashMap<String, String>();
+            params.put("Authorization", "Bearer " + ProfileMan.token);
+            Log.d("token test", "get token:" + "Bearer " + ProfileMan.token);
+
+            return params;
+        }
+    };
+    jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 2, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+    queue.add(jsonObjectRequest);
+}
+
+public void getToken(String inputEmail, String inputPassword)
+{
+    RequestQueue queue = Volley.newRequestQueue(Login.this);
+    String url = "http://13.81.62.62/api/sanctum/token";
+
+    HashMap<String, String> params = new HashMap<String, String>();
+    params.put("email", inputEmail);
+    params.put("password", inputPassword);
+    params.put("device_name",  inputEmail + "_mobile");
+
+    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params), new Response.Listener<JSONObject>() {
+        @Override
+        public void onResponse(JSONObject response) {
+            Toast.makeText(Login.this, "works", Toast.LENGTH_LONG).show();
+            Toast.makeText(Login.this, response.toString(), Toast.LENGTH_LONG).show();
+            try {
+                ProfileMan.token = response.getString("token");
+                Log.d("Token check", "Token value - " + ProfileMan.token );
+                getUserDetails();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }, new Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError error) {
+            Log.e("VOLLEY", error.toString());
+        }
+    }) {
+    };
+
+    jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 2, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+    queue.add(jsonObjectRequest);
+    Log.d("TToken check", "Token value - " + ProfileMan.token );
+
+
+}
+
 public void changeToRegisterPage(View view) {
     Intent intentRegister = new Intent(Login.this, Register.class);
     startActivity(intentRegister);
@@ -180,6 +231,7 @@ public void changeToRegisterPage(View view) {
                 ProfileMan.username = null;
                 ProfileMan.ID = -1;
                 ProfileMan.email = null;
+                ProfileMan.token = "";
                 //Redirect to register page
                 Intent intentLogout = new Intent(Login.this, MainActivity.class);
                 startActivity(intentLogout);

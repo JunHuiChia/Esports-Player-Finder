@@ -26,3 +26,4 @@ Route::post('/sanctum/token', [App\Http\Controllers\UserController::class, 'crea
 
 // Games
 Route::middleware('auth:sanctum')->get('/games', [App\Http\Controllers\GameController::class, 'all']);
+Route::middleware('json.response')->post('/sanctum/token', [App\Http\Controllers\UserController::class, 'createToken']);

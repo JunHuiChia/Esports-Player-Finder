@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 ProfileMan.username = null;
                 ProfileMan.ID = -1;
                 ProfileMan.email = null;
+                ProfileMan.token = "";
                 //Redirect to register page
                 Intent intentDashboard = new Intent(MainActivity.this, MainActivity.class);
                 startActivity(intentDashboard);
