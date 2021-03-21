@@ -18,4 +18,9 @@ class Game extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function gameRoles()
+    {
+        return $this->hasMany(GameRole::class);
+    }
 }
