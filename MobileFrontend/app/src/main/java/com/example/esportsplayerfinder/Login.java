@@ -51,7 +51,6 @@ public class Login extends AppCompatActivity {
         eEMail = findViewById(R.id.loginEMail);
         ePassword = findViewById(R.id.loginPassword);
         eLogin = findViewById(R.id.btnLogin);
-        eAuthenticate = findViewById(R.id.btnAuthenticateLogin);
         registerLink = findViewById(R.id.linkToRegister);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.Dashbar);
