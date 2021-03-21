@@ -245,6 +245,11 @@ const AppProvider = (props) => {
         );
   };
 
+  /**
+   * @function
+   * @description API Call for getting a list of games
+   */
+
   const getGames = () => {
     axios.defaults.withCredentials = true;
 

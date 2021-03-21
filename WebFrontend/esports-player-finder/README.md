@@ -2,6 +2,11 @@
 
 Esports player finder is an online web application for finding other players to play games with.
 
+To update and run do :
+
+npm ci
+npm start
+
 <!-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
