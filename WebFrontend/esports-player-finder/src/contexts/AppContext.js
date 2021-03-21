@@ -30,6 +30,7 @@ const AppProvider = (props) => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [loginStatus, setLoginStatus] = useState("");
+  const [gameList, setGameList] = useState([]);
 
   /**
    * @function isLogin
@@ -244,6 +245,24 @@ const AppProvider = (props) => {
         );
   };
 
+  const getGames = () => {
+    axios.defaults.withCredentials = true;
+
+    axios.get(hostName + "api/sanctum/csrf-cookie").then(
+      (response) => {
+        axios.get(hostName + "api/games").then(
+          (response) => { 
+            setGameList(response.data.games);
+          },
+          (error) =>{
+            setErrorMessage("Could not retrieve games")
+          })
+      },
+      (error) => {
+        setErrorMessage("Could not get response for games")
+      })
+  }
+
 
   
   return (
@@ -268,6 +287,8 @@ const AppProvider = (props) => {
         logout,
         errorMessage,
         isLogin,
+        getGames,
+        gameList,
       }}
       >
       {props.children}

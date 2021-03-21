@@ -21,14 +21,10 @@ import {Link , useHistory} from "react-router-dom";
         handleUserEmail,
         handleUserPassword,
         signup,
-        errorMessage,
-        checkDetails,
     } = appContext;
-    
 
     const [hidePassword, setHidePassword] = useState(true);
-    const showHiddenPassword = hidePassword ? "" : "hidden";
-    const showRevealedPassword = hidePassword ? "hidden" : "";
+
     function togglePassword() {
     setHidePassword(!hidePassword);
     }
@@ -37,7 +33,7 @@ import {Link , useHistory} from "react-router-dom";
         signup(function (statusMsg){
             console.log(statusMsg);
             alert.show(<div className="text-sm">{statusMsg}</div>)
-            if(statusMsg == "Successful Sign Up"){
+            if(statusMsg === "Successful Sign Up"){
                 return history.push("/profile");
             }
         })

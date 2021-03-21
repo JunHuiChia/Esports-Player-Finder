@@ -45,6 +45,7 @@ import PrivateRoute from '../routes/PrivateRoute.js';
             userName, 
             logout, 
             authStatus,
+            getGames,
             } 
             = appContext;
         const showNotLoggedIn = authStatus === NOT_LOGGED_IN ? "" : "hidden";
@@ -61,6 +62,7 @@ import PrivateRoute from '../routes/PrivateRoute.js';
                     <Link to="/matchfinding" className="navButton">Matchfinding</Link>
                     <Link to="/teams" className="navButton">Teams</Link>
                     {/* <Link to="/help" className= "navButton">Help</Link> */}
+                    <div onClick={getGames} > get Games </div>
                 </div>
                 <div className="userArea">
                     <Link to="/login" className={`loginButton topRight ${showNotLoggedIn}`}>Login</Link>

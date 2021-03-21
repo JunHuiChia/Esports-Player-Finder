@@ -14,13 +14,12 @@ import GameSelection from './gameSelection';
 
 function AddGameRole({games, roles}){
 
-
     return (
         <div className="addGameRoleSection">
             <label htmlFor="selectGame">Choose a game: </label>
             <select name="selectGame" id="selectGame">
                 {games.map(game => {
-                    return <GameSelection game={game}/>
+                    return <GameSelection game={game.name}/>
                 })}
             </select>
             <label htmlFor="selectRole">Choose your role: </label>

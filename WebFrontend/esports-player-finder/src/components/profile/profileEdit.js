@@ -1,28 +1,29 @@
-import {React, useContext, useState} from 'react';
+import {React, useContext, useEffect, useState} from 'react';
 import './profile.css';
 import { AppContext } from "../../contexts/AppContext";
 
 import {Link} from "react-router-dom";
 
-import GameRole from './gameRole/gameRole.js';
 import AddGameRole from './gameRole/addGameRole.js';
 import NewGameRole from './gameRole/newGameRole.js';
 
 function ProfileEdit(){
+
     const appContext = useContext(AppContext);
     const {
         userName,
         userEmail,
-        userPassword,
-        handleUserEmail,
-        handleUserPassword,
-        login,
-        checkDetails,
-        errorMessage,
-        loginStatus,
+        getGames,
+        gameList,
     } = appContext;
 
+    
     let [gameRole, setGameRole] = useState({})
+    
+    useEffect(() =>{
+        getGames()
+    }, [])
+    
 
     const newGameRole = {
         ...gameRole,
@@ -36,7 +37,7 @@ function ProfileEdit(){
         }
         }
 
-
+    
 
 
     return (
@@ -59,7 +60,7 @@ function ProfileEdit(){
                 </div>
                 <div className="editContent mx-10 mt-10 gameSection">
                     <span className="contentTitle">Game Roles</span>
-                    <AddGameRole games={["League of legends","csgo"]} roles={["ADC"]}/>
+                    <AddGameRole games={gameList} roles={["ADC"]}/>
                     <NewGameRole games={newGameRole}/>
                 </div>
                 <div className="editContent mx-10 mt-10">

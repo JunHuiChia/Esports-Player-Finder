@@ -16,20 +16,14 @@ import {Link, useHistory} from "react-router-dom";
     const appContext = useContext(AppContext);
     const history = useHistory();
     let {
-        userName,
         userEmail,
         userPassword,
         handleUserEmail,
         handleUserPassword,
         login,
-        checkDetails,
-        errorMessage,
-        loginStatus,
     } = appContext;
 
     const [hidePassword, setHidePassword] = useState(true);
-    const showHiddenPassword = hidePassword ? "" : "hidden";
-    const showRevealedPassword = hidePassword ? "hidden" : "";
     function togglePassword() {
     setHidePassword(!hidePassword);
     }
