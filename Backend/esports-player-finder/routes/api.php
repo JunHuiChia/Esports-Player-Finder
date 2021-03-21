@@ -22,4 +22,4 @@ Route::post('/register', [App\Http\Controllers\UserController::class, 'register'
 Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout']);
 
 // API token generation
-Route::post('/sanctum/token', [App\Http\Controllers\UserController::class, 'createToken']);
+Route::middleware('json.response')->post('/sanctum/token', [App\Http\Controllers\UserController::class, 'createToken']);
