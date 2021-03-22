@@ -9,6 +9,7 @@
     margin-top: 3rem;
     margin-bottom: 3rem;
     height: fit-content;
+    font-size: 2.5rem;
 }
 
 .profileTitle{
@@ -83,7 +84,14 @@
 
 .submit-button{
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.submit-button .errorMessage{
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--red-0);
 }
 
 .submit-button button{

@@ -236,6 +236,7 @@ const AppProvider = (props) => {
                 console.log(response);
                 setUserId(response.data.id);
                 setUserName(response.data.username);
+                setUserEmail(response.data.email)
                 setErrorMessage("");
             },
             // GET USER ERROR
@@ -257,6 +258,7 @@ const AppProvider = (props) => {
       (response) => {
         axios.get(hostName + "api/games").then(
           (response) => { 
+            console.log(response);
             setGameList(response.data.games);
           },
           (error) =>{
@@ -268,7 +270,115 @@ const AppProvider = (props) => {
       })
   }
 
+    /**
+   * @function
+   * @description Post API for creating a new game role for the user
+   */
+  const addGameRole = (roleID) => {
+    console.log(roleID);
 
+    axios.get(hostName + "api/sanctum/csrf-cookie").then(
+    (response) => {
+      axios.post(hostName + "api/user/gamerole", {
+        game_role_id: roleID,
+      })
+      .then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log("Cannot send game role");
+        })
+    },
+    (error) => {
+      console.log(error);
+    })
+    }
+
+    const updateUserAllDetail = (email,password,username) => {
+      console.log(email,password,username);
+      axios.get(hostName + "api/sanctum/csrf-cookie").then(
+      (response) => {
+        axios.patch(hostName + "api/users",{
+          email: email,
+          password: password,
+          username: username,
+        }).then(
+        (response) => {
+          console.log(response);
+          checkDetails();
+          setErrorMessage("Details updated successfully")
+        },
+        (error) => {
+          setErrorMessage("Cannot update details");
+        })
+      },
+      (error) => {
+        console.log(error);
+      })
+      }
+
+      const updateUsername = (username) => {
+        axios.get(hostName + "api/sanctum/csrf-cookie").then(
+          (response) => {
+            axios.patch(hostName + "api/users",{
+              username: username,
+            }).then(
+            (response) => {
+              console.log(response);
+              checkDetails();
+              setErrorMessage("Username updated successfully")
+
+            },
+            (error) => {
+              setErrorMessage("Cannot update username")
+            })
+          },
+          (error) => {
+            console.log(error);
+          })
+      }
+
+      const updatePassword = (password) => {
+        axios.get(hostName + "api/sanctum/csrf-cookie").then(
+          (response) => {
+            axios.patch(hostName + "api/users",{
+              password: password,
+            }).then(
+            (response) => {
+              console.log(response);
+              checkDetails();
+              setErrorMessage("Password updated successfully")
+
+            },
+            (error) => {
+              setErrorMessage("Password is too short/long")
+            })
+          },
+          (error) => {
+            console.log(error);
+          })
+      }
+
+      const updateEmail = (email) => {
+        axios.get(hostName + "api/sanctum/csrf-cookie").then(
+          (response) => {
+            axios.patch(hostName + "api/users",{
+              email: email,
+            }).then(
+            (response) => {
+              console.log(response);
+              checkDetails();
+              setErrorMessage("Email updated successfully")
+            },
+            (error) => {
+              setErrorMessage("Email is invalid")
+            })
+          },
+          (error) => {
+            console.log(error);
+          })
+      }
   
   return (
     <AppContext.Provider
@@ -294,6 +404,11 @@ const AppProvider = (props) => {
         isLogin,
         getGames,
         gameList,
+        addGameRole,
+        updateEmail,
+        updatePassword,
+        updateUserAllDetail,
+        updateUsername,
       }}
       >
       {props.children}

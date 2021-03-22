@@ -13,17 +13,41 @@ function ProfileEdit(){
     const {
         userName,
         userEmail,
-        getGames,
         gameList,
+        updateEmail,
+        updatePassword,
+        updateUserAllDetail,
+        updateUsername,
+        errorMessage,
     } = appContext;
 
     
     let [gameRole, setGameRole] = useState({})
     
-    useEffect(() =>{
-        getGames()
-    }, [])
-    
+
+    function handleUpdateDetails(){
+        let username = document.querySelector("#changeUsernameNew").value
+        let email = document.querySelector("#changeEmailNew").value
+        let password = document.querySelector("#changePasswordNew").value
+
+        if(username !== "" && password !== "" && email !== ""){
+            updateUserAllDetail(email,password,username)
+        }else{
+            if(username !== ""){
+                updateUsername(username)
+            }
+            if(password !== ""){
+                updatePassword(password)
+            }
+            if(email !== ""){
+                updateEmail(email)
+            }
+        }
+        document.querySelector("#changeUsernameNew").value = ""
+        document.querySelector("#changePasswordNew").value = ""
+        document.querySelector("#changeEmailNew").value = ""
+    }
+
 
     const newGameRole = {
         ...gameRole,
@@ -37,7 +61,6 @@ function ProfileEdit(){
         }
         }
 
-    
 
 
     return (
@@ -60,7 +83,7 @@ function ProfileEdit(){
                 </div>
                 <div className="editContent mx-10 mt-10 gameSection">
                     <span className="contentTitle">Game Roles</span>
-                    <AddGameRole games={gameList} roles={["ADC"]}/>
+                    <AddGameRole games={gameList}/>
                     <NewGameRole games={newGameRole}/>
                 </div>
                 <div className="editContent mx-10 mt-10">
@@ -75,12 +98,12 @@ function ProfileEdit(){
                 </div>
                 <div className="editContent mx-10 mt-10">
                     <span className="contentTitle">Password</span>
-                    <div className="userDetails">
+                    {/* <div className="userDetails">
                         <label htmlFor="currentPassword">Current password: </label>
                         <div className="passwordInput inputs">
                             <input name="currentPassword" id="changePasswordCurrent" type="password" ></input>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="userDetails">
                         <label htmlFor="newPassword">New password: </label>
                         <div className="passwordInput inputs">
@@ -90,7 +113,8 @@ function ProfileEdit(){
                 </div>
             </div>
             <div className="submit-button pb-10">
-                <button>Submit</button>
+            <div className="errorMessage">{errorMessage}</div>
+                <button onClick={handleUpdateDetails}>Submit</button>
             </div>
         </div>
     

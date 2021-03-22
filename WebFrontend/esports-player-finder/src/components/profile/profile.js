@@ -1,4 +1,4 @@
-import {React, useContext} from 'react';
+import {React, useContext, useEffect} from 'react';
 import './profile.css';
 import { AppContext } from "../../contexts/AppContext";
 import TeamContent from "../teams/TeamContent.js";
@@ -25,10 +25,13 @@ function userTeams(){
 const Profile = () => {
     const appContext = useContext(AppContext);
     const {
-        userName
+        userName,
+        getGames
     } = appContext;
-
     
+    useEffect(() =>{
+        getGames()
+    }, [])
 
     return(
         <div id="profilePage" className="rounded-md">

@@ -5,12 +5,12 @@
 */
 
 :root{
-    --header-colour-primary: #3a3a3a;
+    --header-colour-primary: #212529;
     --background-colour-primary: #333333;
 
-    --text-colour-primary: #bebebe;
-    --text-colour-secondary: #ffffff;
-    --text-colour-tertiary: #aaaaaa;
+    --text-colour-primary: #CED4DA;
+    --text-colour-secondary: #ADB5BD;
+    --text-colour-tertiary: #DEE2E6;
 
     --input-form-background-colour: #252525;
     
@@ -45,9 +45,10 @@
     --gray-8: #272727;
 
 
-
-
-
+    --colour-palette-0: #212529;
+    --colour-palette-1: #343A40;
+    --colour-palette-2: #495057;
+    --colour-palette-3: #6C757D;
 
 
 
