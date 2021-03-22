@@ -13,4 +13,9 @@ class GameRole extends Model
     {
         return $this->belongsTo('Game::class');
     }
+
+    public function UserGameRoles()
+    {
+        return $this->hasMany(UserGameRole::class);
+    }
 }
