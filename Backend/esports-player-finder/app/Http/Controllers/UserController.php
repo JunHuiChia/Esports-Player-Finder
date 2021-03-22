@@ -160,4 +160,42 @@ class UserController extends Controller
     public function get(Request $request) {
         return $request->user();
     }
+
+
+    /**
+     * Update user details of the currently logged in user
+     * 
+     * @authenticated
+     * 
+     * @queryParam email The email address to update
+     * @queryParam password The password to update
+     * @queryParam username The username to update
+     * 
+     * @response {
+     *      "updated" => true
+     *   }
+     * 
+     * @group User
+     */
+    public function update(Request $request) {
+        $request->validate([
+            'password' => 'required_without_all:username,email',
+            'username' => 'required_without_all:password,email',
+            'email' => 'required_without_all:username,password|email'
+        ]);
+
+        $user = $request->user();
+        if (isset($request->password)){
+            $user->password = Hash::make($request->password);
+        }
+        if (isset($request->username)) {
+            $user->username = $request->username;
+        }
+        if (isset($request->email)) {
+            $user->email = $request->email;
+        }
+        $user->save();
+
+        return response()->json(['updated' => true]);
+    }
 }

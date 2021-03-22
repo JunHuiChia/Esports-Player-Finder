@@ -18,8 +18,11 @@ use Illuminate\Support\Facades\Route;
 //Authentication
 Route::middleware('auth:sanctum')->get('/user', [App\Http\Controllers\UserController::class, 'get']);
 Route::post('/login', [App\Http\Controllers\UserController::class, 'login']);
-Route::post('/register', [App\Http\Controllers\UserController::class, 'register']);
 Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout']);
+
+// Users
+Route::post('/register', [App\Http\Controllers\UserController::class, 'register']);
+Route::middleware('auth:sanctum')->patch('/users', [App\Http\Controllers\UserController::class, 'update']);
 
 // API token generation
 Route::post('/sanctum/token', [App\Http\Controllers\UserController::class, 'createToken']);

@@ -26,42 +26,6 @@ class setGameRoleAPIEndpointTest extends TestCase
     }
 
     /**
-     * Test setting the game role with missing role id
-     *
-     * @return void
-     */
-    public function testSetGameroleWithoutRoleId()
-    {
-        $params = [
-            "user_id" => 1,
-        ];
-        Game::factory()
-            ->count(1)
-            ->has(GameRole::factory()->count(1), 'gameRoles')
-            ->create();
-        $response = $this->json('POST', '/api/user/gamerole', $params, ["Authorization" => $this->token]);
-        $response->assertStatus(422);
-    }
-
-    /**
-     * Test setting game role with missing user id
-     *
-     * @return void
-     */
-    public function testSetGameroleWithoutUserId()
-    {
-        Game::factory()
-            ->count(1)
-            ->has(GameRole::factory()->count(1), 'gameRoles')
-            ->create();
-        $params = [
-            "game_role_id" => 1
-        ];
-        $response = $this->json('POST', '/api/user/gamerole', [], ["Authorization" => $this->token]);
-        $response->assertStatus(422);
-    }
-
-    /**
      * Test setting game role with invalid role id
      *
      * @return void
@@ -69,26 +33,6 @@ class setGameRoleAPIEndpointTest extends TestCase
     public function testSetGameroleWithInvalidRoleId()
     {
         $params = [
-            "user_id" => 1,
-            "game_role_id" => 1
-        ];
-        $response = $this->json('POST', '/api/user/gamerole', $params, ["Authorization" => $this->token]);
-        $response->assertStatus(422);
-    }
-
-    /**
-     * Test setting game role with invalid user id
-     *
-     * @return void
-     */
-    public function testSetGameroleWithInvalidUserId()
-    {
-        Game::factory()
-            ->count(1)
-            ->has(GameRole::factory()->count(1), 'gameRoles')
-            ->create();
-        $params = [
-            "user_id" => 2,
             "game_role_id" => 1
         ];
         $response = $this->json('POST', '/api/user/gamerole', $params, ["Authorization" => $this->token]);
@@ -119,7 +63,6 @@ class setGameRoleAPIEndpointTest extends TestCase
             ->create();
 
         $params = [
-            "user_id" => 1,
             "game_role_id" => 1
         ];
         $response = $this->json('POST', '/api/user/gamerole', $params, ["Authorization" => $this->token]);
