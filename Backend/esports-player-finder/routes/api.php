@@ -21,5 +21,9 @@ Route::post('/login', [App\Http\Controllers\UserController::class, 'login']);
 Route::post('/register', [App\Http\Controllers\UserController::class, 'register']);
 Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout']);
 
+//Teams
+Route::middleware('auth:sanctum')->post('/team', [App\Http\Controllers\TeamController::class, 'post']);
+
+
 // API token generation
 Route::post('/sanctum/token', [App\Http\Controllers\UserController::class, 'createToken']);
