@@ -3,7 +3,6 @@
 namespace Tests\Feature\API\Team;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 use App\Models\Game;
@@ -39,15 +38,15 @@ class CreateTeamAPIEndpointTest extends TestCase
             ->count(1)
             ->create();
 
-        Team::factory(["name" => "test"])
+        Team::factory(["name" => "testname"])
             ->count(1)
             ->create();
 
         $params = [
-            "name" => "test",
-            "description" => "testtest",
+            "name" => "testname",
+            "description" => "testdesc",
             "game_id" => 1,
-            "discord_channel_id" => "anananana",
+            "discord_channel_id" => "testdis",
         ];
         $response = $this->json('POST', '/api/teams', $params , ["Authorization" => $this->token]);
         $response->assertStatus(422);
@@ -69,10 +68,10 @@ class CreateTeamAPIEndpointTest extends TestCase
 
         
         $params = [
-            "name" => "test",
-            "description" => "testtest",
+            "name" => "testname",
+            "description" => "testdesc",
             "game_id" => 1,
-            "discord_channel_id" => "anananana",
+            "discord_channel_id" => "testdis",
         ];
         $response = $this->json('POST', '/api/teams', $params , ["Authorization" => $this->token]);
         $response
@@ -82,10 +81,10 @@ class CreateTeamAPIEndpointTest extends TestCase
             ]);
         $this->assertDatabaseHas(
             'teams', [
-                'name' => 'test',
-                'description' => 'testtest',
+                'name' => 'testname',
+                'description' => 'testdesc',
                 'game_id' => '1',
-                'discord_channel_id' => 'anananana',
+                'discord_channel_id' => 'testdis',
             ]);
     }
 
@@ -103,9 +102,9 @@ class CreateTeamAPIEndpointTest extends TestCase
             ->create();
 
         $params = [
-            "description" => "testtest",
+            "description" => "testdesc",
             "game_id" => 1,
-            "discord_channel_id" => "anananana",
+            "discord_channel_id" => "testdis",
         ];
         $response = $this->json('POST', '/api/teams', $params , ["Authorization" => $this->token]);
         $response->assertStatus(422);
@@ -123,9 +122,9 @@ class CreateTeamAPIEndpointTest extends TestCase
             ->create();
  
         $params = [
-            "name" => "test",
+            "name" => "testname",
             "game_id" => 1,
-            "discord_channel_id" => "anananana",
+            "discord_channel_id" => "testdis",
         ];
         $response = $this->json('POST', '/api/teams', $params , ["Authorization" => $this->token]);
         $response->assertStatus(422);
@@ -143,8 +142,8 @@ class CreateTeamAPIEndpointTest extends TestCase
             ->create();
 
         $params = [
-            "name" => "test",
-            "description" => "testtest",
+            "name" => "testname",
+            "description" => "testdesc",
             "game_id" => 1,
         ];
         $response = $this->json('POST', '/api/teams', $params , ["Authorization" => $this->token]);
@@ -159,9 +158,9 @@ class CreateTeamAPIEndpointTest extends TestCase
     public function testCreateTeamWithMissingGameId()
     {
         $params = [
-            "name" => "test",
-            "description" => "testtest",
-            "discord_channel_id" => "anananana",
+            "name" => "testname",
+            "description" => "testdesc",
+            "discord_channel_id" => "testdis",
         ];
         $response = $this->json('POST', '/api/teams', $params , ["Authorization" => $this->token]);
         $response->assertStatus(422);
@@ -175,10 +174,10 @@ class CreateTeamAPIEndpointTest extends TestCase
     public function testCreateTeamWithInvalidGameId()
     {
         $params = [
-            "name" => "test",
-            "description" => "testtest",
+            "name" => "testname",
+            "description" => "testdesc",
             "game_id" => 1,
-            "discord_channel_id" => "anananana",
+            "discord_channel_id" => "testdis",
         ];
         $response = $this->json('POST', '/api/teams', $params , ["Authorization" => $this->token]);
         $response->assertStatus(422);

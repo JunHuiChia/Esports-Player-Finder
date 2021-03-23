@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Team;
+use App\Models\Game;
 use App\Models\TeamParticipant;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 
 class TeamController extends Controller
@@ -63,5 +61,49 @@ class TeamController extends Controller
           'game_id' => ['required', 'int', 'exists:games,id'],
           'discord_channel_id' => ['required', 'string', 'max:255'],
        ]);
+    }
+    
+
+
+
+    /**
+     * Create new team for currently logged in user
+     * 
+     * @Authenticated
+     * 
+     * @group Teams
+     * 
+     * @queryParam id required The Id of the team being queried
+     * 
+     * @response {
+     *      "Team": {
+     *           "id": 1,
+     *           "name": "testteam",
+     *          "created_at": "2021-03-23T21:28:38.000000Z",
+     *          "updated_at": "2021-03-23T21:28:39.000000Z",
+     *          "description": "testdesc",
+     *          "discord_channel_id": "testdis",
+     *          "game_id": 1
+     *      },
+     *      "Game": {
+     *          "id": 1,
+     *          "name": "testgame",
+     *          "created_at": "2021-03-23T19:34:40.000000Z",
+     *          "updated_at": "2021-03-23T19:34:40.000000Z"
+     *      }
+     * }
+     * }
+     * 
+     * @param Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function get(Request $request) {
+        try {
+            $team = Team::findOrFail($request->id);
+            $game = Game::findOrFail($team->game_id);
+            return response()->json(['Team' => $team,'Game' => $game], 200);
+        }catch(ModelNotFoundException $e) {
+            return response()->json(["Error" => "Invalid Request"],400);
+        }
     }
 }

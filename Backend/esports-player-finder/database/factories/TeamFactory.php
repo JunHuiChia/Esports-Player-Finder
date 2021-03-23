@@ -25,7 +25,7 @@ class TeamFactory extends Factory
             'name' => $this->faker->unique()->company,
             'description' => $this->faker->paragraph,
             'game_id' => 1,
-            'discord_channel_id' => 'anananana',
+            'discord_channel_id' => 'testdis',
         ];
     }
 }
