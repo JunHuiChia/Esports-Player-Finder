@@ -15,9 +15,16 @@
     <string name="email_hint">Email</string>
 
     <string name="login">Login</string>
+    <string name="Authenticate">Authenticate</string>
     <string name="register">Register</string>
 
     <string name="new_user_question">New user? <u>Register</u></string>
     <string name="existing_user_question">Existing user? <u>Login</u></string>
     <string name="dash_Menu">dash_Menu</string>
+
+    <string name="change_Username">New Username</string>
+    <string name="change_Password">New Password</string>
+    <string name="change_Email">New Email</string>
+    <string name="buttonSet">Set</string>
+
 </resources>

@@ -33,3 +33,4 @@ Route::middleware('auth:sanctum')->get('/games', [App\Http\Controllers\GameContr
 // Game Roles
 Route::middleware('auth:sanctum')->post('/user/gamerole', [App\Http\Controllers\UserGameRoleController::class, 'create']);
 Route::middleware('auth:sanctum')->delete('/user/gamerole', [App\Http\Controllers\UserGameRoleController::class, 'delete']);
+Route::middleware('json.response')->post('/sanctum/token', [App\Http\Controllers\UserController::class, 'createToken']);
