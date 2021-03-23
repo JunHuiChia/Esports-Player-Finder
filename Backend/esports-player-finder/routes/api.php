@@ -21,7 +21,7 @@ Route::post('/login', [App\Http\Controllers\UserController::class, 'login']);
 Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout']);
 
 //Teams
-Route::middleware('auth:sanctum')->post('/team', [App\Http\Controllers\TeamController::class, 'post']);
+Route::middleware('auth:sanctum')->post('/teams', [App\Http\Controllers\TeamController::class, 'create']);
 
 // Users
 Route::post('/register', [App\Http\Controllers\UserController::class, 'register']);
