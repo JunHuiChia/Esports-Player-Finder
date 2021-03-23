@@ -33,17 +33,16 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/updatePasswordbtn2"
+        android:id="@+id/updateEmailbtn"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
-        android:layout_marginTop="20dp"
         android:text="@string/buttonSet"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toEndOf="@+id/changeEmail"
-        app:layout_constraintTop_toBottomOf="@+id/updateUsernamebtn"
-        app:layout_constraintVertical_bias="0.288" />
+        app:layout_constraintTop_toBottomOf="@+id/updatePasswordbtn"
+        app:layout_constraintVertical_bias="0.137" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/changePassword"
@@ -81,7 +80,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/changePassword"
         app:layout_constraintTop_toBottomOf="@+id/updateUsernamebtn"
-        app:layout_constraintVertical_bias="0.079" />
+        app:layout_constraintVertical_bias="0.075" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/Dashbar"
@@ -117,7 +116,6 @@
         android:layout_height="45dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="20dp"
         android:autofillHints=""
         android:drawableEnd="@drawable/ic_baseline_person_24"
         android:drawableRight="@drawable/ic_baseline_person_24"
@@ -132,7 +130,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newUsernametxt"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.024" />
 
     <Button
         android:id="@+id/updateUsernamebtn"
@@ -145,24 +143,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/changeUsername"
-        app:layout_constraintTop_toBottomOf="@+id/dashbarLine"
-        app:layout_constraintVertical_bias="0.095" />
+        app:layout_constraintTop_toBottomOf="@+id/newUsernametxt"
+        app:layout_constraintVertical_bias="0.025" />
 
     <TextView
         android:id="@+id/newUsernametxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:text="TextView"
         android:textColor="@color/dark_grey"
         android:textColorHighlight="@color/dark_grey"
         android:textColorHint="@color/davy_grey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dashbarLine"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.105"
         tools:text="@string/change_Username" />
 
     <TextView
@@ -176,7 +173,7 @@
         android:textColorHint="@color/davy_grey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/changeUsername"
         app:layout_constraintVertical_bias="0.0" />
@@ -192,9 +189,52 @@
         android:textColorHint="@color/davy_grey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.046"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/changePassword"
+        app:layout_constraintVertical_bias="0.002" />
+
+    <TextView
+        android:id="@+id/setGameRoletxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/setgamerole"
+        android:textColor="@color/dark_grey"
+        android:textColorHighlight="@color/dark_grey"
+        android:textColorHint="@color/davy_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changeEmail"
         app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="375dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setGameRoletxt"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/background" />
+
+    <Spinner
+        android:id="@+id/gameSelection"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:prompt="@string/spinner_title"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.238" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

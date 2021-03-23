@@ -26,5 +26,7 @@
     <string name="change_Password">New Password</string>
     <string name="change_Email">New Email</string>
     <string name="buttonSet">Set</string>
+    <string name="setgamerole">Set Game Role</string>
+    <string name="spinner_title">Choose Game</string>
 
 </resources>
