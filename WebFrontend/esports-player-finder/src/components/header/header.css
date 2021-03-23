@@ -1,0 +1,69 @@
+@import url('../../css/colour.css');
+
+body{
+    background-color:  var(--background-colour-primary);
+}
+
+header{
+    display:flex;
+    height: 60px;
+    box-shadow: 0px 1px 11px 0 var(--shadow-black);
+    background: var(--header-colour-primary);
+    align-items: center;
+    padding: 0 16px;
+}
+
+#logo{
+    width: 180px;
+}
+
+.logo:hover{
+    border-bottom: none;
+}
+
+a, .logoutButton{
+    text-decoration:solid;
+    font-size: 1.5rem;
+    color: var(--text-colour-primary);
+}
+
+a:hover, .logoutButton:hover{
+    font-size: 1.5rem;
+    border-bottom: 2px solid;
+    border-bottom-color: var(--text-colour-secondary);
+    color: var(--text-colour-secondary);
+    cursor: pointer;
+}
+/* 
+div .active{
+    border-bottom: 3px solid;
+    color:var(--text-colour-secondary);
+} */
+
+div .navArea{
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    height: 100%;
+}
+
+div .navButton{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0 1rem;
+}
+
+div .userArea{
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+}
+
+div .topRight{
+    margin: 0 1rem;
+}
+
+div .loggedIn{
+    display: none;
+}

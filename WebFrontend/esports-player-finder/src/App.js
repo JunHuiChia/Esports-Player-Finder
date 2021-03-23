@@ -4,6 +4,7 @@ import { transitions, positions, Provider as AlertProvider, types } from 'react-
 
 // import './App.css';
 import "./css/tailwind.css"
+import "./components/colour.css";
 
 
 import Header from './components/header/header.js'

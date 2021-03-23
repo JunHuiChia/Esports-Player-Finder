@@ -14,10 +14,13 @@
 
     --input-form-background-colour: #252525;
     
+    --border-colour-primary: #8b8b8b;
 
     --content-background-colour-primary: #464646;
     --content-background-colour-secondary: #2b2b2b;
+    --content-background-colour-tertiary: #2e2e2e; 
 
+    --profile-background-colour: #5f5f5f5f;
 
     --button-text-colour-primary: #a8a8a8;
     --button-text-colour-secondary: #ffffff;
