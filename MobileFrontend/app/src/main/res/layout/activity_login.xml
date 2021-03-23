@@ -38,7 +38,7 @@
         app:srcCompat="@android:drawable/arrow_down_float" />
 
     <EditText
-        android:id="@+id/loginEMail"
+        android:id="@+id/loginEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -50,7 +50,7 @@
         android:drawableEnd="@drawable/ic_baseline_person_24"
         android:drawableRight="@drawable/ic_baseline_person_24"
         android:ems="10"
-        android:hint="@string/username_hint"
+        android:hint="@string/email_hint"
         android:inputType="textPersonName"
         android:textColor="@color/white"
         android:textColorHighlight="@color/white"
@@ -84,7 +84,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginEMail"
+        app:layout_constraintTop_toBottomOf="@+id/loginEmail"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button

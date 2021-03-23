@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.ClientError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,7 +36,7 @@ import java.util.concurrent.TimeoutException;
 
 public class Login extends AppCompatActivity {
 
-    private EditText eEMail;
+    private EditText eEmail;
     private EditText ePassword;
     private Button eLogin;
     private Button eAuthenticate;
@@ -48,7 +49,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        eEMail = findViewById(R.id.loginEMail);
+        eEmail = findViewById(R.id.loginEmail);
         ePassword = findViewById(R.id.loginPassword);
         eLogin = findViewById(R.id.btnLogin);
         registerLink = findViewById(R.id.linkToRegister);
@@ -58,25 +59,39 @@ public class Login extends AppCompatActivity {
         getSupportActionBar().setLogo(R.drawable.logo6);
         getSupportActionBar().setTitle(R.string.Empty_String);
 
-        eLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            eLogin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-                String inputEmail = eEMail.getText().toString();
-                String inputPassword = ePassword.getText().toString();
+                    String inputEmail = eEmail.getText().toString();
+                    String inputPassword = ePassword.getText().toString();
 
-                if (validPassword(inputPassword)){
-                    getToken(inputEmail, inputPassword);
+                    if (validPassword(inputPassword) && validEmail(inputEmail)){
+                        getToken(inputEmail, inputPassword);
+                    }
 
                 }
+            });
 
-            }
-        });
+
+
+
+
+
+    }
+
+    private boolean validEmail(String inputEmail) {
+        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        Log.d("email check", "validEmail: " +  inputEmail.matches(regex));
+        if (!( inputEmail.matches(regex))){
+            Toast.makeText(this, "Email Not Valid:\n Please try again with a valid email", Toast.LENGTH_SHORT).show();
+        }
+        return inputEmail.matches(regex);
     }
 
     private boolean validPassword(String inputPassword) {
         if (!(inputPassword.equals(""))){
-            Log.d("Valid Password:", "valid Password");
+            Log.d("Valid Password:", "valid Password:" + true);
             return true;
         }else{
             Log.d("Login", "Invalid Password");
@@ -89,7 +104,7 @@ public void getUserDetails()
 {
 
     RequestQueue queue = Volley.newRequestQueue(Login.this);
-    String url = "http://13.81.62.62/api/user";
+    String url = "http://192.168.0.15:80/api/user";
     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
             (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
@@ -115,7 +130,7 @@ public void getUserDetails()
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Toast.makeText(Login.this, error.toString(), Toast.LENGTH_LONG).show();
-                    Log.d("login error:", error.toString());
+                    Log.e("VOLLEY", "get user details" + error.toString());
                     error.printStackTrace();
 
                 }
@@ -132,43 +147,45 @@ public void getUserDetails()
     jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 2, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
     queue.add(jsonObjectRequest);
+    Log.d("usrdeats", "getUserDetails: check");
 }
 
-public void getToken(String inputEmail, String inputPassword)
-{
-    RequestQueue queue = Volley.newRequestQueue(Login.this);
-    String url = "http://13.81.62.62/api/sanctum/token";
+    public void getToken(String inputEmail, String inputPassword)
+    {
+        RequestQueue queue = Volley.newRequestQueue(Login.this);
+        String url = "http://192.168.0.15:80/api/sanctum/token";
 
-    HashMap<String, String> params = new HashMap<String, String>();
-    params.put("email", inputEmail);
-    params.put("password", inputPassword);
-    params.put("device_name",  inputEmail + "_mobile");
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("email", inputEmail);
+        params.put("password", inputPassword);
+        params.put("device_name",  inputEmail + "_mobile");
 
-    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params), new Response.Listener<JSONObject>() {
-        @Override
-        public void onResponse(JSONObject response) {
-            Toast.makeText(Login.this, "works", Toast.LENGTH_LONG).show();
-            Toast.makeText(Login.this, response.toString(), Toast.LENGTH_LONG).show();
-            try {
-                ProfileMan.token = response.getString("token");
-                Log.d("Token check", "Token value - " + ProfileMan.token );
-                getUserDetails();
-            } catch (JSONException e) {
-                e.printStackTrace();
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params), new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Toast.makeText(Login.this, "works", Toast.LENGTH_LONG).show();
+                Toast.makeText(Login.this, response.toString(), Toast.LENGTH_LONG).show();
+                try {
+                    ProfileMan.token = response.getString("token");
+                    Log.d("Token check", "Token value - " + ProfileMan.token );
+                    getUserDetails();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
-        }
-    }, new Response.ErrorListener() {
-        @Override
-        public void onErrorResponse(VolleyError error) {
-            Log.e("VOLLEY", error.toString());
-        }
-    }) {
-    };
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("VOLLEY", error.toString());
+                Toast.makeText(Login.this, "Email or password is incorrect", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+        };
 
-    jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 2, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 2, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
-    queue.add(jsonObjectRequest);
-    Log.d("TToken check", "Token value - " + ProfileMan.token );
+        queue.add(jsonObjectRequest);
+        Log.d("TToken check", "Token value - " + ProfileMan.token );
 
 
 }
@@ -190,11 +207,13 @@ public void changeToRegisterPage(View view) {
 // Checks if the user is logged in and edits menu options
         if(ProfileMan.username==null){
             this.menu.findItem(R.id.myProfile).setVisible(false);
+            this.menu.findItem(R.id.accountSettings).setVisible(false);
             this.menu.findItem(R.id.logout).setVisible(false);
             this.menu.findItem(R.id.loginOption).setVisible(true);
             this.menu.findItem(R.id.registerOption).setVisible(true);
         }else{
             this.menu.findItem(R.id.myProfile).setVisible(true);
+            this.menu.findItem(R.id.accountSettings).setVisible(true);
             this.menu.findItem(R.id.logout).setVisible(true);
             this.menu.findItem(R.id.loginOption).setVisible(false);
             this.menu.findItem(R.id.registerOption).setVisible(false);
@@ -235,6 +254,11 @@ public void changeToRegisterPage(View view) {
                 //Redirect to register page
                 Intent intentLogout = new Intent(Login.this, MainActivity.class);
                 startActivity(intentLogout);
+                return true;
+            case R.id.accountSettings:
+                //Redirect to dashboard
+                Intent intentAccountSettings = new Intent(Login.this, Account_Settings.class);
+                startActivity(intentAccountSettings);
                 return true;
 
 

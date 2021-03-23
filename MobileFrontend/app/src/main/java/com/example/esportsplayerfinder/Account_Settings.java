@@ -5,33 +5,22 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
-public class Activity_Profile extends AppCompatActivity {
+public class Account_Settings extends AppCompatActivity {
 
-    private TextView usernameTextView;
     Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity__profile);
-
-
-
-        usernameTextView = findViewById(R.id.username);
-        usernameTextView.setText(ProfileMan.username);
-        Log.d("Username test:", ProfileMan.username);
+        setContentView(R.layout.activity_account__settings);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.Dashbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setLogo(R.drawable.logo6);
         getSupportActionBar().setTitle(R.string.Empty_String);
-
-
     }
 
     @Override
@@ -62,22 +51,22 @@ public class Activity_Profile extends AppCompatActivity {
         switch(item.getItemId()){
             case R.id.myProfile:
                 // Redirect to profile page
-                Intent intentProfile = new Intent(Activity_Profile.this, Activity_Profile.class);
+                Intent intentProfile = new Intent(Account_Settings.this, Activity_Profile.class);
                 startActivity(intentProfile);;
                 return true;
             case R.id.loginOption:
                 // Redirect to Login page
-                Intent intentLogin = new Intent(Activity_Profile.this, Login.class);
+                Intent intentLogin = new Intent(Account_Settings.this, Login.class);
                 startActivity(intentLogin);;
                 return true;
             case R.id.registerOption:
                 //Redirect to register page
-                Intent intentRegister = new Intent(Activity_Profile.this, Register.class);
+                Intent intentRegister = new Intent(Account_Settings.this, Register.class);
                 startActivity(intentRegister);
                 return true;
             case R.id.dashboard:
                 //Redirect to dashboard
-                Intent intentDashboard = new Intent(Activity_Profile.this, MainActivity.class);
+                Intent intentDashboard = new Intent(Account_Settings.this, MainActivity.class);
                 startActivity(intentDashboard);
                 return true;
             case R.id.logout:
@@ -87,15 +76,9 @@ public class Activity_Profile extends AppCompatActivity {
                 ProfileMan.email = null;
                 ProfileMan.token = "";
                 //Redirect to register page
-                Intent intentLogout = new Intent(Activity_Profile.this, MainActivity.class);
+                Intent intentLogout = new Intent(Account_Settings.this, MainActivity.class);
                 startActivity(intentLogout);
                 return true;
-                case R.id.accountSettings:
-                //Redirect to dashboard
-                Intent intentAccountSettings = new Intent(Activity_Profile.this, Account_Settings.class);
-                startActivity(intentAccountSettings);
-                return true;
-
 
 
         }
