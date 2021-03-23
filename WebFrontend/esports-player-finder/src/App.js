@@ -4,12 +4,12 @@ import { transitions, positions, Provider as AlertProvider, types } from 'react-
 
 // import './App.css';
 import "./css/tailwind.css"
+import "./components/colour.css";
 
 
 import Header from './components/header/header.js'
 
 import { AppProvider } from "./contexts/AppContext"
-import AuthContainer from "./components/auth/AuthContainer"
 
 const options = {
   // you can also just use 'bottom center'
@@ -26,7 +26,6 @@ function App() {
     <AlertProvider template={AlertTemplate} {...options}>
       <AppProvider>
           <Header/>
-          {/* <AuthContainer/> */}
       </AppProvider>
     </AlertProvider>
   );

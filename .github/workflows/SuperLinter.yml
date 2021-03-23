@@ -59,7 +59,7 @@ jobs:
       - name: Remove files before linting
         run: |
          rm -vrf .Ossonts
-         rm -v README.md
+         #rm -v README.md
       ################################
       # Run Linter against code base #
       ################################

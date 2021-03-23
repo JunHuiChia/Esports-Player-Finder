@@ -1,0 +1,8 @@
+from: markdown
+output-file: ProgressReports/ProgressReportsCW3.pdf 
+pdf-engine: xelatex 
+input-files:
+- ProgressReports/2021-01-05-17-00.md
+- ProgressReports/2021-01-12-17-00.md
+- ProgressReports/2021-01-19-17-00.md
+- ProgressReports/2021-01-26-16-00.md
