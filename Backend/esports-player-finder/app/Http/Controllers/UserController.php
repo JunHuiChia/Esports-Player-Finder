@@ -144,18 +144,53 @@ class UserController extends Controller
      * @authenticated
      * 
      * @response {
-     *      "id": 2,
-     *      "username": "Billss",
-     *      "email": "bill@gmail.com",
-     *      "email_verified_at": "2021-03-06T18:17:27.000000Z",
-     *      "created_at": "2021-03-06T17:02:16.000000Z",
-     *      "updated_at": "2021-03-06T17:02:16.000000Z"
-     *   }
-     * 
+     *     "id": 1,
+     *     "username": "testuser",
+     *     "email": "test@gmail.com",
+     *     "email_verified_at": null,
+     *     "created_at": "2021-03-20T18:55:39.000000Z",
+     *     "updated_at": "2021-03-22T20:15:58.000000Z",
+     *     "game_roles": [
+     *         {
+     *             "id": 1,
+     *             "game_id": 1,
+     *             "name": "testgamerole1",
+     *             "created_at": "2021-03-20T18:55:39.000000Z",
+     *             "updated_at": "2021-03-20T18:55:39.000000Z",
+     *             "pivot": {
+     *                 "user_id": 1,
+     *                 "game_role_id": 1
+     *             },
+     *             "game": {
+     *                 "id": 1,
+     *                 "name": "testgame",
+     *                 "created_at": "2021-03-20T18:55:57.000000Z",
+     *                 "updated_at": "2021-03-20T18:55:58.000000Z"
+     *             }
+     *         },
+     *         {
+     *             "id": 2,
+     *             "game_id": 1,
+     *             "name": "testgamerole2",
+     *             "created_at": "2021-03-20T18:55:39.000000Z",
+     *             "updated_at": "2021-03-20T18:55:39.000000Z",
+     *             "pivot": {
+     *                 "user_id": 1,
+     *                 "game_role_id": 2
+     *             },
+     *             "game": {
+     *                 "id": 1,
+     *                 "name": "testgame",
+     *                 "created_at": "2021-03-20T18:55:57.000000Z",
+     *                 "updated_at": "2021-03-20T18:55:58.000000Z"
+     *             }
+     *         }
+     *     ]
+     * }
      * @group User
      */
     public function get(Request $request) {
-        return $request->user();
+        return $request->user()->load('gameRoles')->load('gameRoles.game');
     }
 
 

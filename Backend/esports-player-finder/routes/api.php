@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 
 //Authentication
-Route::middleware('auth:sanctum')->get('/user', [App\Http\Controllers\UserController::class, 'get']);
 Route::post('/login', [App\Http\Controllers\UserController::class, 'login']);
 Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout']);
 
@@ -26,6 +25,7 @@ Route::get('/teams', [App\Http\Controllers\TeamController::class, 'get']);
 
 // Users
 Route::post('/register', [App\Http\Controllers\UserController::class, 'register']);
+Route::middleware('auth:sanctum')->get('/user', [App\Http\Controllers\UserController::class, 'get']);
 Route::middleware('auth:sanctum')->patch('/users', [App\Http\Controllers\UserController::class, 'update']);
 
 // API token generation

@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(team_participants::class);
     }
+
+    public function gameRoles()
+    {
+        return $this->belongsToMany(GameRole::class, 'user_game_roles');
+    }
 }
