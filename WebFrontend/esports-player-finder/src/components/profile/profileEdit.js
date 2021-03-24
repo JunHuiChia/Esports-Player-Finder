@@ -7,6 +7,13 @@ import {Link} from "react-router-dom";
 import AddGameRole from './gameRole/addGameRole.js';
 import NewGameRole from './gameRole/newGameRole.js';
 
+/**
+ *  Component for profile edit page
+ * @component
+ * @returns 
+ * HTML for editing profile page
+ */
+
 function ProfileEdit(){
 
     const appContext = useContext(AppContext);
@@ -19,12 +26,16 @@ function ProfileEdit(){
         updateUserAllDetail,
         updateUsername,
         errorMessage,
+        userGameRoles,
+        gameRoleError,
     } = appContext;
 
-    
-    let [gameRole, setGameRole] = useState({})
-    
-
+        /**
+     * @function
+     * Handles the details updating
+     * @returns 
+     * Updated user details
+     */
     function handleUpdateDetails(){
         let username = document.querySelector("#changeUsernameNew").value
         let email = document.querySelector("#changeEmailNew").value
@@ -49,20 +60,6 @@ function ProfileEdit(){
     }
 
 
-    const newGameRole = {
-        ...gameRole,
-        "game1": {
-            "game": "League of legends",
-            "role": "ADC",
-        },
-        "game2":{
-            "game": "CSGO",
-            "role": "sniper",
-        }
-        }
-
-
-
     return (
         <div id="profilePageEdit" className="rounded-md">
             <div className="mx-16 mt-8 profileTitle">
@@ -83,8 +80,9 @@ function ProfileEdit(){
                 </div>
                 <div className="editContent mx-10 mt-10 gameSection">
                     <span className="contentTitle">Game Roles</span>
+                    <div className="errorMessage">{gameRoleError}</div>
                     <AddGameRole games={gameList}/>
-                    <NewGameRole games={newGameRole}/>
+                    <NewGameRole games={userGameRoles}/>
                 </div>
                 <div className="editContent mx-10 mt-10">
                     <span className="contentTitle">Email</span>

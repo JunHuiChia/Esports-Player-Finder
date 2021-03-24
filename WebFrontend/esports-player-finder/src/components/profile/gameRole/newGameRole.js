@@ -1,24 +1,26 @@
 import React from 'react';
 import GameRole from './gameRole';
 
-export default function newGameRole({games}){
+/**
+ *  Component for adding new game roles for users
+ *  @component
+ * 
+ * @prop {object} gameRole - contains game name and roles for that game
+ * @returns 
+ * Maps the each object to its own component for displaying games and its role.
+ */
 
-    let gameRole = [];
+function newGameRole(gameRole){
 
-
-    for (let [key,value] of Object.entries(games)){
-        gameRole.push(value)
-
-        // console.log(gameRole);
-        // return <GameRole game={value.game} role={value.role}/>
-    }
 
     return (
         <div className="userGameRoles">
-            { gameRole.map(game => {
-                    return <GameRole game={game.game} role={game.role}/>
+            { gameRole.games.map(game => {
+                    return <GameRole key={game.id} game={game.game} role={game.name}/>
                 })
             }
         </div>
     )
 }
+
+export default newGameRole;

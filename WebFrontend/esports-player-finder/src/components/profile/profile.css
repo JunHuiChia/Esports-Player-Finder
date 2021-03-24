@@ -88,12 +88,6 @@
     flex-direction: column;
 }
 
-.submit-button .errorMessage{
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--red-0);
-}
-
 .submit-button button{
     width: 150px;
     height: 50px;
@@ -121,16 +115,19 @@
     display: flex;
     width: 200px;
     flex-direction: column;
-    border: 2px blue solid;
+    border: 2px solid var(--colour-palette-0);
+    background-color: var(--colour-palette-1);
     margin: 1rem;
 }
 
 .gameRoles .profileGame{
     padding: 0 0.5rem;
+    color: var(--text-colour-primary);
 }
 
 .gameRoles p {
     font-weight: 600;
+    color: var(--text-colour-secondary);
 }
 
 .addGameRoleSection {
@@ -172,4 +169,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+    justify-content: center;
+}
+
+.errorMessage{
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--red-9);
+    padding-bottom: 1rem;
 }

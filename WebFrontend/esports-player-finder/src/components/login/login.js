@@ -9,6 +9,13 @@ import { useAlert } from 'react-alert'
 import {Link, useHistory} from "react-router-dom";
 
 // export default class Login extends React.Component{
+/**
+ *  Component for adding new game roles
+ *  @component
+ * 
+ * @returns 
+ * HTML of select for choosing games and roles to add
+ */
 
     const Login = () => {
         
@@ -28,7 +35,13 @@ import {Link, useHistory} from "react-router-dom";
     setHidePassword(!hidePassword);
     }
 
-
+    /**
+     * @function
+     * Processes the login and returns a message depending on the status of the login
+     * @returns 
+     * if successful -> redirects user to their profile page
+     * else -> show error message and no redirects
+     */
     function loginMsg(){
         login(function (statusMsg){
             alert.show(<div className="text-sm">{statusMsg}</div>)

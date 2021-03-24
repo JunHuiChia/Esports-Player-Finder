@@ -20,17 +20,24 @@ function userTeams(){
     );
 }
 
-
+/**
+ *  Component for profile page
+ * @component
+ * @returns 
+ * HTML for profile page
+ */
 
 const Profile = () => {
     const appContext = useContext(AppContext);
     const {
         userName,
         getGames,
+        checkDetails,
     } = appContext;
     
     useEffect(() =>{
-        getGames()
+        getGames();
+        checkDetails();
     }, [])
 
     return(

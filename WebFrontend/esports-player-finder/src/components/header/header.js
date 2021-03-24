@@ -73,7 +73,7 @@ import PrivateRoute from '../routes/PrivateRoute.js';
 
             <Switch>
                 <Route path="/matchfinding"><Matchfinding/></Route>
-                <Route path="/teams"><Teams/></Route>
+                <PrivateRoute component={Teams} path="/teams" exact/>
 
                 <Route path="/login"><LoginPage/></Route>
                 <Route path="/register"><RegisterPage/></Route>
