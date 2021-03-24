@@ -26,7 +26,7 @@ const Profile = () => {
     const appContext = useContext(AppContext);
     const {
         userName,
-        getGames
+        getGames,
     } = appContext;
     
     useEffect(() =>{
