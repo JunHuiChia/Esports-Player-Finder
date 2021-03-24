@@ -11,11 +11,16 @@ class GameRole extends Model
 
     public function game()
     {
-        return $this->belongsTo('Game::class');
+        return $this->belongsTo(Game::class);
     }
 
     public function UserGameRoles()
     {
         return $this->hasMany(UserGameRole::class);
+    }
+
+    public function gameRoles()
+    {
+        return $this->belongsToMany(User::class);
     }
 }
