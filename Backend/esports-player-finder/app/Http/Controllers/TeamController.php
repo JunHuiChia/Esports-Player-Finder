@@ -48,7 +48,7 @@ class TeamController extends Controller
         ]);
 
         return response()->json([
-            'created' => true
+            'created' => true,
         ], 201);
     }
 
@@ -101,9 +101,14 @@ class TeamController extends Controller
         try {
             $team = Team::findOrFail($request->id);
             $game = Game::findOrFail($team->game_id);
-            $response = response()->json(['Team' => $team,'Game' => $game], 200);
+            $response = response()->json([
+                "Team" => $team,
+                "Game" => $game,
+            ],200);
         }catch(ModelNotFoundException $e) {
-            $response = response()->json(["Error" => "Invalid Request"], 400);
+            $response = response()->json([
+                "Error" => "Invalid Request",
+            ], 400);
         }
         return $response;
     }
