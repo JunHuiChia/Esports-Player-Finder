@@ -50,5 +50,15 @@ class GetTeamAPIEndpointTest extends TestCase
         $response ->assertStatus(400);
     }
 
-
+     /**
+     * Test getting team with missing parameters
+     *
+     * @return void
+     */
+    public function testGetTeamWithMissingParameter()
+    {
+        
+        $response = $this->json('GET', '/api/teams');
+        $response ->assertStatus(400);
+    }
 }

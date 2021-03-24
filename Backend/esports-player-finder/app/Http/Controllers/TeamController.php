@@ -67,9 +67,9 @@ class TeamController extends Controller
 
 
     /**
-     * Create new team for currently logged in user
+     * Get team info from teams id
      * 
-     * @Authenticated
+     * 
      * 
      * @group Teams
      * 
@@ -101,9 +101,10 @@ class TeamController extends Controller
         try {
             $team = Team::findOrFail($request->id);
             $game = Game::findOrFail($team->game_id);
-            return response()->json(['Team' => $team,'Game' => $game], 200);
+            $response = response()->json(['Team' => $team,'Game' => $game], 200);
         }catch(ModelNotFoundException $e) {
-            return response()->json(["Error" => "Invalid Request"],400);
+            $response = response()->json(["Error" => "Invalid Request"], 400);
         }
+        return $response;
     }
 }
