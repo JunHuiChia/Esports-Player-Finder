@@ -2,7 +2,10 @@ name: Android Build
 
 on:
   workflow_dispatch:
-
+  push:
+    branches: main
+    paths: MobileFrontend/**
+    
 jobs:
   build:
       
@@ -27,14 +30,20 @@ jobs:
       - name: Run Linter
         run: ./gradlew lint
           
-      - name: Run Tests
+      - name: Run Unit Tests
         run: ./gradlew test
         
       - name: Build Project
         run: ./gradlew assemble
 
-      - name: Upload Reports
-        uses: actions/upload-artifact@v1
+      - name: Upload Lint Report
+        uses: actions/upload-artifact@v2
         with:
           name: reports
-          path: MobileFrontend/app/build/reports
+          path: MobileFrontend/app/build/reports/lint-results.html
+          
+      - name: Upload Test Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: reports
+          path: MobileFrontend/app/build/reports/test/debug
