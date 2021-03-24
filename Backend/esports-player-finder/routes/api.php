@@ -21,6 +21,7 @@ Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout']);
 
 //Teams
 Route::middleware('auth:sanctum')->post('/teams', [App\Http\Controllers\TeamController::class, 'create']);
+Route::get('/teams', [App\Http\Controllers\TeamController::class, 'get']);
 
 // Users
 Route::post('/register', [App\Http\Controllers\UserController::class, 'register']);
