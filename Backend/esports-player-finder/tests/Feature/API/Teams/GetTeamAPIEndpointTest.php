@@ -31,7 +31,7 @@ class GetTeamAPIEndpointTest extends TestCase
         $params = [
             "id" => 1
         ];
-        $response = $this->json('GET', '/api/teams', $params , ["Authorization" => $this->token]);
+        $response = $this->json('GET', '/api/teams', $params);
         $response ->assertStatus(200);
     }
 
