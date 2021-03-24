@@ -4,7 +4,7 @@ import { AppContext } from "../../contexts/AppContext";
 
 /**
  *  Component for creating a team PopUp 
- * @function
+ * @component
  * @property {component} component - Takes in a component to redirect user to
  * @returns 
  * Routing for users that are or are not logged in. 

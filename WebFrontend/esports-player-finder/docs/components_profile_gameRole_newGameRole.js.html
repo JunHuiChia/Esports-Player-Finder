@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/profile/gameRole/gameSelection.js</title>
+    <title>JSDoc: Source: components/profile/gameRole/newGameRole.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/profile/gameRole/gameSelection.js</h1>
+    <h1 class="page-title">Source: components/profile/gameRole/newGameRole.js</h1>
 
     
 
@@ -27,27 +27,32 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from 'react';
+import GameRole from './gameRole';
 
 /**
- *  Returns a list of options for choosing games
+ *  Component for adding new game roles for users
  *  @component
- *  @example
- *  const game = 'League of legends'
- *  return (
- *      &lt;option value={game.game}>{game.game}&lt;/option>
- *  )
- * @prop {string} game - The name of the game
- * @returns
- * &lt;select> 
- *      &lt;option value="League of legends">League of Legends&lt;/option>
- * &lt;/select>
+ * 
+ * @prop {object} gameRole - contains game name and roles for that game
+ * @returns 
+ * Maps the each object to its own component for displaying games and its role.
  */
 
-function GameSelection(game,gameID){
-        return &lt;option key={game.gameID} value={game.gameID}>{game.game}&lt;/option>
-    }
+function newGameRole(gameRole){
 
-export default GameSelection</code></pre>
+
+    return (
+        &lt;div className="userGameRoles">
+            { gameRole.games.map(game => {
+                    return &lt;GameRole key={game.id} game={game.game} role={game.name}/>
+                })
+            }
+        &lt;/div>
+    )
+}
+
+export default newGameRole;
+</code></pre>
         </article>
     </section>
 

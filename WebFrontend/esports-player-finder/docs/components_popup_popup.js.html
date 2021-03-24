@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/profile/gameRole/gameSelection.js</title>
+    <title>JSDoc: Source: components/popup/popup.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/profile/gameRole/gameSelection.js</h1>
+    <h1 class="page-title">Source: components/popup/popup.js</h1>
 
     
 
@@ -26,28 +26,31 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react';
+            <pre class="prettyprint source linenums"><code>import React from "react";
+import './popup.css';
 
 /**
- *  Returns a list of options for choosing games
+ *  Component for popup pages
  *  @component
- *  @example
- *  const game = 'League of legends'
- *  return (
- *      &lt;option value={game.game}>{game.game}&lt;/option>
- *  )
- * @prop {string} game - The name of the game
- * @returns
- * &lt;select> 
- *      &lt;option value="League of legends">League of Legends&lt;/option>
- * &lt;/select>
+ * 
+ * @prop {function} handleClose - function for handling the status of the popup page
+ * @prop {HTML} content - HTML content to display on the popup page
+ * @returns 
+ * HTML for creating popup page
  */
 
-function GameSelection(game,gameID){
-        return &lt;option key={game.gameID} value={game.gameID}>{game.game}&lt;/option>
-    }
+const Popup = props => {
+    return (
+    &lt;div className="popup-box">
+        &lt;div className="box">
+        &lt;span className="close-icon" onClick={props.handleClose}>x&lt;/span>
+        {props.content}
+        &lt;/div>
+    &lt;/div>
+    );
+};
 
-export default GameSelection</code></pre>
+export default Popup;</code></pre>
         </article>
     </section>
 

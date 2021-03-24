@@ -37,7 +37,7 @@ import {Link, useHistory} from "react-router-dom";
 
     /**
      * @function
-     * Processes the login and returns a message depending on the status of the login
+     * @description Processes the login and returns a message depending on the status of the login
      * @returns 
      * if successful -> redirects user to their profile page
      * else -> show error message and no redirects

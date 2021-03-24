@@ -30,12 +30,6 @@ function ProfileEdit(){
         gameRoleError,
     } = appContext;
 
-        /**
-     * @function
-     * Handles the details updating
-     * @returns 
-     * Updated user details
-     */
     function handleUpdateDetails(){
         let username = document.querySelector("#changeUsernameNew").value
         let email = document.querySelector("#changeEmailNew").value

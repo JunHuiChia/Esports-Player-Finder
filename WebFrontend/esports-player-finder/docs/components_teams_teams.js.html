@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/profile/gameRole/gameSelection.js</title>
+    <title>JSDoc: Source: components/teams/teams.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/profile/gameRole/gameSelection.js</h1>
+    <h1 class="page-title">Source: components/teams/teams.js</h1>
 
     
 
@@ -26,28 +26,55 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react';
+            <pre class="prettyprint source linenums"><code>import { React , useState, useContext} from 'react';
+import './teams.css';
+
+import { AppContext } from "../../contexts/AppContext";
+import Popup from "../popup/popup.js";
+import CreateTeamPopup from "./createTeamPopup";
+import AvailableTeam from "./availableTeam";
 
 /**
- *  Returns a list of options for choosing games
- *  @component
- *  @example
- *  const game = 'League of legends'
- *  return (
- *      &lt;option value={game.game}>{game.game}&lt;/option>
- *  )
- * @prop {string} game - The name of the game
- * @returns
- * &lt;select> 
- *      &lt;option value="League of legends">League of Legends&lt;/option>
- * &lt;/select>
+ *  Component for Teams page
+ * @component
+ * @returns 
+ * Teams Page for displaying available teams and for creating a team
  */
 
-function GameSelection(game,gameID){
-        return &lt;option key={game.gameID} value={game.gameID}>{game.game}&lt;/option>
+function Teams() {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const appContext = useContext(AppContext);
+    const {
+        gameList,
+        getTeamByID,
+        teamData,
+    } = appContext;
+
+    const togglePopup = () => {
+        setIsOpen(!isOpen);
     }
 
-export default GameSelection</code></pre>
+
+        return(
+            &lt;div id="teamPage">
+                {/* &lt;div onClick={getTeamByID(1)}>get&lt;/div> */}
+                &lt;div id="teamList">
+                    &lt;span className="teamListTitle">Available Teams&lt;/span>
+                    &lt;AvailableTeam teamData={teamData}/>
+                &lt;/div>
+                &lt;div id="createTeam"> 
+                    &lt;button className="createTeamBtn" onClick={togglePopup}>Create team&lt;/button>
+                &lt;/div>
+                {isOpen &amp;&amp; 
+                    &lt;Popup content={&lt;CreateTeamPopup handleClose = {togglePopup} games={gameList}/>}
+                    handleClose = {togglePopup}/>
+                }
+            &lt;/div>
+        )
+}
+
+export default Teams;</code></pre>
         </article>
     </section>
 

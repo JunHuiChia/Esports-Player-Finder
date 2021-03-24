@@ -5,7 +5,7 @@ import GameSelection from '../profile/gameRole/gameSelection';
 /**
  *  Component for creating a team PopUp 
  * @component
- * @property {function togglePopup()} handleClose - Function responsible for closing the popup upon click.
+ * @property {function} handleClose - Function responsible for closing the popup upon click.
  * @property {array} games - An array of games to display for team choosing what game they play.
  * @returns 
  * HTML pop up for creating a team
@@ -20,6 +20,10 @@ function CreateTeamPopup(props) {
     console.log(props);
     let game = props.games.map((game) => <GameSelection game={game.name} gameID={game.id} key={game.id}/>)
 
+    /**
+     * @function
+     * @description Handles the team data and calls createTeam function to add it to database via POST API
+     */
     function createTeamHandler(){
         let name = document.querySelector("#teamName").value
         let game = document.querySelector("#teamGame").value

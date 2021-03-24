@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: GameSelection</title>
+    <title>JSDoc: Class: Login</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: GameSelection</h1>
+    <h1 class="page-title">Class: Login</h1>
 
     
 
@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>GameSelection<span class="signature">()</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Login<span class="signature">()</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -41,7 +41,7 @@
     
 
     
-    <h4 class="name" id="GameSelection"><span class="type-signature"></span>new GameSelection<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Login"><span class="type-signature"></span>new Login<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -49,7 +49,7 @@
 
 
 <div class="description">
-    <p>Returns a list of options for choosing games</p>
+    <p>Component for adding new game roles</p>
 </div>
 
 
@@ -60,58 +60,6 @@
 
 
 
-
-
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>game</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The name of the game</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -145,7 +93,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_profile_gameRole_gameSelection.js.html">components/profile/gameRole/gameSelection.js</a>, <a href="components_profile_gameRole_gameSelection.js.html#line18">line 18</a>
+        <a href="components_login_login.js.html">components/login/login.js</a>, <a href="components_login_login.js.html#line20">line 20</a>
     </li></ul></dd>
     
 
@@ -174,9 +122,7 @@
 
         
 <div class="param-desc">
-    <select> 
-     <option value="League of legends">League of Legends</option>
-</select>
+    <p>HTML of select for choosing games and roles to add</p>
 </div>
 
 
@@ -184,11 +130,6 @@
     
 
 
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>const game = 'League of legends' return (     &lt;option value={game.game}>{game.game}&lt;/option> )</code></pre>
 
 
 
@@ -209,6 +150,109 @@
 
     
 
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~loginMsg"><span class="type-signature">(inner) </span>loginMsg<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Processes the login and returns a message depending on the status of the login</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_login_login.js.html">components/login/login.js</a>, <a href="components_login_login.js.html#line45">line 45</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>if successful -&gt; redirects user to their profile page
+else -&gt; show error message and no redirects</p>
+</div>
+
+
+
+    
+
+
+
+
+
+        
     
 
     

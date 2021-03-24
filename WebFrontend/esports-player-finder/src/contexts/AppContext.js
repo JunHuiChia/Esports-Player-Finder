@@ -36,7 +36,7 @@ const AppProvider = (props) => {
   const [teamData, setTeamData] = useState([]);
 
   /**
-   * @function isLogin
+   * @function
    * @description Changes the login status of user
    * 
    */
@@ -57,7 +57,7 @@ const AppProvider = (props) => {
   }
 
   /**
-   * @function handleUserNameInput
+   * @function
    * @description Updates the value of username state
    * @param {event} onChangeEvent - When the input form has a change of data
    */
@@ -67,7 +67,7 @@ const AppProvider = (props) => {
   }
 
     /**
-   * @function handleUserEmail
+   * @function
    * @description Updates the value of email state
    * @param {event} onChangeEvent - When the input form has a change of data
    */
@@ -76,7 +76,7 @@ const AppProvider = (props) => {
     setUserEmail(updatedUserEmail);
   }
     /**
-   * @function handleUserPassword
+   * @function
    * @description Updates the value of password state
    * @param {event} onChangeEvent - When the input form has a change of data
    */
@@ -86,7 +86,7 @@ const AppProvider = (props) => {
   }
 
   /**
-   * @function signup
+   * @function
    * @description HTTP requests using axios for signing up users
    * @param {string} statusMsg - status of the signup 
    * 
@@ -155,10 +155,9 @@ const AppProvider = (props) => {
   };
 
     /**
-   * @function login
+   * @function
    * @description HTTP requests using axios for logging in users
    * @param {string} statusMsg - status of the login 
-   * 
    */
   const login = (statusMsg) => {
     axios.defaults.withCredentials = true;
@@ -215,7 +214,7 @@ const AppProvider = (props) => {
   };
 
   /**
-   * @function logout
+   * @function
    * @description Used for logging the user out and resets all forms
    */
   function logout() {
@@ -300,6 +299,14 @@ const AppProvider = (props) => {
     })
     }
 
+
+    /**
+     * @function
+     * @description Updates all the user's details
+     * @param {string} email - Email to be updated to
+     * @param {string} password - Password to be updated to
+     * @param {string} username - Username to be updated to
+     */
     const updateUserAllDetail = (email,password,username) => {
       console.log(email,password,username);
       axios.get(hostName + "api/sanctum/csrf-cookie").then(
@@ -323,6 +330,11 @@ const AppProvider = (props) => {
       })
       }
 
+      /**
+       * @function
+       * @description Updates the username of the user
+       * @param {string} username - Username to be updated to
+       */
       const updateUsername = (username) => {
         axios.get(hostName + "api/sanctum/csrf-cookie").then(
           (response) => {
@@ -343,7 +355,12 @@ const AppProvider = (props) => {
             console.log(error);
           })
       }
-
+      
+      /**
+       * @function
+       * @description Updates the Password of the user
+       * @param {string} password - Password to be updated to
+       */
       const updatePassword = (password) => {
         axios.get(hostName + "api/sanctum/csrf-cookie").then(
           (response) => {
@@ -365,6 +382,11 @@ const AppProvider = (props) => {
           })
       }
 
+      /**
+       * @function
+       * @description Updates the Email of the user
+       * @param {string} email - Email to be updated to
+       */
       const updateEmail = (email) => {
         axios.get(hostName + "api/sanctum/csrf-cookie").then(
           (response) => {
@@ -385,6 +407,15 @@ const AppProvider = (props) => {
           })
       }
 
+      /**
+       * @function
+       * @description Creates a brand new team for the user
+       * @param {string} teamName - name of the team 
+       * @param {string} teamGame - the game the team is playing
+       * @param {string} teamDesc - description of the team
+       * @param {string} teamDiscID - The channel ID for the discord
+       * @param {function} handleClose - Function for closing the create team page after everything is done.
+       */
       const createTeam = (teamName, teamGame, teamDesc, teamDiscID,handleClose) => {
         console.log(teamName, teamGame, teamDesc, teamDiscID);
     
@@ -410,6 +441,11 @@ const AppProvider = (props) => {
         })
         }
 
+      /**
+       * @function
+       * @description gets the team details by ID
+       * @param {string} teamID - ID of the team 
+       */
         const getTeamByID = (teamID) => {
           axios.get(hostName + "api/sanctum/csrf-cookie").then(
             (response) => {

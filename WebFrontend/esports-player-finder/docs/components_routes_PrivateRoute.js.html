@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/profile/gameRole/gameSelection.js</title>
+    <title>JSDoc: Source: components/routes/PrivateRoute.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/profile/gameRole/gameSelection.js</h1>
+    <h1 class="page-title">Source: components/routes/PrivateRoute.js</h1>
 
     
 
@@ -26,28 +26,35 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react';
+            <pre class="prettyprint source linenums"><code>import React, { useContext } from "react";
+import { Route, Redirect } from 'react-router-dom';
+import { AppContext } from "../../contexts/AppContext";
 
 /**
- *  Returns a list of options for choosing games
- *  @component
- *  @example
- *  const game = 'League of legends'
- *  return (
- *      &lt;option value={game.game}>{game.game}&lt;/option>
- *  )
- * @prop {string} game - The name of the game
- * @returns
- * &lt;select> 
- *      &lt;option value="League of legends">League of Legends&lt;/option>
- * &lt;/select>
+ *  Component for creating a team PopUp 
+ * @component
+ * @property {component} component - Takes in a component to redirect user to
+ * @returns 
+ * Routing for users that are or are not logged in. 
  */
 
-function GameSelection(game,gameID){
-        return &lt;option key={game.gameID} value={game.gameID}>{game.game}&lt;/option>
-    }
+const PrivateRoute = ({component: Component, ...rest}) => {
+    const appContext = useContext(AppContext);
+    const { loginStatus } = appContext;
+    
+    return (
 
-export default GameSelection</code></pre>
+        // Show the component only when the user is logged in
+        // Otherwise, redirect the user to /signin page
+        &lt;Route {...rest} render={props => (
+            loginStatus ?
+                &lt;Component {...props} />
+            : &lt;Redirect to="/login" />
+        )} />
+    );
+};
+
+export default PrivateRoute;</code></pre>
         </article>
     </section>
 

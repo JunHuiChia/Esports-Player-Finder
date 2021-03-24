@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: GameSelection</title>
+    <title>JSDoc: Class: RoleSelection</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: GameSelection</h1>
+    <h1 class="page-title">Class: RoleSelection</h1>
 
     
 
@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>GameSelection<span class="signature">()</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>RoleSelection<span class="signature">()</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -41,7 +41,7 @@
     
 
     
-    <h4 class="name" id="GameSelection"><span class="type-signature"></span>new GameSelection<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="RoleSelection"><span class="type-signature"></span>new RoleSelection<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -49,7 +49,7 @@
 
 
 <div class="description">
-    <p>Returns a list of options for choosing games</p>
+    <p>Returns a list of options for choosing roles</p>
 </div>
 
 
@@ -90,7 +90,7 @@
 
         <tr>
             
-                <td class="name"><code>game</code></td>
+                <td class="name"><code>role</code></td>
             
 
             <td class="type">
@@ -106,7 +106,7 @@
 
             
 
-            <td class="description last"><p>The name of the game</p></td>
+            <td class="description last"><p>The role in the game</p></td>
         </tr>
 
     
@@ -145,7 +145,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_profile_gameRole_gameSelection.js.html">components/profile/gameRole/gameSelection.js</a>, <a href="components_profile_gameRole_gameSelection.js.html#line18">line 18</a>
+        <a href="components_profile_gameRole_roleSelection.js.html">components/profile/gameRole/roleSelection.js</a>, <a href="components_profile_gameRole_roleSelection.js.html#line20">line 20</a>
     </li></ul></dd>
     
 
@@ -175,7 +175,7 @@
         
 <div class="param-desc">
     <select> 
-     <option value="League of legends">League of Legends</option>
+     <option value="ADC">ADC</option>
 </select>
 </div>
 
@@ -188,7 +188,7 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>const game = 'League of legends' return (     &lt;option value={game.game}>{game.game}&lt;/option> )</code></pre>
+    <pre class="prettyprint"><code>const game = {     game_role: { 1: ADC, 2: TOP} } return (     &lt;option value={game.game_roles}>{game.game_roles}&lt;/option> )</code></pre>
 
 
 

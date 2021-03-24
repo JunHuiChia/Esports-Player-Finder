@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/profile/gameRole/gameSelection.js</title>
+    <title>JSDoc: Source: components/profile/gameRole/roleSelection.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/profile/gameRole/gameSelection.js</h1>
+    <h1 class="page-title">Source: components/profile/gameRole/roleSelection.js</h1>
 
     
 
@@ -29,25 +29,27 @@
             <pre class="prettyprint source linenums"><code>import React from 'react';
 
 /**
- *  Returns a list of options for choosing games
+ *  Returns a list of options for choosing roles
  *  @component
  *  @example
- *  const game = 'League of legends'
+ *  const game = {
+ *      game_role: { 1: ADC, 2: TOP}
+ *  }
  *  return (
- *      &lt;option value={game.game}>{game.game}&lt;/option>
+ *      &lt;option value={game.game_roles}>{game.game_roles}&lt;/option>
  *  )
- * @prop {string} game - The name of the game
+ * @prop {string} role - The role in the game
  * @returns
  * &lt;select> 
- *      &lt;option value="League of legends">League of Legends&lt;/option>
+ *      &lt;option value="ADC">ADC&lt;/option>
  * &lt;/select>
  */
 
-function GameSelection(game,gameID){
-        return &lt;option key={game.gameID} value={game.gameID}>{game.game}&lt;/option>
+function RoleSelection(role){
+        return &lt;option key={role.role.id} value={role.role.id}>{role.role.name}&lt;/option>
     }
 
-export default GameSelection</code></pre>
+export default RoleSelection</code></pre>
         </article>
     </section>
 

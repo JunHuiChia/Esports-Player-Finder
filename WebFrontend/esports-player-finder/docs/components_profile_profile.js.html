@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/profile/gameRole/gameSelection.js</title>
+    <title>JSDoc: Source: components/profile/profile.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/profile/gameRole/gameSelection.js</h1>
+    <h1 class="page-title">Source: components/profile/profile.js</h1>
 
     
 
@@ -26,28 +26,63 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react';
+            <pre class="prettyprint source linenums"><code>import {React, useContext, useEffect} from 'react';
+import './profile.css';
+import { AppContext } from "../../contexts/AppContext";
+import TeamContent from "../teams/TeamContent.js";
+
+import {Link} from "react-router-dom";
+
+
+
+function userTeams(){
+
+    const teamName = "Team Gamer"
+    const teamName2 = "Team Noobs"
+
+    return (
+    &lt;div className="userTeams my-6">
+        &lt;TeamContent teamName={teamName}/>
+        &lt;TeamContent teamName={teamName2}/>
+    &lt;/div>
+    );
+}
 
 /**
- *  Returns a list of options for choosing games
- *  @component
- *  @example
- *  const game = 'League of legends'
- *  return (
- *      &lt;option value={game.game}>{game.game}&lt;/option>
- *  )
- * @prop {string} game - The name of the game
- * @returns
- * &lt;select> 
- *      &lt;option value="League of legends">League of Legends&lt;/option>
- * &lt;/select>
+ *  Component for profile page
+ * @component
+ * @returns 
+ * HTML for profile page
  */
 
-function GameSelection(game,gameID){
-        return &lt;option key={game.gameID} value={game.gameID}>{game.game}&lt;/option>
-    }
+const Profile = () => {
+    const appContext = useContext(AppContext);
+    const {
+        userName,
+        getGames,
+        checkDetails,
+    } = appContext;
+    
+    useEffect(() =>{
+        getGames();
+        checkDetails();
+    }, [])
 
-export default GameSelection</code></pre>
+    return(
+        &lt;div id="profilePage" className="rounded-md">
+            &lt;div className="mx-16 mt-8 profileTitle">
+                &lt;span>Welcome back! &lt;span className="font-semibold">{userName}&lt;/span> &lt;/span>
+                &lt;Link to="/profile/edit" id="editProfile">Edit Profile&lt;/Link>
+            &lt;/div>
+            &lt;div className="profilePageTeamContent mx-16 mt-5 mb-10 p-8"> 
+                &lt;span className="my-8 underline">Teams&lt;/span>
+                {userTeams()}
+            &lt;/div>
+        &lt;/div>
+    );
+};
+
+export default Profile;</code></pre>
         </article>
     </section>
 
