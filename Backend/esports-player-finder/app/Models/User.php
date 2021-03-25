@@ -52,6 +52,6 @@ class User extends Authenticatable
 
     public function gameRoles()
     {
-        return $this->belongsToMany(GameRole::class, 'user_game_roles');
+        return $this->belongsToMany(GameRole::class, 'user_game_roles')->withPivot('id')->as('user_game_role');
     }
 }
