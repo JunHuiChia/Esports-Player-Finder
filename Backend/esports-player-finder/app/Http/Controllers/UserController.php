@@ -157,7 +157,8 @@ class UserController extends Controller
      *             "name": "testgamerole1",
      *             "created_at": "2021-03-20T18:55:39.000000Z",
      *             "updated_at": "2021-03-20T18:55:39.000000Z",
-     *             "pivot": {
+     *             "user_game_role": {
+     *                  "id" : 1,
      *                 "user_id": 1,
      *                 "game_role_id": 1
      *             },
@@ -174,7 +175,8 @@ class UserController extends Controller
      *             "name": "testgamerole2",
      *             "created_at": "2021-03-20T18:55:39.000000Z",
      *             "updated_at": "2021-03-20T18:55:39.000000Z",
-     *             "pivot": {
+     *             "user_game_role": {
+     *                  "id" : 2,
      *                 "user_id": 1,
      *                 "game_role_id": 2
      *             },
