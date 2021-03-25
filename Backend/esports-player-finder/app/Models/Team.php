@@ -33,4 +33,9 @@ class Team extends Model
     {
         return $this->hasMany(matches::class);
     }
+
+    public function game()
+    {
+        return $this->belongsTo(Game::class);
+    }
 }

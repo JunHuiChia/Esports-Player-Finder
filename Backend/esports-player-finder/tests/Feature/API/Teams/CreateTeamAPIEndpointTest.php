@@ -194,4 +194,28 @@ class CreateTeamAPIEndpointTest extends TestCase
         $response->assertStatus(422);
     }
 
+
+         /**
+     * Test creating team with an invalid token
+     *
+     * @return void
+     */
+    public function testCreateTeamWithInvalidToken()
+    {
+        
+
+        Game::factory()
+            ->count(1)
+            ->create();
+
+        
+        $params = [
+            "name" => "testname",
+            "description" => "testdesc",
+            "game_id" => 1,
+            "discord_channel_id" => "testdis",
+        ];
+        $response = $this->json('POST', '/api/teams', $params , ["Authorization" => "invalid | faketoken"]);
+        $response->assertStatus(401);
+    }
 }

@@ -99,11 +99,9 @@ class TeamController extends Controller
      */
     public function get(Request $request) {
         try {
-            $team = Team::findOrFail($request->id);
-            $game = Game::findOrFail($team->game_id);
+            $team_data = Team::findOrFail($request->id)->load('game');
             $response = response()->json([
-                "Team" => $team,
-                "Game" => $game,
+                "Team" => $team_data,
             ],200);
         }catch(ModelNotFoundException $e) {
             $response = response()->json([
