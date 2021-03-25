@@ -21,13 +21,13 @@ class GetTeamAPIEndpointTest extends TestCase
     {
 
 
-        Game::factory()
-            ->count(1)
-            ->create();
+        $game = Game::factory()
+                    ->count(1)
+                    ->create();
 
-        Team::factory()
-            ->count(1)
-            ->create();
+        $team =Team::factory()
+                    ->count(1)
+                    ->create();
 
         $params = [
             "id" => 1
@@ -35,9 +35,18 @@ class GetTeamAPIEndpointTest extends TestCase
         $response = $this->json('GET', '/api/teams', $params);
         $response->assertStatus(200)
                  ->assertJson(
-                     fn (AssertableJson $json) =>
-                     $json->has('Team', 8)
-                          ->has('Team.game', 4)
+                fn (AssertableJson $json) =>
+                $json->has('Team', 
+                        fn ($json) =>
+                        $json->where('id', 1)
+                             ->where('name', $team[0]->name)
+                             ->etc())
+
+                    ->has('Team.game', 
+                        fn ($json) =>
+                        $json->where('id', 1)
+                             ->where('name', $game[0]->name)
+                             ->etc())
                  );
     }
 
