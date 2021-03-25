@@ -31,6 +31,9 @@ const AppProvider = (props) => {
   const [userPassword, setUserPassword] = useState("");
   const [loginStatus, setLoginStatus] = useState("");
   const [gameList, setGameList] = useState([]);
+  const [userGameRoles, setUserGameRoles] = useState([]);
+  const [gameRoleError, setGameRoleError] = useState("");
+  const [teamData, setTeamData] = useState([]);
 
   /**
    * @function isLogin
@@ -180,6 +183,7 @@ const AppProvider = (props) => {
                   setUserName(response.data.username);
                   setErrorMessage("");
                   setAuthStatus(LOGGED_IN);
+                  setUserGameRoles(response.data["game_roles"])
                   localStorage.setItem(loggedIn_key, 'LoggedIn')
                   setLoginStatus(true);
                   statusMsg("Successful Login");
@@ -237,6 +241,7 @@ const AppProvider = (props) => {
                 setUserId(response.data.id);
                 setUserName(response.data.username);
                 setUserEmail(response.data.email)
+                setUserGameRoles(response.data["game_roles"])
                 setErrorMessage("");
             },
             // GET USER ERROR
@@ -258,7 +263,6 @@ const AppProvider = (props) => {
       (response) => {
         axios.get(hostName + "api/games").then(
           (response) => { 
-            console.log(response);
             setGameList(response.data.games);
           },
           (error) =>{
@@ -284,10 +288,11 @@ const AppProvider = (props) => {
       })
       .then(
         (response) => {
-          console.log(response);
+          setGameRoleError("");
+          checkDetails();
         },
         (error) => {
-          console.log("Cannot send game role");
+          setGameRoleError("Invalid game role");
         })
     },
     (error) => {
@@ -379,6 +384,49 @@ const AppProvider = (props) => {
             console.log(error);
           })
       }
+
+      const createTeam = (teamName, teamGame, teamDesc, teamDiscID,handleClose) => {
+        console.log(teamName, teamGame, teamDesc, teamDiscID);
+    
+        axios.get(hostName + "api/sanctum/csrf-cookie").then(
+        (response) => {
+          axios.post(hostName + "api/teams", {
+            name: teamName,
+            description: teamDesc,
+            game_id: teamGame,
+            discord_channel_id: teamDiscID,
+          })
+          .then(
+            (response) => {
+              console.log(response);
+              handleClose();
+            },
+            (error) => {
+              setErrorMessage("Cannot create team")
+            })
+        },
+        (error) => {
+          console.log(error);
+        })
+        }
+
+        const getTeamByID = (teamID) => {
+          axios.get(hostName + "api/sanctum/csrf-cookie").then(
+            (response) => {
+              axios.get(hostName + `api/teams?id=${teamID}`)
+              .then(
+                (response) => {
+                  setTeamData(response.team);
+                  console.log(response);
+                },
+                (error) => {
+                  setErrorMessage("Cannot get team")
+                })
+            },
+            (error) => {
+              console.log(error);
+            })
+        }
   
   return (
     <AppContext.Provider
@@ -409,6 +457,11 @@ const AppProvider = (props) => {
         updatePassword,
         updateUserAllDetail,
         updateUsername,
+        userGameRoles,
+        gameRoleError,
+        createTeam,
+        getTeamByID,
+        teamData,
       }}
       >
       {props.children}

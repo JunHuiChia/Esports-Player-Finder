@@ -39,8 +39,8 @@ public class Login extends AppCompatActivity {
     private EditText eEmail;
     private EditText ePassword;
     private Button eLogin;
-    private Button eAuthenticate;
     private Button registerLink;
+    private String password;
     Menu menu;
 
     @Override
@@ -65,6 +65,8 @@ public class Login extends AppCompatActivity {
 
                     String inputEmail = eEmail.getText().toString();
                     String inputPassword = ePassword.getText().toString();
+
+                    password = inputPassword;
 
                     if (validPassword(inputPassword) && validEmail(inputEmail)){
                         getToken(inputEmail, inputPassword);
@@ -120,6 +122,7 @@ public void getUserDetails()
                         Log.d("name:", response.getString("username"));
                         ProfileMan.email = ( response.getString("email"));
                         Log.d("email:", response.getString("email"));
+                        ProfileMan.password = password;
                         changeToProfilePage(findViewById(R.id.btnLogin));
                     } catch (JSONException e) {
                         Log.d("login", "onResponse:"+ e.toString());

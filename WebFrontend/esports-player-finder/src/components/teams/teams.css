@@ -77,13 +77,19 @@
     width: 20rem;
 }
 
-.teamDetailsInput input{
+.teamDetailsInput input, .teamDetailsInput select{
     margin: 0.7rem 0;
-    padding: 0.5rem;
+    padding: 0 0.5rem;
     height: 3.5rem;
     font-size: 2rem;
     background-color: var(--colour-palette-3);
+    color: var(--text-colour-secondary);
 }
+
+.teamDetailsInput option:disabled{
+    color: black;
+}
+
 
 
 .createBtnDiv{
