@@ -42,6 +42,8 @@ class UserGameRoleController extends Controller
         return response()->json(['created'=>true], Response::HTTP_CREATED);
     }
 
+    //known issue- user can give themselves multiple roles which may cause issues when attempting to search teams
+
 
     /**
      * Delete user game role

@@ -20,6 +20,7 @@ Route::post('/login', [App\Http\Controllers\UserController::class, 'login']);
 Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout']);
 
 //Teams
+Route::middleware('auth:sanctum')->get('/teams/find', [App\Http\Controllers\TeamController::class, 'find']);
 Route::middleware('auth:sanctum')->post('/teams', [App\Http\Controllers\TeamController::class, 'create']);
 Route::get('/teams', [App\Http\Controllers\TeamController::class, 'get']);
 
