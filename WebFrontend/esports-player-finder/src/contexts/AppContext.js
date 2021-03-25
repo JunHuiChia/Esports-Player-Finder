@@ -299,6 +299,34 @@ const AppProvider = (props) => {
     })
     }
 
+        /**
+   * @function
+   * @description Post API for deleting game role for user
+   */
+  const deleteGameRole = (roleID) => {
+    console.log(roleID);
+
+    axios.get(hostName + "api/sanctum/csrf-cookie").then(
+    (response) => {
+      axios.delete(hostName + "api/user/gamerole", {
+        data:{
+          user_game_role_id : roleID
+        }
+      })
+      .then(
+        (response) => {
+          checkDetails();
+        },
+        (error) => {
+          setGameRoleError("Invalid game role");
+          console.log("error1: ",error);
+        })
+    },
+    (error) => {
+      console.log("error2", error);
+    })
+    }
+
 
     /**
      * @function
@@ -498,6 +526,7 @@ const AppProvider = (props) => {
         createTeam,
         getTeamByID,
         teamData,
+        deleteGameRole,
       }}
       >
       {props.children}

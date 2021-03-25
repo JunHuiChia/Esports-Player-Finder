@@ -2,14 +2,16 @@
     background-color: var(--colour-palette-0);
     min-height: max-content;
     display: flex;
+    flex-direction: column;
     width: 1100px;
-    margin: 0 auto;
-        margin-top: 0px;
-        margin-bottom: 0px;
     margin-top: 3rem;
     margin-bottom: 3rem;
     color: var(--text-colour-primary);
     font-size: 2.5rem;
+}
+
+#teamHeader{
+    display: flex;
 }
 
 
@@ -44,6 +46,12 @@
 
 }
 
+/* Search team area */
+
+#searchTeam{
+    display: flex;
+    justify-content: space-between;
+}
 
 
 /* Create Team Popup css */

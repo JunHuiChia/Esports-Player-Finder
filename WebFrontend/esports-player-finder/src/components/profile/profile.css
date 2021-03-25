@@ -1,5 +1,5 @@
 #profilePage, #profilePageEdit{
-    background-color: var(--content-background-colour-primary);
+    background-color: var(--colour-palette-0);
     min-height: max-content;
     display: flex;
     flex-direction: column;
@@ -15,11 +15,13 @@
 .profileTitle{
     display: flex;
     justify-content: space-between;
+    color: var(--text-colour-tertiary);
+    border-bottom: 2px solid;
 }
 
 
 .profilePageTeamContent{
-    background-color: var(--content-background-colour-tertiary);
+    background-color: var(--colour-palette-1);
     text-align: center;
 }
 
@@ -59,7 +61,7 @@
     padding: 1rem 3rem;
     border-radius: 0.5rem;
     min-width: 400px;
-    background-color: var(--profile-background-colour);
+    background-color: var(--colour-palette-1);
     text-align: center;
     width: 90%;
 }
@@ -116,8 +118,10 @@
     width: 200px;
     flex-direction: column;
     border: 2px solid var(--colour-palette-0);
-    background-color: var(--colour-palette-1);
+    background-color: var(--colour-palette-2);
     margin: 1rem;
+    justify-content: space-between;
+    font-size: 1.5rem;
 }
 
 .gameRoles .profileGame{
@@ -129,6 +133,19 @@
     font-weight: 600;
     color: var(--text-colour-secondary);
 }
+
+.gameRoles .deleteRoleBtn{
+    background-color: var(--colour-palette-3);
+    padding: 0.3rem;
+    transition: all 0.2s;
+    border-top: 2px solid var(--colour-palette-0);
+}
+
+.gameRoles .deleteRoleBtn:hover{
+    background-color: var(--colour-palette-1);
+    color: var(--text-colour-tertiary);
+}
+
 
 .addGameRoleSection {
     display: flex;
@@ -150,6 +167,7 @@
     width: 50%;
     align-self: center;
     border-radius: 5px;
+    transition: all 0.2s;
 }
 
 .addGameRole select{
@@ -158,6 +176,7 @@
 
 .addGameRole:hover{
     background-color: var(--gray-7);
+    color: var(--text-colour-secondary);
 }
 
 .gameSection{

@@ -16,7 +16,7 @@ function newGameRole(gameRole){
     return (
         <div className="userGameRoles">
             { gameRole.games.map(game => {
-                    return <GameRole key={game.id} game={game.game} role={game.name}/>
+                    return <GameRole key={game.id} game={game.game.name} role={game.name} id={game["user_game_role"]["id"]}/>
                 })
             }
         </div>
