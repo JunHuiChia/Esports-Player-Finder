@@ -82,6 +82,10 @@ class getUserDetailsTest extends TestCase
                                                 ->where('name', $game[0]->name)
                                                 ->etc()
                                     )
+                                    ->has('user_game_role', fn ($json) =>
+                                        $json->where('id', '1')
+                                                ->etc()
+                                    )
                                     ->etc()
                         )
                         ->etc()
