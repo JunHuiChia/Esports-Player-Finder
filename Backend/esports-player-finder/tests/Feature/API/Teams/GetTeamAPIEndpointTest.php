@@ -3,6 +3,7 @@
 namespace Tests\Feature\API\Team;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 use App\Models\Game;
 use App\Models\Team;
@@ -18,7 +19,7 @@ class GetTeamAPIEndpointTest extends TestCase
      */
     public function testGetTeamWithValidParameter()
     {
-        
+
 
         Game::factory()
             ->count(1)
@@ -32,7 +33,12 @@ class GetTeamAPIEndpointTest extends TestCase
             "id" => 1
         ];
         $response = $this->json('GET', '/api/teams', $params);
-        $response ->assertStatus(200);
+        $response->assertStatus(200)
+                 ->assertJson(
+                     fn (AssertableJson $json) =>
+                     $json->has('Team', 8)
+                          ->has('Team.game', 4)
+                 );
     }
 
      /**
