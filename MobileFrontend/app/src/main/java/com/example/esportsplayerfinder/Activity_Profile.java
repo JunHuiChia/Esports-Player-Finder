@@ -90,10 +90,15 @@ public class Activity_Profile extends AppCompatActivity {
                 Intent intentLogout = new Intent(Activity_Profile.this, MainActivity.class);
                 startActivity(intentLogout);
                 return true;
-                case R.id.accountSettings:
-                //Redirect to dashboard
+            case R.id.accountSettings:
+                //Redirect to account settings page
                 Intent intentAccountSettings = new Intent(Activity_Profile.this, Account_Settings.class);
                 startActivity(intentAccountSettings);
+                return true;
+            case R.id.findTeam:
+                //Redirect to find team page
+                Intent intentFindTeam = new Intent(Activity_Profile.this, Find_Team.class);
+                startActivity(intentFindTeam);
                 return true;
 
 

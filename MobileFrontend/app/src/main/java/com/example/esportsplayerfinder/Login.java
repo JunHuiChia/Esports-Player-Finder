@@ -259,9 +259,14 @@ public void changeToRegisterPage(View view) {
                 startActivity(intentLogout);
                 return true;
             case R.id.accountSettings:
-                //Redirect to dashboard
+                //Redirect to account settings page
                 Intent intentAccountSettings = new Intent(Login.this, Account_Settings.class);
                 startActivity(intentAccountSettings);
+                return true;
+            case R.id.findTeam:
+                //Redirect to find team page
+                Intent intentFindTeam = new Intent(Login.this, Find_Team.class);
+                startActivity(intentFindTeam);
                 return true;
 
 

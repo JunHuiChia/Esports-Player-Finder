@@ -8,3 +8,4 @@ When updating this app, run the following commands.
  git pull
  composer install
  php artisan migrate
+ php artisan scribe:generate

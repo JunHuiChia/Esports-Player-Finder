@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -43,10 +42,10 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        regInputUsername = findViewById(R.id.regName);
-        regInputEmail = findViewById(R.id.regEmail);
-        regInputPassword = findViewById(R.id.regPassword);
-        buttonRegister = findViewById(R.id.btnRegister);
+        regInputUsername = findViewById(R.id.teamName);
+        regInputEmail = findViewById(R.id.teamDiscordCode);
+        regInputPassword = findViewById(R.id.teamDescription);
+        buttonRegister = findViewById(R.id.btnCreateTeam);
         textViewLogin = findViewById(R.id.textExistingUserQuestion);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.Dashbar);
@@ -63,10 +62,6 @@ public class Register extends AppCompatActivity {
                 String inputPassword = regInputPassword.getText().toString();
                 String inputEMail = regInputEmail.getText().toString();
 
-                if (validUsername(inputUsername) && validPassword(inputPassword)){
-
-
-                }
 
                 if (validUsername(inputUsername) && validPassword(inputPassword))
                 {
@@ -212,14 +207,19 @@ public class Register extends AppCompatActivity {
                 ProfileMan.ID = -1;
                 ProfileMan.email = null;
                 ProfileMan.token = "";
-                //Redirect to register page
+                //Redirect to Logout
                 Intent intentLogout = new Intent(Register.this, MainActivity.class);
                 startActivity(intentLogout);
                 return true;
             case R.id.accountSettings:
-                //Redirect to dashboard
+                //Redirect to account settings page
                 Intent intentAccountSettings = new Intent(Register.this, Account_Settings.class);
                 startActivity(intentAccountSettings);
+                return true;
+            case R.id.findTeam:
+                //Redirect to find team page
+                Intent intentFindTeam = new Intent(Register.this, Find_Team.class);
+                startActivity(intentFindTeam);
                 return true;
 
 

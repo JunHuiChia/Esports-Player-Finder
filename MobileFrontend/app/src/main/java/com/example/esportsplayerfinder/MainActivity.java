@@ -88,9 +88,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentDashboard);
                 return true;
             case R.id.accountSettings:
-                //Redirect to dashboard
+                //Redirect to account settings page
                 Intent intentAccountSettings = new Intent(MainActivity.this, Account_Settings.class);
                 startActivity(intentAccountSettings);
+                return true;
+            case R.id.findTeam:
+                //Redirect to find team page
+                Intent intentFindTeam = new Intent(MainActivity.this, Find_Team.class);
+                startActivity(intentFindTeam);
                 return true;
 
 

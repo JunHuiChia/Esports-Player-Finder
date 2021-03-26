@@ -13,6 +13,9 @@
                 <item
                     android:id="@+id/dashboard"
                     android:title="Dashboard"></item>
+                <item
+                    android:title="Teams"
+                    android:id="@+id/findTeam"></item>
 <!--                <item-->
 <!--                    android:id="@+id/games"-->
 <!--                    android:title="Games"></item>-->
