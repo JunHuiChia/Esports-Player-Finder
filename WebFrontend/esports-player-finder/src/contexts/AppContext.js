@@ -501,7 +501,7 @@ const AppProvider = (props) => {
       const getTeamByGame = (gameID) => {
         axios.get(hostName + "api/sanctum/csrf-cookie").then(
           (response) => {
-            axios.get(hostName + `api/teams/find?id=${gameID}`)
+            axios.get(hostName + `api/teams/find?game_id=${gameID}`)
             .then(
               (response) => {
                 console.log(response);
