@@ -15,7 +15,7 @@ import React from 'react';
  * </select>
  */
 
-function GameSelection(game,gameID){
+function GameSelection(game){
         return <option key={game.gameID} value={game.gameID}>{game.game}</option>
     }
 
