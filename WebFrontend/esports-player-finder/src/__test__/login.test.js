@@ -1,20 +1,57 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Login from '../components/login/login.js';
-import { useAlert } from 'react-alert'
-import { shallow, mount } from 'enzyme';
-import AlertManager from 'react-alert'
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { Provider as AlertProvider } from 'react-alert'
+import { AppProvider } from "../contexts/AppContext"
+import { BrowserRouter as Router } from "react-router-dom";
+import AlertTemplate from 'react-alert-template-basic'
 
 
 describe('Login Component Test', () => {
     render(
-        <Login />
+        <AlertProvider template={AlertTemplate}>
+            <AppProvider>
+                <Router>
+                    <Login />
+                </Router>
+            </AppProvider>
+        </AlertProvider>
     )
     
-    //Expects one button
-    expect(screen.getByRole('button')).toHaveLength(1);
+    test('renders login button', () => {
+        expect(screen.getByRole('button', {name: /Log In/i})).toBeDefined()
+    })
+    
+    test('toggle show password', () => {
+        
+        render(
+            <AlertProvider template={AlertTemplate}>
+                <AppProvider>
+                    <Router>
+                        <Login />
+                    </Router>
+                </AppProvider>
+            </AlertProvider>
+        )
+        const togglePasswordMock = jest.fn()
+        const showPassword = screen.getByText(/Show/i)
+        fireEvent.click(showPassword)
+        expect(togglePasswordMock).toHaveBeenCalledTimes(0);
+    })
 
-    expect(screen.getByRole('button').text()).toEqual('Log In')
-
+    test('Login with enter button after password entered', async () => {
+        render(
+            <AlertProvider template={AlertTemplate}>
+                <AppProvider>
+                    <Router>
+                        <Login />
+                    </Router>
+                </AppProvider>
+            </AlertProvider>
+        )
+        const handleKeyDown = jest.fn()
+        const passwordInput = screen.getByAltText('passwordBox')
+        fireEvent.keyDown(passwordInput, {key: 'Enter'})
+        await expect(handleKeyDown).toHaveBeenCalledTimes(0);
+    })
 })
