@@ -119,7 +119,7 @@ class TeamController extends Controller
      * 
      * @group Teams
      * 
-     * @queryParam id required The Id of the game being queried
+     * @queryParam game_id required The Id of the game being queried
      * 
      * @response {
      *"Teams": [
