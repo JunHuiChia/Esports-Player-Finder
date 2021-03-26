@@ -5,20 +5,21 @@ import { Provider as AlertProvider } from 'react-alert'
 import { AppProvider } from "../contexts/AppContext"
 import { BrowserRouter as Router } from "react-router-dom";
 import AlertTemplate from 'react-alert-template-basic'
+import { mount, shallow } from 'enzyme';
 
 
 describe('Login Component Test', () => {
-    render(
-        <AlertProvider template={AlertTemplate}>
-            <AppProvider>
-                <Router>
-                    <Login />
-                </Router>
-            </AppProvider>
-        </AlertProvider>
-    )
-    
+
     test('renders login button', () => {
+        render(
+            <AlertProvider template={AlertTemplate}>
+                <AppProvider>
+                    <Router>
+                        <Login />
+                    </Router>
+                </AppProvider>
+            </AlertProvider>
+        )
         expect(screen.getByRole('button', {name: /Log In/i})).toBeDefined()
     })
     
@@ -39,19 +40,21 @@ describe('Login Component Test', () => {
         expect(togglePasswordMock).toHaveBeenCalledTimes(0);
     })
 
-    test('Login with enter button after password entered', async () => {
+    test('Login with enter button after password entered',  () => {
+        const handleKeyDownMock = jest.spyOn(console, 'log')
+
         render(
             <AlertProvider template={AlertTemplate}>
                 <AppProvider>
                     <Router>
-                        <Login />
+                        <Login handleKeyDownMock={handleKeyDownMock}/>
                     </Router>
                 </AppProvider>
             </AlertProvider>
         )
-        const handleKeyDown = jest.fn()
         const passwordInput = screen.getByAltText('passwordBox')
         fireEvent.keyDown(passwordInput, {key: 'Enter'})
-        await expect(handleKeyDown).toHaveBeenCalledTimes(0);
+        expect(handleKeyDownMock).toHaveBeenCalledTimes(0);
     })
+
 })

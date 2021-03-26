@@ -17,7 +17,7 @@ import {Link, useHistory} from "react-router-dom";
  * HTML of select for choosing games and roles to add
  */
 
-    const Login = () => {
+    const Login = (props) => {
         
     const alert = useAlert();
     const appContext = useContext(AppContext);
