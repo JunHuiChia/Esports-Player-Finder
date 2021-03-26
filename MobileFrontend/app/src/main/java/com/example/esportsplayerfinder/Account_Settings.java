@@ -257,7 +257,7 @@ public class Account_Settings extends AppCompatActivity implements AdapterView.O
             for (int j = 0; j < games.length(); j++) {
                 JSONArray roles = games.getJSONArray("game_roles");
                 gameChoices.add(roles.getJSONObject(j).getString("name"));
-                Log.d("role check", "setGameRoleSpinner: role "+ j + roles.getJSONObject(j).getString("name"));
+                Log.d("role check ", "setGameRoleSpinner: role "+ j + roles.getJSONObject(j).getString("name"));
             }
 
         }
@@ -472,6 +472,16 @@ public class Account_Settings extends AppCompatActivity implements AdapterView.O
                 //Redirect to register page
                 Intent intentLogout = new Intent(Account_Settings.this, MainActivity.class);
                 startActivity(intentLogout);
+                return true;
+            case R.id.accountSettings:
+                //Redirect to account settings page
+                Intent intentAccountSettings = new Intent(Account_Settings.this, Account_Settings.class);
+                startActivity(intentAccountSettings);
+                return true;
+            case R.id.findTeam:
+                //Redirect to find team page
+                Intent intentFindTeam = new Intent(Account_Settings.this, Find_Team.class);
+                startActivity(intentFindTeam);
                 return true;
 
 
