@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     width: 1100px;
+    margin: 0 auto;
     margin-top: 3rem;
     margin-bottom: 3rem;
     color: var(--text-colour-primary);
@@ -32,8 +33,7 @@
 #createTeam{
     display: flex;
     justify-content: center;
-    flex-grow: 1;
-    margin: 2rem 1rem;
+    margin: 2rem 2rem;
     width: max-content;
 }
 
@@ -51,6 +51,24 @@
 #searchTeam{
     display: flex;
     justify-content: space-between;
+    margin: 0 5rem;
+    font-size: 2rem;
+    align-items: center;
+}
+
+#searchTeam select{
+    background-color: var(--colour-palette-1);
+}
+
+#searchTeamBtn{
+    border: 2px solid var(--colour-palette-1);
+    padding: 0 0.5rem;
+    background-color: var(--colour-palette-2);
+}
+
+#searchTeamBtn:hover{
+    background-color: var(--colour-palette-1);
+    border-color: var(--colour-palette-1-dark);
 }
 
 
@@ -62,7 +80,6 @@
     background-color: var(--colour-palette-1);
     border-radius: 0.5rem;
     color: var(--text-colour-secondary);
-    padding: 1rem 0;
 }
 
 .teamDetailsLabels{
@@ -118,4 +135,16 @@
 .createBtnDiv button:hover{
     background-color: var(--colour-palette-3);
     color: var(--shadow-black);
+}
+
+/* Available teams css */
+
+#availableTeams{
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+    background-color: var(--colour-palette-0-dark);
+    min-width: 95%;
+    max-width: 99%;
+    margin: 1rem auto;
 }
