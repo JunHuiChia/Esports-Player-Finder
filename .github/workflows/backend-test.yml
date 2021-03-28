@@ -5,16 +5,19 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  workflow_dispatch:
 
 jobs:
   backend-tests:
-
+    name: Build and test backend API
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./Backend/esports-player-finder
+    
     steps:
     - uses: actions/checkout@v2
-    - name: Change into backend directory
-      run: cd Backend/esports-player-finder
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
