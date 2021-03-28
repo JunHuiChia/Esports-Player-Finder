@@ -142,12 +142,6 @@ class TeamController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function find(Request $request) {
-        if ($request->game_id == null) {
-            $response = response()->json([
-                "Error" => "Invalid Request",
-            ], 400);
-        }
-
         $user_role = UserGameRole::where("user_id", "=", $request->user()->id)->firstOrFail();
         try {
             $team_data = Team::select("teams.id as team_id",
