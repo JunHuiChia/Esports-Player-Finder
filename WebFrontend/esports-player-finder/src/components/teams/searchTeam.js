@@ -18,7 +18,8 @@ function SearchGame(games){
 
     const appContext = useContext(AppContext);
     const {
-        addGameRole
+        addGameRole,
+        getTeamByGame,
     } = appContext;
 
     const [selected, setSelected] = useState(""); 
@@ -43,10 +44,10 @@ function SearchGame(games){
 
 
     function handleSearchGameRole(){
-        let gameID = document.querySelector("#selectGame").value 
-        let roleID = document.querySelector("#selectRole").value 
+        let gameID = document.querySelector("#searchGame").value 
+        let roleID = document.querySelector("#searchRole").value 
         console.log("GameID: ", gameID , " RoleID: ", roleID);
-        addGameRole(roleID)
+        getTeamByGame(gameID)
     }
 
     return (
