@@ -10,5 +10,5 @@
             }
         ]
     },
-    "ignoreFiles": ["WebFrontend/esports-player-finder/docs/**"]
+    "ignoreFiles": ["WebFrontend/esports-player-finder/docs/*"]
 }
