@@ -122,27 +122,21 @@ class TeamController extends Controller
      * @queryParam game_id required The Id of the game being queried
      * 
      * @response {
-     *"Teams": [
+     * "Teams": [
      *   {
-     *       "id": 3,
-     *       "name": "test2",
-     *       "created_at": "2021-03-25T22:52:42.000000Z",
-     *       "updated_at": "2021-03-25T22:52:43.000000Z",
-     *       "description": "testd",
-     *       "discord_channel_id": "test",
-     *       "game_id": 1
+     *       "team_id": 3,
+     *       "team_name": "test2",
+     *       "game_name": "testgame",
+     *       "team_desc": "testd"
      *   },
      *   {
-     *       "id": 4,
-     *       "name": "test3",
-     *       "created_at": "2021-03-25T22:52:42.000000Z",
-     *       "updated_at": "2021-03-25T22:52:43.000000Z",
-     *       "description": "testd",
-     *       "discord_channel_id": "test",
-     *       "game_id": 1
+     *       "team_id": 4,
+     *       "team_name": "test3",
+     *       "game_name": "testgame",
+     *       "team_desc": "testd"
      *   }
-     *]
-     *}
+     * ]
+     * }
      * 
      * @param Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -150,11 +144,15 @@ class TeamController extends Controller
     public function find(Request $request) {
         $user_role = UserGameRole::where("user_id", "=", $request->user()->id)->firstOrFail();
         try {
-            $team_data = Team::select("teams.*")
+            $team_data = Team::select("teams.id as team_id",
+                                      "teams.name as team_name",
+                                      "games.name as game_name",
+                                      "teams.description as team_desc")
                              ->join("team_participants","team_participants.team_id", "=", "teams.id")
                              ->join("users", "users.id", "=", "team_participants.user_id")
                              ->join("user_game_roles","user_game_roles.user_id", "=", "users.id")
                              ->join("game_roles","game_roles.id", "=", "user_game_roles.game_role_id")
+                             ->join("games", "games.id", "=", "game_roles.game_id")
                              ->where("teams.game_id", $request->game_id)
                              ->where("user_game_roles.game_role_id", "!=", $user_role->game_role_id)->take(10)->get();
             $response = response()->json([
