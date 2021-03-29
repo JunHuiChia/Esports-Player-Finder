@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Team;
 use App\Models\Game;
+use App\Models\UserGameRole;
 use App\Models\TeamParticipant;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -109,5 +110,75 @@ class TeamController extends Controller
             ], 400);
         }
         return $response;
+    }
+
+/**
+     * WARN - Endpoint not fully tested. Get team that match the game id & the users current game role id
+     * 
+     * 
+     * 
+     * @group Teams
+     * 
+     * @queryParam game_id required The Id of the game being queried
+     * 
+     * @response {
+     * "Teams": [
+     *   {
+     *       "team_id": 3,
+     *       "team_name": "test2",
+     *       "game_name": "testgame",
+     *       "team_desc": "testd"
+     *   },
+     *   {
+     *       "team_id": 4,
+     *       "team_name": "test3",
+     *       "game_name": "testgame",
+     *       "team_desc": "testd"
+     *   }
+     * ]
+     * }
+     * 
+     * @param Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function find(Request $request) {
+                              
+        try {
+            $user_role = UserGameRole::select("user_game_roles.game_role_id")
+                                       ->join("game_roles", "game_roles.id", "=", "user_game_roles.game_role_id")
+                                       ->where("game_roles.game_id", $request->game_id)
+                                       ->where("user_game_roles.user_id",  $request->user()->id)
+                                       ->first();
+
+            $team_data = Team::select("teams.id as team_id",
+                                      "teams.name as team_name",
+                                      "games.name as game_name",
+                                      "teams.description as team_desc",
+                                      "teams.discord_channel_id as team_discord",)
+                             ->join("team_participants","team_participants.team_id", "=", "teams.id")
+                             ->join("users", "users.id", "=", "team_participants.user_id")
+                             ->join("user_game_roles","user_game_roles.user_id", "=", "users.id")
+                             ->join("game_roles","game_roles.id", "=", "user_game_roles.game_role_id")
+                             ->join("games", "games.id", "=", "game_roles.game_id")
+                             ->where("teams.game_id", $request->game_id)
+                             ->where("user_game_roles.game_role_id", "!=", $user_role->game_role_id)
+                             ->take(10)
+                             ->get();
+            $response = response()->json([
+                "Teams" => $team_data,
+            ],200);
+        }catch(ModelNotFoundException $e) {
+            $response = response()->json([
+                "Error" => "Invalid Request",
+            ], 400);
+        }
+        return $user_role;
+    }
+
+    public function join(Request $request) {
+        
+    }
+    public function leave(Request $request) {
+        
     }
 }

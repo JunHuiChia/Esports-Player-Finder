@@ -10,7 +10,7 @@
 
     --text-colour-primary: #CED4DA;
     --text-colour-secondary: #ADB5BD;
-    --text-colour-tertiary: #DEE2E6;
+    --text-colour-tertiary: #d4d4d4;
 
     --input-form-background-colour: #252525;
     
@@ -44,12 +44,15 @@
     --gray-7: #3b3b3b;
     --gray-8: #272727;
 
-
     --colour-palette-0: #212529;
+    --colour-palette-0-dark: #181b1f;
     --colour-palette-1: #343A40;
+    --colour-palette-1-dark: #2e343a;
     --colour-palette-2: #495057;
     --colour-palette-3: #6C757D;
-
-
-
+    
+    --colour-palette-10: #1a1d1f;
+    --colour-palette-10-dark: #141618;
+    
+    
 }

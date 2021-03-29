@@ -1,11 +1,14 @@
 import { React , useContext} from 'react';
+import { AppContext } from "../../contexts/AppContext";
+import TeamBox from "./teamBox";
 
+function availableTeam(teams) {
 
-function availableTeam(teamData) {
+    const teamData = teams.teams.map((team) =>  <TeamBox key={team.team_id} teams={team}/>)
 
     return(
-        <> 
-        {console.log(teamData)}
+        <>
+        {teamData}
         </>
     )
 }

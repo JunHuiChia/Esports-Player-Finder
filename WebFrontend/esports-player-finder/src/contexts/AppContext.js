@@ -481,7 +481,7 @@ const AppProvider = (props) => {
               .then(
                 (response) => {
                   setTeamData(response.team);
-                  console.log(response);
+                  // console.log(response);
                 },
                 (error) => {
                   setErrorMessage("Cannot get team")
@@ -491,6 +491,31 @@ const AppProvider = (props) => {
               console.log(error);
             })
         }
+
+        
+      /**
+       * @function
+       * @description gets the team details by Game
+       * @param {string} gameID - ID of the game 
+       */
+      const getTeamByGame = (gameID , handleSearch) => {
+        axios.get(hostName + "api/sanctum/csrf-cookie").then(
+          (response) => {
+            axios.get(hostName + `api/teams/find?game_id=${gameID}`)
+            .then(
+              (response) => {
+                setTeamData(response.data.Teams);
+                handleSearch()
+                // console.log(response.data.Teams);
+              },
+              (error) => {
+                setErrorMessage("Cannot get team")
+              })
+          },
+          (error) => {
+            console.log(error);
+          })
+      }
   
   return (
     <AppContext.Provider
@@ -527,6 +552,7 @@ const AppProvider = (props) => {
         getTeamByID,
         teamData,
         deleteGameRole,
+        getTeamByGame,
       }}
       >
       {props.children}

@@ -1,5 +1,5 @@
 import {React} from 'react';
-import './TeamContent.css';
+import './css/TeamContent.css';
 
 
 export default function TeamContent(props){

@@ -14,11 +14,12 @@ import { AppContext } from "../../contexts/AppContext";
  * HTML for searching by games and roles
  */
 
-function SearchGame(games){
+function SearchGame(props){
 
     const appContext = useContext(AppContext);
     const {
-        addGameRole
+        addGameRole,
+        getTeamByGame,
     } = appContext;
 
     const [selected, setSelected] = useState(""); 
@@ -26,7 +27,7 @@ function SearchGame(games){
     const changeSelectOptionHandler = (event) => { 
         setSelected(event.target.value); 
     }; 
-    let gameList = games.games;
+    let gameList = props.games;
     let roles = null;
     let options = null;
     let game = gameList.map((game) => <GameSelection game={game.name} gameID={game.id} key={game.id}/>)
@@ -46,7 +47,8 @@ function SearchGame(games){
         let gameID = document.querySelector("#searchGame").value 
         let roleID = document.querySelector("#searchRole").value 
         console.log("GameID: ", gameID , " RoleID: ", roleID);
-        addGameRole(roleID)
+        const handleSearch = props.handleSearch
+        getTeamByGame(gameID, handleSearch)
     }
 
     return (
