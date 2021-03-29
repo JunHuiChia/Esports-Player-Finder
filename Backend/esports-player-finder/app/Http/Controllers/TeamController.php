@@ -142,19 +142,27 @@ class TeamController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function find(Request $request) {
-        $user_role = UserGameRole::where("user_id", "=", $request->user()->id)->firstOrFail();
+        $user_role = UserGameRole::select("user_game_roles.game_role_id")
+                                    ->join("game_roles", "game_roles.id", "=", "user_game_roles.game_role_id")
+                                    ->where("game_roles.game_id", $request->game_id)
+                                    ->where("user_game_roles.user_id",  $request->user()->id)
+                                    ->first();
+                      
         try {
             $team_data = Team::select("teams.id as team_id",
                                       "teams.name as team_name",
                                       "games.name as game_name",
-                                      "teams.description as team_desc")
+                                      "teams.description as team_desc",
+                                      "teams.discord_channel_id as team_discord",)
                              ->join("team_participants","team_participants.team_id", "=", "teams.id")
                              ->join("users", "users.id", "=", "team_participants.user_id")
                              ->join("user_game_roles","user_game_roles.user_id", "=", "users.id")
                              ->join("game_roles","game_roles.id", "=", "user_game_roles.game_role_id")
                              ->join("games", "games.id", "=", "game_roles.game_id")
                              ->where("teams.game_id", $request->game_id)
-                             ->where("user_game_roles.game_role_id", "!=", $user_role->game_role_id)->take(10)->get();
+                             ->where("user_game_roles.game_role_id", "!=", $user_role->game_role_id)
+                             ->take(10)
+                             ->get();
             $response = response()->json([
                 "Teams" => $team_data,
             ],200);
@@ -163,6 +171,13 @@ class TeamController extends Controller
                 "Error" => "Invalid Request",
             ], 400);
         }
-        return $response;
+        return $user_role;
+    }
+
+    public function join(Request $request) {
+        
+    }
+    public function leave(Request $request) {
+        
     }
 }
