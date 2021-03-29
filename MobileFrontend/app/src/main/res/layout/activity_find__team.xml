@@ -38,24 +38,33 @@
 
     <TextView
         android:id="@+id/createTeamtxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="207dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
         android:text="@string/createTeamtxt"
         android:textColor="@color/davy_grey"
         android:textColorHighlight="@color/white"
         android:textColorHint="@color/davy_grey"
-        android:textSize="30sp"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.129" />
+        app:layout_constraintVertical_bias="0.105" />
 
     <Button
         android:id="@+id/createTeambtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="93dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/createtxt"
         android:textColor="@color/white"
         android:textColorHighlight="@color/davy_grey"
@@ -64,42 +73,26 @@
         app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.908"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/createTeamtxt"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintVertical_bias="0.107" />
 
     <ImageView
-        android:id="@+id/fisrtTeamBackground"
-        android:layout_width="353dp"
-        android:layout_height="86dp"
+        android:id="@+id/firstTeamBackground"
+        android:layout_width="275dp"
+        android:layout_height="70dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.275"
+        app:layout_constraintHorizontal_bias="0.396"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3"
-        app:srcCompat="@color/darkest_grey" />
-
-    <ImageView
-        android:id="@+id/fourthTeamBackground"
-        android:layout_width="353dp"
-        android:layout_height="86dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.275"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/thirdTeamBackground"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/joinExistingTeamtxt"
+        app:layout_constraintVertical_bias="0.002"
         app:srcCompat="@color/darkest_grey" />
 
     <TextView
@@ -108,12 +101,12 @@
         android:layout_height="wrap_content"
         android:text="Team1"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.278" />
+        app:layout_constraintBottom_toBottomOf="@+id/firstTeamBackground"
+        app:layout_constraintEnd_toEndOf="@+id/firstTeamBackground"
+        app:layout_constraintHorizontal_bias="0.028"
+        app:layout_constraintStart_toStartOf="@+id/firstTeamBackground"
+        app:layout_constraintTop_toTopOf="@+id/firstTeamBackground"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/firstTeamInListGame"
@@ -121,17 +114,19 @@
         android:layout_height="wrap_content"
         android:text="T1Game"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.053"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.352" />
+        app:layout_constraintBottom_toBottomOf="@+id/firstTeamBackground"
+        app:layout_constraintEnd_toEndOf="@+id/firstTeamBackground"
+        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintStart_toStartOf="@+id/firstTeamBackground"
+        app:layout_constraintTop_toTopOf="@+id/firstTeamBackground"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/joinFirstTeam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:layout_marginLeft="200dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
@@ -142,16 +137,16 @@
         android:textColorHint="@color/eerie_black"
         app:backgroundTint="@color/lava"
         app:iconTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/fisrtTeamBackground"
-        app:layout_constraintEnd_toEndOf="@+id/fisrtTeamBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/firstTeamBackground"
+        app:layout_constraintEnd_toEndOf="@+id/firstTeamBackground"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/fisrtTeamBackground" />
+        app:layout_constraintStart_toStartOf="@+id/firstTeamBackground"
+        app:layout_constraintTop_toTopOf="@+id/firstTeamBackground" />
 
     <ImageView
         android:id="@+id/secondTeamBackground"
-        android:layout_width="353dp"
-        android:layout_height="86dp"
+        android:layout_width="275dp"
+        android:layout_height="70dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
@@ -159,9 +154,9 @@
         android:layout_marginRight="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.275"
+        app:layout_constraintHorizontal_bias="0.396"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fisrtTeamBackground"
+        app:layout_constraintTop_toBottomOf="@+id/firstTeamBackground"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@color/darkest_grey" />
 
@@ -171,20 +166,18 @@
         android:layout_height="wrap_content"
         android:text="T2Game"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.053"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.482" />
+        app:layout_constraintBottom_toBottomOf="@+id/secondTeamBackground"
+        app:layout_constraintEnd_toEndOf="@+id/secondTeamBackground"
+        app:layout_constraintHorizontal_bias="0.016"
+        app:layout_constraintStart_toStartOf="@+id/secondTeamBackground"
+        app:layout_constraintTop_toTopOf="@+id/secondTeamBackground"
+        app:layout_constraintVertical_bias="0.944" />
 
     <Button
         android:id="@+id/joinSecondTeam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         android:text="@string/joinTeamtxt"
         android:textColor="@color/white"
@@ -194,9 +187,10 @@
         app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/secondTeamBackground"
         app:layout_constraintEnd_toEndOf="@+id/secondTeamBackground"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/secondTeamBackground" />
+        app:layout_constraintHorizontal_bias="0.951"
+        app:layout_constraintStart_toStartOf="@+id/secondTeamBackground"
+        app:layout_constraintTop_toTopOf="@+id/secondTeamBackground"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/secondTeamInListName"
@@ -204,17 +198,17 @@
         android:layout_height="wrap_content"
         android:text="Team2"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.416" />
+        app:layout_constraintBottom_toBottomOf="@+id/secondTeamBackground"
+        app:layout_constraintEnd_toEndOf="@+id/secondTeamBackground"
+        app:layout_constraintHorizontal_bias="0.015"
+        app:layout_constraintStart_toStartOf="@+id/secondTeamBackground"
+        app:layout_constraintTop_toTopOf="@+id/secondTeamBackground"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/thirdTeamBackground"
-        android:layout_width="353dp"
-        android:layout_height="86dp"
+        android:layout_width="275dp"
+        android:layout_height="70dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
@@ -222,7 +216,7 @@
         android:layout_marginRight="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.275"
+        app:layout_constraintHorizontal_bias="0.396"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/secondTeamBackground"
         app:layout_constraintVertical_bias="0.0"
@@ -234,25 +228,12 @@
         android:layout_height="wrap_content"
         android:text="Team3"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.553" />
-
-    <TextView
-        android:id="@+id/fourthTeamInListName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Team4"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.691" />
+        app:layout_constraintBottom_toBottomOf="@+id/thirdTeamBackground"
+        app:layout_constraintEnd_toEndOf="@+id/thirdTeamBackground"
+        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintStart_toStartOf="@+id/thirdTeamBackground"
+        app:layout_constraintTop_toTopOf="@+id/thirdTeamBackground"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/thirdTeamInListGame"
@@ -260,33 +241,18 @@
         android:layout_height="wrap_content"
         android:text="T3Game"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.053"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.628" />
-
-    <TextView
-        android:id="@+id/fourthTeamInListGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="T4Game"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.053"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.766" />
+        app:layout_constraintBottom_toBottomOf="@+id/thirdTeamBackground"
+        app:layout_constraintEnd_toEndOf="@+id/thirdTeamBackground"
+        app:layout_constraintHorizontal_bias="0.033"
+        app:layout_constraintStart_toStartOf="@+id/thirdTeamBackground"
+        app:layout_constraintTop_toTopOf="@+id/thirdTeamBackground"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/joinThirdTeam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         android:text="@string/joinTeamtxt"
         android:textColor="@color/white"
@@ -296,17 +262,16 @@
         app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/thirdTeamBackground"
         app:layout_constraintEnd_toEndOf="@+id/thirdTeamBackground"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/thirdTeamBackground" />
+        app:layout_constraintHorizontal_bias="0.951"
+        app:layout_constraintStart_toStartOf="@+id/thirdTeamBackground"
+        app:layout_constraintTop_toTopOf="@+id/thirdTeamBackground"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/joinFourthTeam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         android:text="@string/joinTeamtxt"
         android:textColor="@color/white"
@@ -316,25 +281,74 @@
         app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/fourthTeamBackground"
         app:layout_constraintEnd_toEndOf="@+id/fourthTeamBackground"
-        app:layout_constraintHorizontal_bias="0.985"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.951"
+        app:layout_constraintStart_toStartOf="@+id/fourthTeamBackground"
         app:layout_constraintTop_toTopOf="@+id/fourthTeamBackground" />
+
+    <ImageView
+        android:id="@+id/fourthTeamBackground"
+        android:layout_width="275dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.396"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thirdTeamBackground"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@color/darkest_grey" />
+
+    <TextView
+        android:id="@+id/fourthTeamInListGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="T4Game"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/fourthTeamBackground"
+        app:layout_constraintEnd_toEndOf="@+id/fourthTeamBackground"
+        app:layout_constraintHorizontal_bias="0.033"
+        app:layout_constraintStart_toStartOf="@+id/fourthTeamBackground"
+        app:layout_constraintTop_toTopOf="@+id/fourthTeamBackground"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/fourthTeamInListName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Team4"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/fourthTeamBackground"
+        app:layout_constraintEnd_toEndOf="@+id/fourthTeamBackground"
+        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintStart_toStartOf="@+id/fourthTeamBackground"
+        app:layout_constraintTop_toTopOf="@+id/fourthTeamBackground"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/joinExistingTeamtxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/joinExistingTeamtxt"
-        android:textSize="30sp"
         android:textColor="@color/davy_grey"
         android:textColorHighlight="@color/white"
         android:textColorHint="@color/davy_grey"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.222" />
+        app:layout_constraintVertical_bias="0.196" />
 
     <TextView
         android:id="@+id/pageNumbertxt"
@@ -347,10 +361,10 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/nextPagebtn"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toEndOf="@+id/prevPagebtn"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.881" />
+        app:layout_constraintTop_toBottomOf="@+id/fourthTeamBackground"
+        app:layout_constraintVertical_bias="0.189" />
 
     <Button
         android:id="@+id/nextPagebtn"
@@ -366,10 +380,10 @@
         app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.869"
+        app:layout_constraintHorizontal_bias="0.776"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.891" />
+        app:layout_constraintTop_toBottomOf="@+id/fourthTeamBackground"
+        app:layout_constraintVertical_bias="0.198" />
 
     <Button
         android:id="@+id/prevPagebtn"
@@ -385,9 +399,9 @@
         app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintHorizontal_bias="0.146"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.891" />
+        app:layout_constraintTop_toBottomOf="@+id/fourthTeamBackground"
+        app:layout_constraintVertical_bias="0.198" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

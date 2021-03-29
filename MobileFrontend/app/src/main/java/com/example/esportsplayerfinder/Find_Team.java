@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,35 +26,45 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.IllegalFormatCodePointException;
 import java.util.Map;
 
 public class Find_Team extends AppCompatActivity {
 
     Menu menu;
-    LinearLayout linearLayout;
-    int pageNumber = 0;
 
     private Button createNewTeambtn;
 
     private TextView firstTeamName;
     private TextView firstGameName;
     private Button firstTeambtn;
+    private ImageView firstBackground;
+
     private TextView secondTeamName;
     private TextView secondGameName;
     private Button secondTeambtn;
+    private ImageView secondBackground;
+
     private TextView thirdTeamName;
     private TextView thirdGameName;
     private Button thirdTeambtn;
+    private ImageView thirdBackground;
+
     private TextView fourthTeamName;
     private TextView fourthGameName;
     private Button fourthTeambtn;
+    private ImageView fourthBackground;
 
     private Button nextPagebtn;
+    private TextView pageNumber;
     private  Button prevPagebtn;
+
+    public int page = 0;
 
 
 
@@ -71,26 +82,35 @@ public class Find_Team extends AppCompatActivity {
 
         createNewTeambtn = findViewById(R.id.createTeambtn);
 
-        firstTeamName = findViewById(R.id.firstTeamInListName);
-        firstGameName = findViewById(R.id.firstTeamInListGame);
+        firstTeamName = (TextView)findViewById(R.id.firstTeamInListName);
+        firstGameName = (TextView)findViewById(R.id.firstTeamInListGame);
         firstTeambtn = findViewById(R.id.joinFirstTeam);
+        firstBackground = findViewById(R.id.firstTeamBackground);
 
-        secondTeamName = findViewById(R.id.secondTeamInListName);
-        secondGameName = findViewById(R.id.secondTeamInListGame);
+        secondTeamName = (TextView)findViewById(R.id.secondTeamInListName);
+        secondGameName = (TextView)findViewById(R.id.secondTeamInListGame);
         secondTeambtn = findViewById(R.id.joinSecondTeam);
+        secondBackground = findViewById(R.id.secondTeamBackground);
 
-        thirdTeamName = findViewById(R.id.thirdTeamInListName);
-        thirdGameName = findViewById(R.id.thirdTeamInListGame);
+        thirdTeamName = (TextView)findViewById(R.id.thirdTeamInListName);
+        thirdGameName = (TextView)findViewById(R.id.thirdTeamInListGame);
         thirdTeambtn = findViewById(R.id.joinThirdTeam);
+        thirdBackground = findViewById(R.id.thirdTeamBackground);
 
-        fourthTeamName = findViewById(R.id.fourthTeamInListName);
-        fourthGameName = findViewById(R.id.fourthTeamInListGame);
+        fourthTeamName = (TextView)findViewById(R.id.fourthTeamInListName);
+        fourthGameName = (TextView)findViewById(R.id.fourthTeamInListGame);
         fourthTeambtn = findViewById(R.id.joinFourthTeam);
+        fourthBackground = findViewById(R.id.fourthTeamBackground);
 
         nextPagebtn = findViewById(R.id.nextPagebtn);
+        pageNumber = findViewById(R.id.pageNumbertxt);
         prevPagebtn = findViewById(R.id.prevPagebtn);
 
         getNextPageOfTeams();
+
+        if (page == 0){
+            prevPagebtn.setVisibility(prevPagebtn.INVISIBLE);
+        }
 
         createNewTeambtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,30 +120,76 @@ public class Find_Team extends AppCompatActivity {
             }
         });
 
+        nextPagebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                page++;
+                getNextPageOfTeams();
+                pageNumber.setText(String.valueOf(page+1));
+                prevPagebtn.setVisibility(prevPagebtn.VISIBLE);
+
+            }
+        });
+
+        prevPagebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                page--;
+                getNextPageOfTeams();
+                pageNumber.setText(String.valueOf(page+1));
+
+                if (page == 0){
+                    prevPagebtn.setVisibility(prevPagebtn.INVISIBLE);
+                }
+
+            }
+        });
+
     }
 
     private void getNextPageOfTeams() {
 
-        for (int i = 1; i < 5; i++) {
+        for (int i = ((page*4) + 1); i < ((page*4) + 5); i++) {
 
-            HashMap<String, Integer> params = new HashMap<>();
-            params.put("id", i);
 
             RequestQueue queue = Volley.newRequestQueue(Find_Team.this);
-            String url = "http://192.168.0.15:80/api/teams";
+            String url = "http://192.168.0.15:80/api/teams?id="+ i;
             int finalI = i;
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                    (Request.Method.GET, url, new JSONObject(params), new Response.Listener<JSONObject>() {
+                    (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
                         @Override
                         public void onResponse(JSONObject response) {
+                            Log.d("finalI check", "onResponse: " + finalI);
+                            Log.d("response check", "onResponse: " + response.toString());
 
-                            if (finalI == 1 ){
-                                setFirstTeamDetails(response);
-                            }else if (finalI == 2){
-                                setSecondTeamDetails();
+                            if ((finalI - 1)%4 == 0){
+                                try {
+                                    setFirstTeamDetails(response);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }else if ((finalI - 2)%4 == 0){
+                                try {
+                                    setSecondTeamDetails(response);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
 
+                            }else if ((finalI - 3)%4 == 0){
+                                try {
+                                    setThirdTeamDetails(response);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }else if ((finalI - 4)%4 == 0){
+                                try {
+                                    setFourthTeamDetails(response);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
                             }
+
 
 
 
@@ -133,8 +199,26 @@ public class Find_Team extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             Toast.makeText(Find_Team.this, error.toString(), Toast.LENGTH_LONG).show();
-                            Log.e("VOLLEY", "get teams" + error.toString());
+                            Log.e("VOLLEY", "get team " + finalI + " " + error.toString());
                             error.printStackTrace();
+
+                            Log.d("Maths", "onErrorResponse: " + (finalI - 2)%4);
+
+                            if ((finalI - 2)%4 == 0){
+
+                                    removeSecondTeamDetails();
+
+
+                            }else if ((finalI - 3)%4 == 0){
+
+                                removeThirdTeamDetails();
+
+                            }else if ((finalI - 4)%4 == 0){
+
+                                removeFourthTeamDetails();
+
+                            }
+
 
                         }
                     }) {
@@ -154,19 +238,78 @@ public class Find_Team extends AppCompatActivity {
             Log.d("team details", "getTeamDetails: check");
 
         }
+    }
 
+    private void removeFourthTeamDetails() {
+        fourthGameName.setVisibility(secondGameName.INVISIBLE);
+        fourthBackground.setVisibility(secondBackground.INVISIBLE);
+        fourthTeambtn.setVisibility(secondTeambtn.INVISIBLE);
+        fourthTeamName.setVisibility(secondTeamName.INVISIBLE);
+    }
 
+    private void removeThirdTeamDetails() {
+        thirdGameName.setVisibility(secondGameName.INVISIBLE);
+        thirdBackground.setVisibility(secondBackground.INVISIBLE);
+        thirdTeambtn.setVisibility(secondTeambtn.INVISIBLE);
+        thirdTeamName.setVisibility(secondTeamName.INVISIBLE);
+    }
 
+    private void removeSecondTeamDetails() {
+
+        secondGameName.setVisibility(secondGameName.INVISIBLE);
+        secondBackground.setVisibility(secondBackground.INVISIBLE);
+        secondTeambtn.setVisibility(secondTeambtn.INVISIBLE);
+        secondTeamName.setVisibility(secondTeamName.INVISIBLE);
 
 
     }
 
-    private void setFirstTeamDetails(JSONObject response) {
+    private void setFourthTeamDetails(JSONObject response) throws JSONException {
 
+        fourthGameName.setVisibility(fourthGameName.VISIBLE);
+        fourthBackground.setVisibility(fourthBackground.VISIBLE);
+        fourthTeambtn.setVisibility(fourthTeambtn.VISIBLE);
+        fourthTeamName.setVisibility(fourthTeamName.VISIBLE);
+
+        JSONObject team = response.getJSONObject("Team");
+
+        fourthTeamName.setText(team.getString("name"));
+        fourthGameName.setText(team.getJSONObject("game").getString("name"));
+    }
+
+    private void setThirdTeamDetails(JSONObject response) throws JSONException {
+        thirdGameName.setVisibility(thirdGameName.VISIBLE);
+        thirdBackground.setVisibility(thirdBackground.VISIBLE);
+        thirdTeambtn.setVisibility(thirdTeambtn.VISIBLE);
+        thirdTeamName.setVisibility(thirdTeamName.VISIBLE);
+
+        JSONObject team = response.getJSONObject("Team");
+
+        thirdTeamName.setText(team.getString("name"));
+        thirdGameName.setText(team.getJSONObject("game").getString("name"));
+    }
+
+    private void setFirstTeamDetails(JSONObject response) throws JSONException {
+
+
+        JSONObject team = response.getJSONObject("Team");
+
+        firstTeamName.setText(team.getString("name"));
+        firstGameName.setText(team.getJSONObject("game").getString("name"));
     }
 
 
-    private void setSecondTeamDetails() {
+    private void setSecondTeamDetails(JSONObject response) throws JSONException {
+
+        secondGameName.setVisibility(secondGameName.VISIBLE);
+        secondBackground.setVisibility(secondBackground.VISIBLE);
+        secondTeambtn.setVisibility(secondTeambtn.VISIBLE);
+        secondTeamName.setVisibility(secondTeamName.VISIBLE);
+
+        JSONObject team = response.getJSONObject("Team");
+
+        secondTeamName.setText(team.getString("name"));
+        secondGameName.setText(team.getJSONObject("game").getString("name"));
     }
 
 

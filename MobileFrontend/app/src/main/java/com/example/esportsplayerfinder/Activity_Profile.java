@@ -24,7 +24,6 @@ public class Activity_Profile extends AppCompatActivity {
 
         usernameTextView = findViewById(R.id.username);
         usernameTextView.setText(ProfileMan.username);
-        Log.d("Username test:", ProfileMan.username);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.Dashbar);
         setSupportActionBar(myToolbar);
