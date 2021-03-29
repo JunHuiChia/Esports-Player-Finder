@@ -276,7 +276,9 @@ public class Account_Settings extends AppCompatActivity implements AdapterView.O
         for (int i = 0; i < gamesArrayList.size(); i++) {
             gameChoices.add(gamesArrayList.get(i).getString("name"));
 
+
         }
+        ProfileMan.games = gameChoices;
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, gameChoices);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
@@ -478,7 +480,7 @@ public class Account_Settings extends AppCompatActivity implements AdapterView.O
                 Intent intentAccountSettings = new Intent(Account_Settings.this, Account_Settings.class);
                 startActivity(intentAccountSettings);
                 return true;
-            case R.id.findTeam:
+            case R.id.findOrCreateTeam:
                 //Redirect to find team page
                 Intent intentFindTeam = new Intent(Account_Settings.this, Find_Team.class);
                 startActivity(intentFindTeam);

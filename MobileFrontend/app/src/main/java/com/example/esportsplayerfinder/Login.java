@@ -123,6 +123,7 @@ public void getUserDetails()
                         ProfileMan.email = ( response.getString("email"));
                         Log.d("email:", response.getString("email"));
                         ProfileMan.password = password;
+                        ProfileMan.teams = response.getJSONArray("teams");
                         changeToProfilePage(findViewById(R.id.btnLogin));
                     } catch (JSONException e) {
                         Log.d("login", "onResponse:"+ e.toString());
@@ -263,7 +264,7 @@ public void changeToRegisterPage(View view) {
                 Intent intentAccountSettings = new Intent(Login.this, Account_Settings.class);
                 startActivity(intentAccountSettings);
                 return true;
-            case R.id.findTeam:
+            case R.id.findOrCreateTeam:
                 //Redirect to find team page
                 Intent intentFindTeam = new Intent(Login.this, Find_Team.class);
                 startActivity(intentFindTeam);

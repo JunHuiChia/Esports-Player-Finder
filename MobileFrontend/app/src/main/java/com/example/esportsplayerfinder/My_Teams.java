@@ -5,15 +5,12 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.TestLooperManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,10 +28,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.IllegalFormatCodePointException;
 import java.util.Map;
 
-public class Find_Team extends AppCompatActivity {
+public class My_Teams extends AppCompatActivity {
 
     Menu menu;
 
@@ -68,12 +64,11 @@ public class Find_Team extends AppCompatActivity {
 
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find__team);
+        setContentView(R.layout.activity_my__teams);
+        getUserDetails();
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.Dashbar);
         setSupportActionBar(myToolbar);
@@ -112,13 +107,7 @@ public class Find_Team extends AppCompatActivity {
             prevPagebtn.setVisibility(prevPagebtn.INVISIBLE);
         }
 
-        createNewTeambtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentCreateTeam = new Intent(Find_Team.this, Create_Team.class);
-                startActivity(intentCreateTeam);
-            }
-        });
+
 
         nextPagebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,12 +136,65 @@ public class Find_Team extends AppCompatActivity {
 
     }
 
+    public void getUserDetails()
+    {
+
+        RequestQueue queue = Volley.newRequestQueue(My_Teams.this);
+        String url = "http://192.168.0.15:80/api/user";
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Toast.makeText(My_Teams.this, "works", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(My_Teams.this, response.toString(), Toast.LENGTH_LONG).show();
+                        Log.d("load up profile suc:", response.toString());
+                        try {
+                            ProfileMan.ID = (new Integer( response.getString("id")));
+                            Log.d("ID:", response.getString("id"));
+                            ProfileMan.username = ( response.getString("username"));
+                            Log.d("name:", response.getString("username"));
+                            ProfileMan.email = ( response.getString("email"));
+                            Log.d("email:", response.getString("email"));
+
+                            ProfileMan.teams = response.getJSONArray("teams");
+
+                        } catch (JSONException e) {
+                            Log.d("login", "onResponse:"+ e.toString());
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(My_Teams.this, error.toString(), Toast.LENGTH_LONG).show();
+                        Log.e("VOLLEY", "get user details" + error.toString());
+                        error.printStackTrace();
+
+                    }
+                }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("Authorization", "Bearer " + ProfileMan.token);
+                Log.d("token test", "get token:" + "Bearer " + ProfileMan.token);
+
+                return params;
+            }
+        };
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 2, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        queue.add(jsonObjectRequest);
+        Log.d("usrdeats", "getUserDetails: check");
+    }
+
     private void getNextPageOfTeams() {
 
-        for (int i = ((page*4) + 1); i < ((page*4) + 5); i++) {
+        JSONArray teams = ProfileMan.teams;
+        for (int i = 0; i < teams.length(); i++) {
 
 
-            RequestQueue queue = Volley.newRequestQueue(Find_Team.this);
+            RequestQueue queue = Volley.newRequestQueue(My_Teams.this);
             String url = "http://192.168.0.15:80/api/teams?id="+ i;
             int finalI = i;
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
@@ -198,7 +240,7 @@ public class Find_Team extends AppCompatActivity {
 
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(Find_Team.this, error.toString(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(My_Teams.this, error.toString(), Toast.LENGTH_LONG).show();
                             Log.e("VOLLEY", "get team " + finalI + " " + error.toString());
                             error.printStackTrace();
 
@@ -206,7 +248,7 @@ public class Find_Team extends AppCompatActivity {
 
                             if ((finalI - 2)%4 == 0){
 
-                                    removeSecondTeamDetails();
+                                removeSecondTeamDetails();
 
 
                             }else if ((finalI - 3)%4 == 0){
@@ -345,22 +387,22 @@ public class Find_Team extends AppCompatActivity {
         switch(item.getItemId()){
             case R.id.myProfile:
                 // Redirect to profile page
-                Intent intentProfile = new Intent(Find_Team.this, Activity_Profile.class);
+                Intent intentProfile = new Intent(My_Teams.this, Activity_Profile.class);
                 startActivity(intentProfile);;
                 return true;
             case R.id.loginOption:
                 // Redirect to Login page
-                Intent intentLogin = new Intent(Find_Team.this, Login.class);
+                Intent intentLogin = new Intent(My_Teams.this, Login.class);
                 startActivity(intentLogin);;
                 return true;
             case R.id.registerOption:
                 //Redirect to register page
-                Intent intentRegister = new Intent(Find_Team.this, Register.class);
+                Intent intentRegister = new Intent(My_Teams.this, Register.class);
                 startActivity(intentRegister);
                 return true;
             case R.id.dashboard:
                 //Redirect to dashboard
-                Intent intentDashboard = new Intent(Find_Team.this, MainActivity.class);
+                Intent intentDashboard = new Intent(My_Teams.this, MainActivity.class);
                 startActivity(intentDashboard);
                 return true;
             case R.id.logout:
@@ -370,17 +412,17 @@ public class Find_Team extends AppCompatActivity {
                 ProfileMan.email = null;
                 ProfileMan.token = "";
                 //Redirect to register page
-                Intent intentLogout = new Intent(Find_Team.this, MainActivity.class);
+                Intent intentLogout = new Intent(My_Teams.this, MainActivity.class);
                 startActivity(intentLogout);
                 return true;
             case R.id.accountSettings:
                 //Redirect to account settings page
-                Intent intentAccountSettings = new Intent(Find_Team.this, Account_Settings.class);
+                Intent intentAccountSettings = new Intent(My_Teams.this, Account_Settings.class);
                 startActivity(intentAccountSettings);
                 return true;
             case R.id.findOrCreateTeam:
                 //Redirect to find team page
-                Intent intentFindTeam = new Intent(Find_Team.this, Find_Team.class);
+                Intent intentFindTeam = new Intent(My_Teams.this, Find_Team.class);
                 startActivity(intentFindTeam);
                 return true;
 

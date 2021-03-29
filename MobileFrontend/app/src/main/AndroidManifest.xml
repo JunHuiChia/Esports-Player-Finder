@@ -13,10 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ESportsPlayerFinder"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Create_Team"
-            android:theme="@style/Theme.ESportsPlayerFinder.ActionBar"/>
-        <activity android:name=".Find_Team"
-            android:theme="@style/Theme.ESportsPlayerFinder.ActionBar"/>
+        <activity android:name=".My_Teams"></activity>
+        <activity
+            android:name=".Create_Team"
+            android:theme="@style/Theme.ESportsPlayerFinder.ActionBar" />
+        <activity
+            android:name=".Find_Team"
+            android:theme="@style/Theme.ESportsPlayerFinder.ActionBar" />
         <activity
             android:name=".Account_Settings"
             android:theme="@style/Theme.ESportsPlayerFinder.ActionBar" />

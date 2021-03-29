@@ -35,11 +35,13 @@
     <string name="joinExistingTeamtxt">Join Existing Team:</string>
     <string name="nextPage">Next</string>
     <string name="prevPage">Prev</string>
-    
+
     <string name="teamNameHinttxt">Team Name</string>
     <string name="teamGameHinttxt">Team Game</string>
     <string name="teamDescriptiontxt">Team Description</string>
     <string name="teamDiscordIDtxt">Team Discord Channel Code</string>
 
+    <string name="myTeamstxt">Teams:</string>
+    <string name="detailstxt">Details</string>
 
 </resources>

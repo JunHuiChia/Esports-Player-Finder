@@ -60,16 +60,16 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
                 String inputUsername = regInputUsername.getText().toString();
                 String inputPassword = regInputPassword.getText().toString();
-                String inputEMail = regInputEmail.getText().toString();
+                String inputEmail = regInputEmail.getText().toString();
 
 
-                if (validUsername(inputUsername) && validPassword(inputPassword))
+                if (validUsername(inputUsername) && validPassword(inputPassword) && validEmail(inputEmail))
                 {
 
                     JSONObject object = new JSONObject();
                     try {
                         object.put("username", inputUsername);
-                        object.put("email", inputEMail);
+                        object.put("email", inputEmail);
                         object.put("password", inputPassword);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -85,6 +85,7 @@ public class Register extends AppCompatActivity {
                                 public void onResponse(JSONObject response) {
                                     Toast.makeText(Register.this, "works", Toast.LENGTH_LONG).show();
                                     Toast.makeText(Register.this, response.toString(), Toast.LENGTH_LONG).show();
+                                    getToken(inputEmail, inputPassword);
 
                                 }
                             }, new Response.ErrorListener() {
@@ -122,6 +123,17 @@ public class Register extends AppCompatActivity {
 
     }
 
+
+    private boolean validEmail(String inputEmail) {
+            String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+            Log.d("email check", "validEmail: " +  inputEmail.matches(regex));
+            if (!( inputEmail.matches(regex))){
+                Toast.makeText(this, "Email Not Valid:\n Please try again with a valid email", Toast.LENGTH_SHORT).show();
+            }
+            return inputEmail.matches(regex);
+
+    }
+
     public void changeToProfilePage(View view) {
         Intent intentProfile = new Intent(Register.this, Activity_Profile.class);
         startActivity(intentProfile);
@@ -137,6 +149,97 @@ public class Register extends AppCompatActivity {
             return false;
         }
         return false;
+    }
+
+    public void getUserDetails()
+    {
+
+        RequestQueue queue = Volley.newRequestQueue(Register.this);
+        String url = "http://192.168.0.15:80/api/user";
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Toast.makeText(Register.this, "works", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Register.this, response.toString(), Toast.LENGTH_LONG).show();
+                        Log.d("load up profile suc:", response.toString());
+                        try {
+                            ProfileMan.ID = (new Integer( response.getString("id")));
+                            Log.d("ID:", response.getString("id"));
+                            ProfileMan.username = ( response.getString("username"));
+                            Log.d("name:", response.getString("username"));
+                            ProfileMan.email = ( response.getString("email"));
+                            Log.d("email:", response.getString("email"));
+                            ProfileMan.teams = response.getJSONArray("teams");
+                            changeToProfilePage(findViewById(R.id.btnLogin));
+                        } catch (JSONException e) {
+                            Log.d("login", "onResponse:"+ e.toString());
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(Register.this, error.toString(), Toast.LENGTH_LONG).show();
+                        Log.e("VOLLEY", "get user details" + error.toString());
+                        error.printStackTrace();
+
+                    }
+                }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("Authorization", "Bearer " + ProfileMan.token);
+                Log.d("token test", "get token:" + "Bearer " + ProfileMan.token);
+
+                return params;
+            }
+        };
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 2, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        queue.add(jsonObjectRequest);
+        Log.d("usrdeats", "getUserDetails: check");
+    }
+
+    public void getToken(String inputEmail, String inputPassword)
+    {
+        RequestQueue queue = Volley.newRequestQueue(Register.this);
+        String url = "http://192.168.0.15:80/api/sanctum/token";
+
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("email", inputEmail);
+        params.put("password", inputPassword);
+        params.put("device_name",  inputEmail + "_mobile");
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params), new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Toast.makeText(Register.this, "works", Toast.LENGTH_LONG).show();
+                Toast.makeText(Register.this, response.toString(), Toast.LENGTH_LONG).show();
+                try {
+                    ProfileMan.token = response.getString("token");
+                    Log.d("Token check", "Token value - " + ProfileMan.token );
+                    getUserDetails();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("VOLLEY", error.toString());
+                Toast.makeText(Register.this, "Email or password is incorrect", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+        };
+
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 2, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        queue.add(jsonObjectRequest);
+        Log.d("TToken check", "Token value - " + ProfileMan.token );
+
+
     }
 
     private boolean validUsername(String inputUsername) {

@@ -14,8 +14,11 @@
                     android:id="@+id/dashboard"
                     android:title="Dashboard"></item>
                 <item
-                    android:title="Teams"
-                    android:id="@+id/findTeam"></item>
+                    android:title="Find/Create Team"
+                    android:id="@+id/findOrCreateTeam"></item>
+                <item
+                    android:title="My Teams"
+                    android:id="@+id/myTeams"></item>
 <!--                <item-->
 <!--                    android:id="@+id/games"-->
 <!--                    android:title="Games"></item>-->
