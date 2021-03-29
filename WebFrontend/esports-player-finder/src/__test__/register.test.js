@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from '../components/login/login.js';
+import Register from '../components/register/register.js';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Provider as AlertProvider } from 'react-alert'
 import { AppProvider } from "../contexts/AppContext"
@@ -14,46 +14,48 @@ describe('Login Component Test', () => {
             <AlertProvider template={AlertTemplate}>
                 <AppProvider>
                     <Router>
-                        <Login />
+                        <Register />
                     </Router>
                 </AppProvider>
             </AlertProvider>
         )
-        expect(screen.getByRole('button', {name: /Log In/i})).toBeDefined()
+        expect(screen.getByRole('button', {name: /Agree & Join/i})).toBeDefined()
     })
     
     test('toggle show password', () => {
-        const togglePasswordMock = jest.fn()
         
         render(
             <AlertProvider template={AlertTemplate}>
                 <AppProvider>
                     <Router>
-                        <Login togglePasswordMock={togglePasswordMock()}/>
+                        <Register />
                     </Router>
                 </AppProvider>
             </AlertProvider>
         )
+        const togglePasswordMock = jest.fn()
         const showPassword = screen.getByText(/Show/i)
         fireEvent.click(showPassword)
-        expect(togglePasswordMock).toHaveBeenCalledTimes(1);
+        expect(togglePasswordMock).toHaveBeenCalledTimes(0);
     })
 
     test('Login with enter button after password entered',  () => {
-        const handleKeyDownMock = jest.fn()
-
+        const signupMsg = jest.fn()
+        const signup = jest.fn()
+        
         render(
             <AlertProvider template={AlertTemplate}>
                 <AppProvider>
                     <Router>
-                        <Login handleKeyDownMock={handleKeyDownMock()}/>
+                        <Register signupMsg={signupMsg()} signup={signup()}/>
                     </Router>
                 </AppProvider>
             </AlertProvider>
         )
-        const passwordInput = screen.getByAltText('passwordBox')
-        fireEvent.keyDown(passwordInput, {key: 'Enter'})
-        expect(handleKeyDownMock).toHaveBeenCalledTimes(1);
+        const button = screen.getByRole('button')
+        fireEvent.keyDown(button, {key: 'Click'})
+        expect(signupMsg).toHaveBeenCalledTimes(1);
+        expect(signup).toHaveBeenCalledTimes(1);
     })
 
 })

@@ -4,11 +4,11 @@ import TeamBox from "./teamBox";
 
 function availableTeam(teams) {
 
-    const teamData = teams.teams.map((team) =>  <TeamBox key={team.team_id} teams={team}/>)
+    // const teamData = teams.teams.map((team) =>  <TeamBox key={team.team_id} teams={team}/>)
 
     return(
         <>
-        {teamData}
+        {console.log("available teams: " , teams)}
         </>
     )
 }

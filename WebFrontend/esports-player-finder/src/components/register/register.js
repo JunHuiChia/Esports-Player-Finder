@@ -8,7 +8,7 @@ import { useAlert } from 'react-alert'
 import {Link , useHistory} from "react-router-dom";
 
 // export default class Register extends React.Component{
-    const Register = () => {
+    const Register = (props) => {
     const alert = useAlert();
     const history = useHistory();
 
@@ -31,14 +31,10 @@ import {Link , useHistory} from "react-router-dom";
 
     function signupMsg(){
         signup(function (statusMsg){
-            console.log(statusMsg);
             alert.show(<div className="text-sm">{statusMsg}</div>)
-            if(statusMsg === "Successful Sign Up"){
-                return history.push("/profile");
-            }
+            if(statusMsg === "Successful Sign Up"){return history.push("/profile");}
         })
     }
-    // render(){
         return(
                 <div className="page">
                     <div id="registerArea">
@@ -93,10 +89,10 @@ import {Link , useHistory} from "react-router-dom";
                                 value={userPassword}
                                 onChange={handleUserPassword}>
                                 </input>
-                                <div className="showPassword" onClick={() => togglePassword()}>Show</div>
+                                <div className="showPassword" onClick={togglePassword}>Show</div>
                             </div>
                             <p className="agreement">By clicking Agree & Join, you agree to our User Agreement, Privacy Policy, and Cookie Policy.</p>
-                            <button onClick={() => signupMsg()}>Agree & Join</button>
+                            <button onClick={signupMsg}>Agree & Join</button>
                             <span>Already on ESPFinder? <Link to="/login" className="sign-in">Log in</Link></span>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-import {React, useContext, useEffect, useState} from 'react';
+import {React, useContext } from 'react';
 import './profile.css';
 import { AppContext } from "../../contexts/AppContext";
 
@@ -29,6 +29,7 @@ function ProfileEdit(){
         userGameRoles,
         gameRoleError,
     } = appContext;
+
 
     function handleUpdateDetails(){
         let username = document.querySelector("#changeUsernameNew").value

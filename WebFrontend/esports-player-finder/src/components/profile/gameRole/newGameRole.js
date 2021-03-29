@@ -12,7 +12,6 @@ import GameRole from './gameRole';
 
 function newGameRole(gameRole){
 
-
     return (
         <div className="userGameRoles">
             { gameRole.games.map(game => {

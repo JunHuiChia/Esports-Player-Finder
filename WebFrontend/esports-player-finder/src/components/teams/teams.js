@@ -48,12 +48,12 @@ function Teams() {
                 </div>
                 <div id="searchTeam">
                         <SearchTeam games={gameList} handleSearch={searchedTrue}/>
-                        {console.log(isSearched)}
                 </div>
                 <div id="availableTeams">
                     
                     {isSearched &&
                         <AvailableTeam teams={teamData}/>}
+                        {console.log(teamData)}
                 </div>
                 {isOpen && 
                     <Popup content={<CreateTeamPopup handleClose = {togglePopup} games={gameList}/>}

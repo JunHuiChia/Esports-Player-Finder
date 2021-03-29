@@ -53,7 +53,10 @@
   "jest": {
     "coveragePathIgnorePatterns":[
       "src/contexts/AppContext.js",
-      "src/reportWebVitals.js"
+      "src/reportWebVitals.js",
+      "src/index.js",
+      "src/components/profile/profileEdit.js",
+      "src/components/profile/gameRole/addGameRole.js"
     ]
   }
 }
