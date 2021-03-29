@@ -13,8 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ESportsPlayerFinder"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity_Profile"
+        <activity
+            android:name=".Account_Settings"
             android:theme="@style/Theme.ESportsPlayerFinder.ActionBar"/>
+        <activity
+            android:name=".Activity_Profile"
+            android:theme="@style/Theme.ESportsPlayerFinder.ActionBar" />
         <activity
             android:name=".Register"
             android:theme="@style/Theme.ESportsPlayerFinder.ActionBar" />
@@ -24,7 +28,6 @@
         <activity
             android:name=".FriendsPage"
             android:theme="@style/Theme.ESportsPlayerFinder.ActionBar" />
-
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

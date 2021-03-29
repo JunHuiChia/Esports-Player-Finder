@@ -42,11 +42,13 @@ public class Activity_Profile extends AppCompatActivity {
 // Checks if the user is logged in and edits menu options
         if(ProfileMan.username==null){
             this.menu.findItem(R.id.myProfile).setVisible(false);
+            this.menu.findItem(R.id.accountSettings).setVisible(false);
             this.menu.findItem(R.id.logout).setVisible(false);
             this.menu.findItem(R.id.loginOption).setVisible(true);
             this.menu.findItem(R.id.registerOption).setVisible(true);
         }else{
             this.menu.findItem(R.id.myProfile).setVisible(true);
+            this.menu.findItem(R.id.accountSettings).setVisible(true);
             this.menu.findItem(R.id.logout).setVisible(true);
             this.menu.findItem(R.id.loginOption).setVisible(false);
             this.menu.findItem(R.id.registerOption).setVisible(false);
@@ -88,6 +90,12 @@ public class Activity_Profile extends AppCompatActivity {
                 Intent intentLogout = new Intent(Activity_Profile.this, MainActivity.class);
                 startActivity(intentLogout);
                 return true;
+                case R.id.accountSettings:
+                //Redirect to dashboard
+                Intent intentAccountSettings = new Intent(Activity_Profile.this, Account_Settings.class);
+                startActivity(intentAccountSettings);
+                return true;
+
 
 
         }

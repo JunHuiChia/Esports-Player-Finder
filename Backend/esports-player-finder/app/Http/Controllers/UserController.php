@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
-
 class UserController extends Controller
 {
     /**
@@ -133,12 +132,10 @@ class UserController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if (! $user || ! Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
-            ]);
+            return response()->json(['message' => 'Invalid email or password'], 401);
         }
 
-        return $user->createToken($request->device_name)->plainTextToken;
+        return response()->json(["token" => $user->createToken($request->device_name)->plainTextToken], 200);
     }
 
     /**
@@ -147,17 +144,108 @@ class UserController extends Controller
      * @authenticated
      * 
      * @response {
-     *      "id": 2,
-     *      "username": "Billss",
-     *      "email": "bill@gmail.com",
-     *      "email_verified_at": "2021-03-06T18:17:27.000000Z",
-     *      "created_at": "2021-03-06T17:02:16.000000Z",
-     *      "updated_at": "2021-03-06T17:02:16.000000Z"
+     *     "id": 1,
+     *     "username": "testuser",
+     *     "email": "test@gmail.com",
+     *     "email_verified_at": null,
+     *     "created_at": "2021-03-20T18:55:39.000000Z",
+     *     "updated_at": "2021-03-22T20:15:58.000000Z",
+     *     "game_roles": [
+     *         {
+     *             "id": 1,
+     *             "game_id": 1,
+     *             "name": "testgamerole1",
+     *             "created_at": "2021-03-20T18:55:39.000000Z",
+     *             "updated_at": "2021-03-20T18:55:39.000000Z",
+     *             "user_game_role": {
+     *                  "id" : 1,
+     *                 "user_id": 1,
+     *                 "game_role_id": 1
+     *             },
+     *             "game": {
+     *                 "id": 1,
+     *                 "name": "testgame",
+     *                 "created_at": "2021-03-20T18:55:57.000000Z",
+     *                 "updated_at": "2021-03-20T18:55:58.000000Z"
+     *             }
+     *         },
+     *         {
+     *             "id": 2,
+     *             "game_id": 1,
+     *             "name": "testgamerole2",
+     *             "created_at": "2021-03-20T18:55:39.000000Z",
+     *             "updated_at": "2021-03-20T18:55:39.000000Z",
+     *             "user_game_role": {
+     *                  "id" : 2,
+     *                 "user_id": 1,
+     *                 "game_role_id": 2
+     *             },
+     *             "game": {
+     *                 "id": 1,
+     *                 "name": "testgame",
+     *                 "created_at": "2021-03-20T18:55:57.000000Z",
+     *                 "updated_at": "2021-03-20T18:55:58.000000Z"
+     *             }
+     *         }
+     *     ],
+     *     "teams": [
+     *         {
+     *             "id": 2,
+     *             "pivot": {
+     *                 "user_id": 1,
+     *                 "team_id": 2
+     *             }
+     *         },
+     *         {
+     *             "id": 1,
+     *             "pivot": {
+     *                 "user_id": 1,
+     *                 "team_id": 1
+     *             }
+     *         }
+     *     ]
+     * }
+     * @group User
+     */
+    public function get(Request $request) {
+        return $request->user()->load('gameRoles')->load('gameRoles.game')->load('teams:id');
+    }
+
+
+    /**
+     * Update user details of the currently logged in user
+     * 
+     * @authenticated
+     * 
+     * @queryParam email The email address to update
+     * @queryParam password The password to update
+     * @queryParam username The username to update
+     * 
+     * @response {
+     *      "updated" => true
      *   }
      * 
      * @group User
      */
-    public function get(Request $request) {
-        return $request->user();
+    public function update(Request $request) {
+        $request->validate([
+            'password' => 'required_without_all:username,email',
+            'username' => 'required_without_all:password,email',
+            'email' => 'required_without_all:username,password|email'
+        ]);
+
+        $user = $request->user();
+        if (isset($request->password)){
+            $user->password = Hash::make($request->password);
+        }
+        if (isset($request->username)) {
+            $user->username = $request->username;
+        }
+        if (isset($request->email)) {
+            $user->email = $request->email;
+        }
+        $user->save();
+
+        return response()->json(['updated' => true]);
     }
 }

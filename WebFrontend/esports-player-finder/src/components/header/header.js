@@ -28,53 +28,29 @@ import ProfileEdit from '../profile/profileEdit.js';
 
 import PrivateRoute from '../routes/PrivateRoute.js';
 // export default class header extends React.Component {
+
+
+/**
+ * Navigation header 
+ * @component
+ * 
+ * @returns 
+ * A navigation bar at the top of the screen
+ */
+
+
     const Header = () => {
         const appContext = useContext(AppContext);
         const { 
             userName, 
             logout, 
-            checkDetails, 
             authStatus,
-            loginStatus,
+            getGames,
             } 
             = appContext;
         const showNotLoggedIn = authStatus === NOT_LOGGED_IN ? "" : "hidden";
         const showLoggedIn = authStatus === LOGGED_IN ? "" : "hidden";
 
-    // function logthis(){
-    //     console.log(loginStatus);
-    //     console.log(authStatus);
-    // }
-
-
-    // constructor(props){
-    //     super(props);
-    //     this.state = {
-    //         active: true,
-    //         class: " ",
-    //     };
-    //     this.toggleActiveClass = this.toggleActiveClass.bind(this);
-    // }
-    
-    // toggleActiveClass(){
-    //     const currentState = this.state.active;
-    //     this.setState({active: !currentState});
-    //     this.setState({class: this.state.active ? "active" : " "})
-    // }
-    
-    // loggedIn(){
-        //     const loginButtons = document.querySelectorAll('.notLoggedIn');
-        //     for(const button of loginButtons){
-            //         button.style.display = 'none';
-            //     }
-            //     const profile = document.querySelector('.loggedIn')
-            //     profile.style.display = 'block'
-            // };
-            
-            
-            
-    
-        // render() {
         
         return (
             <Router>
@@ -97,7 +73,7 @@ import PrivateRoute from '../routes/PrivateRoute.js';
 
             <Switch>
                 <Route path="/matchfinding"><Matchfinding/></Route>
-                <Route path="/teams"><Teams/></Route>
+                <PrivateRoute component={Teams} path="/teams" exact/>
 
                 <Route path="/login"><LoginPage/></Route>
                 <Route path="/register"><RegisterPage/></Route>

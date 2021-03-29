@@ -49,4 +49,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(team_participants::class);
     }
+
+    public function gameRoles()
+    {
+        return $this->belongsToMany(GameRole::class, 'user_game_roles')->withPivot('id')->as('user_game_role');
+    }
+
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class, 'team_participants');
+    }
 }

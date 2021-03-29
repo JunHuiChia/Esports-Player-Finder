@@ -9,44 +9,40 @@ import { useAlert } from 'react-alert'
 import {Link, useHistory} from "react-router-dom";
 
 // export default class Login extends React.Component{
-
 /**
- * Component for showing login page
- * @component
- * @example
+ *  Component for adding new game roles
+ *  @component
  * 
- * return (
- *  <Login/>
- * )
- * 
+ * @returns 
+ * HTML of select for choosing games and roles to add
  */
 
-
-    const Login = () => {
+    const Login = (props) => {
         
     const alert = useAlert();
     const appContext = useContext(AppContext);
     const history = useHistory();
     let {
-        userName,
         userEmail,
         userPassword,
         handleUserEmail,
         handleUserPassword,
         login,
-        checkDetails,
-        errorMessage,
-        loginStatus,
     } = appContext;
 
     const [hidePassword, setHidePassword] = useState(true);
-    const showHiddenPassword = hidePassword ? "" : "hidden";
-    const showRevealedPassword = hidePassword ? "hidden" : "";
+    
     function togglePassword() {
     setHidePassword(!hidePassword);
     }
 
-
+    /**
+     * @function
+     * @description Processes the login and returns a message depending on the status of the login
+     * @returns 
+     * if successful -> redirects user to their profile page
+     * else -> show error message and no redirects
+     */
     function loginMsg(){
         login(function (statusMsg){
             alert.show(<div className="text-sm">{statusMsg}</div>)
@@ -98,14 +94,16 @@ import {Link, useHistory} from "react-router-dom";
                             type={(hidePassword) ? "password":"text"} 
                             name="password" 
                             id="passwordInput"
+                            aria-label="passwordBox"
+                            alt="passwordBox"
                             value={userPassword}
                             onChange={handleUserPassword}
                             onKeyDown={handleKeyDown}>
                             </input>
-                            <div className="showPassword" onClick={() => togglePassword()}>Show</div>
+                            <div className="showPassword" onClick={togglePassword}>Show</div>
                         </div>
-                        <a href="." className="forgotPassword">Forgot password?</a>
-                        <button onClick={() => loginMsg()}>Log In</button>
+                        {/* <a href="." className="forgotPassword">Forgot password?</a> */}
+                        <button onClick={loginMsg}>Log In</button>
                         <span>New to ESPFinder?<Link to="/register" className="joinNow"> Join now</Link></span>
                     </div>
                 </div>

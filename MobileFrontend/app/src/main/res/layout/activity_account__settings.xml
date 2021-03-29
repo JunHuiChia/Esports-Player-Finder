@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Account_Settings"
+    android:background="@color/eerie_black"
+    android:id="@+id/accountSettingsActivity"
+    >
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/changeEmail"
+        android:layout_width="220dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:autofillHints=""
+        android:drawableEnd="@drawable/ic_baseline_person_24"
+        android:drawableRight="@drawable/ic_baseline_person_24"
+        android:ems="10"
+        android:hint="@string/change_Email"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHighlight="@color/white"
+        android:textColorHint="@color/davy_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.369" />
+
+    <Button
+        android:id="@+id/updateEmailbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:text="@string/buttonSet"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.926"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.369" />
+
+    <Button
+        android:id="@+id/setGameRolebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:text="@string/buttonSet"
+        app:layout_constraintBottom_toBottomOf="@+id/dropdownBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/dropdownBackground"
+        app:layout_constraintVertical_bias="0.788" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/changePassword"
+        android:layout_width="220dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:autofillHints=""
+        android:drawableEnd="@drawable/ic_baseline_person_24"
+        android:drawableRight="@drawable/ic_baseline_person_24"
+        android:ems="10"
+        android:hint="@string/change_Password"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHighlight="@color/white"
+        android:textColorHint="@color/davy_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.263" />
+
+    <Button
+        android:id="@+id/updatePasswordbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:text="@string/buttonSet"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.926"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.263" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/Dashbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/darkest_grey"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <ImageView
+        android:id="@+id/dashbarLine"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:scaleX="30"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Dashbar"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:drawable/arrow_down_float" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/changeUsername"
+        android:layout_width="220dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:autofillHints=""
+        android:drawableEnd="@drawable/ic_baseline_person_24"
+        android:drawableRight="@drawable/ic_baseline_person_24"
+        android:ems="10"
+        android:hint="@string/change_Username"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHighlight="@color/white"
+        android:textColorHint="@color/davy_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.154" />
+
+    <Button
+        android:id="@+id/updateUsernamebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="@string/buttonSet"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.154" />
+
+    <TextView
+        android:id="@+id/newUsernametxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@color/dark_grey"
+        android:textColorHighlight="@color/dark_grey"
+        android:textColorHint="@color/davy_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.117"
+        tools:text="@string/change_Username" />
+
+    <TextView
+        android:id="@+id/newPasswordtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/change_Password"
+        android:textColor="@color/dark_grey"
+        android:textColorHighlight="@color/dark_grey"
+        android:textColorHint="@color/davy_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.22" />
+
+    <TextView
+        android:id="@+id/newEmailtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/change_Email"
+        android:textColor="@color/dark_grey"
+        android:textColorHighlight="@color/dark_grey"
+        android:textColorHint="@color/davy_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.04"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.326" />
+
+    <TextView
+        android:id="@+id/setGameRoletxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/setgamerole"
+        android:textColor="@color/dark_grey"
+        android:textColorHighlight="@color/dark_grey"
+        android:textColorHint="@color/davy_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.454" />
+
+    <ImageView
+        android:id="@+id/dropdownBackground"
+        android:layout_width="465dp"
+        android:layout_height="343dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.946"
+        app:srcCompat="@drawable/background" />
+
+    <Spinner
+        android:id="@+id/gameSelection"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:prompt="@string/spinner_title"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="@+id/dropdownBackground"
+        app:layout_constraintEnd_toEndOf="@+id/dropdownBackground"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="@+id/dropdownBackground"
+        app:layout_constraintTop_toTopOf="@+id/dropdownBackground"
+        app:layout_constraintVertical_bias="0.238" />
+
+    <Spinner
+        android:id="@+id/gameRoleSelection"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:prompt="@string/spinner_title"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="@+id/dropdownBackground"
+        app:layout_constraintEnd_toEndOf="@+id/dropdownBackground"
+        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintStart_toStartOf="@+id/dropdownBackground"
+        app:layout_constraintTop_toTopOf="@+id/dropdownBackground"
+        app:layout_constraintVertical_bias="0.54" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

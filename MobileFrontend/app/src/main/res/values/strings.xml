@@ -21,4 +21,12 @@
     <string name="new_user_question">New user? <u>Register</u></string>
     <string name="existing_user_question">Existing user? <u>Login</u></string>
     <string name="dash_Menu">dash_Menu</string>
+
+    <string name="change_Username">New Username</string>
+    <string name="change_Password">New Password</string>
+    <string name="change_Email">New Email</string>
+    <string name="buttonSet">Set</string>
+    <string name="setgamerole">Set Game Role</string>
+    <string name="spinner_title">Choose Game</string>
+
 </resources>
