@@ -1,0 +1,44 @@
+#teamDetailPopup{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: var(--colour-palette-0-dark);
+    border-radius: 0.5rem;
+}
+
+#teamDetailName{
+    font-size: 3.5rem;
+    font-weight: 600;
+    /* text-decoration: underline;
+    text-decoration-thickness: 0.2rem; */
+    color: var(--text-colour-secondary);
+}
+
+.teamDetailHeader{
+    border-bottom: 2px solid var(--colour-palette-1);
+    font-size: 2rem;
+    color: var(--colour-palette-3);
+    margin-top: 1rem;
+}
+
+.teamDetailContent{
+    font-size: 1.5rem;
+    max-width: 30rem;
+    word-wrap: break-word;
+}
+
+#teamDetailJoinBtn{
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+    border: 2px solid white;
+    border-radius: 1rem;
+    background-color: var(--colour-palette-1-dark);
+    color: var(--text-colour-primary);
+}
+
+#teamDetailJoinBtn:hover{
+    background-color: var(--colour-palette-0);
+    color: var(--text-colour-tertiary);
+}
