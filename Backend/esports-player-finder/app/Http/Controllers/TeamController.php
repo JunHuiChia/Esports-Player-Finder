@@ -142,13 +142,14 @@ class TeamController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function find(Request $request) {
-        $user_role = UserGameRole::select("user_game_roles.game_role_id")
-                                    ->join("game_roles", "game_roles.id", "=", "user_game_roles.game_role_id")
-                                    ->where("game_roles.game_id", $request->game_id)
-                                    ->where("user_game_roles.user_id",  $request->user()->id)
-                                    ->first();
-                      
+                              
         try {
+            $user_role = UserGameRole::select("user_game_roles.game_role_id")
+                                       ->join("game_roles", "game_roles.id", "=", "user_game_roles.game_role_id")
+                                       ->where("game_roles.game_id", $request->game_id)
+                                       ->where("user_game_roles.user_id",  $request->user()->id)
+                                       ->first();
+
             $team_data = Team::select("teams.id as team_id",
                                       "teams.name as team_name",
                                       "games.name as game_name",
