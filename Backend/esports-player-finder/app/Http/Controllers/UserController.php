@@ -187,12 +187,28 @@ class UserController extends Controller
      *                 "updated_at": "2021-03-20T18:55:58.000000Z"
      *             }
      *         }
+     *     ],
+     *     "teams": [
+     *         {
+     *             "id": 2,
+     *             "pivot": {
+     *                 "user_id": 1,
+     *                 "team_id": 2
+     *             }
+     *         },
+     *         {
+     *             "id": 1,
+     *             "pivot": {
+     *                 "user_id": 1,
+     *                 "team_id": 1
+     *             }
+     *         }
      *     ]
      * }
      * @group User
      */
     public function get(Request $request) {
-        return $request->user()->load('gameRoles')->load('gameRoles.game');
+        return $request->user()->load('gameRoles')->load('gameRoles.game')->load('teams:id');
     }
 
 
