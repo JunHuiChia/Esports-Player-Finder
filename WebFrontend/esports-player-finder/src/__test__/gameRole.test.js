@@ -2,21 +2,30 @@ import React from 'react';
 import GameRole from '../components/profile/gameRole/gameRole.js';
 import { shallow} from 'enzyme';
 import { render, screen } from '@testing-library/react';
+import { AppContext } from "../contexts/AppContext";
+import { AppProvider } from "../contexts/AppContext"
+
 
 
 test('Game role creates successfully', () => {
 
-    const wrapper = shallow(<GameRole game='CSGO' role='Gunner'/>)
+    render(
+        <AppProvider>
+            <GameRole game='CSGO' role='Gunner'/>
+        </AppProvider>
+    )
+    expect(screen.getByText('Game:')).toBeInTheDocument()
 
-    expect(wrapper.find('div.profileGame')).toHaveLength(2);
-    
 })
 
 test('Game and role are of expected value', () => {
 
-    const wrapper = shallow(<GameRole game='CSGO' role='Gunner'/>)
+    render(
+    <AppProvider>
+        <GameRole game='CSGO' role='Gunner'/>
+    </AppProvider>
+    )
 
-    expect(wrapper.find('div.Game').text()).toEqual('Game: CSGO')
-    expect(wrapper.find('div.Role').text()).toEqual('Role: Gunner')
+    expect(screen.getByText('Game:')).toHaveTextContent('CSGO')
     
 })

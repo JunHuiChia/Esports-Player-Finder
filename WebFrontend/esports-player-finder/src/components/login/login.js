@@ -17,7 +17,7 @@ import {Link, useHistory} from "react-router-dom";
  * HTML of select for choosing games and roles to add
  */
 
-    const Login = () => {
+    const Login = (props) => {
         
     const alert = useAlert();
     const appContext = useContext(AppContext);
@@ -31,6 +31,7 @@ import {Link, useHistory} from "react-router-dom";
     } = appContext;
 
     const [hidePassword, setHidePassword] = useState(true);
+    
     function togglePassword() {
     setHidePassword(!hidePassword);
     }
@@ -93,14 +94,16 @@ import {Link, useHistory} from "react-router-dom";
                             type={(hidePassword) ? "password":"text"} 
                             name="password" 
                             id="passwordInput"
+                            aria-label="passwordBox"
+                            alt="passwordBox"
                             value={userPassword}
                             onChange={handleUserPassword}
                             onKeyDown={handleKeyDown}>
                             </input>
-                            <div className="showPassword" onClick={() => togglePassword()}>Show</div>
+                            <div className="showPassword" onClick={togglePassword}>Show</div>
                         </div>
-                        <a href="." className="forgotPassword">Forgot password?</a>
-                        <button onClick={() => loginMsg()}>Log In</button>
+                        {/* <a href="." className="forgotPassword">Forgot password?</a> */}
+                        <button onClick={loginMsg}>Log In</button>
                         <span>New to ESPFinder?<Link to="/register" className="joinNow"> Join now</Link></span>
                     </div>
                 </div>
