@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: GameRole</title>
+    <title>JSDoc: Class: availableTeam</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: GameRole</h1>
+    <h1 class="page-title">Class: availableTeam</h1>
 
     
 
@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>GameRole<span class="signature">()</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>availableTeam<span class="signature">()</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -41,16 +41,12 @@
     
 
     
-    <h4 class="name" id="GameRole"><span class="type-signature"></span>new GameRole<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="availableTeam"><span class="type-signature"></span>new availableTeam<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
 
 
-
-<div class="description">
-    <p>Template of a game role</p>
-</div>
 
 
 
@@ -90,13 +86,13 @@
 
         <tr>
             
-                <td class="name"><code>game</code></td>
+                <td class="name"><code>teams</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">Object</span>
 
 
             
@@ -106,53 +102,7 @@
 
             
 
-            <td class="description last"><p>The name of the game</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>role</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The role of user in the game</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The id of the game_role of the user</p></td>
+            <td class="description last"><p>Object containing an array of teams</p></td>
         </tr>
 
     
@@ -191,7 +141,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_profile_gameRole_gameRole.js.html">components/profile/gameRole/gameRole.js</a>, <a href="components_profile_gameRole_gameRole.js.html#line18">line 18</a>
+        <a href="components_teams_availableTeam.js.html">components/teams/availableTeam.js</a>, <a href="components_teams_availableTeam.js.html#line11">line 11</a>
     </li></ul></dd>
     
 
@@ -216,13 +166,18 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A whole array of TeamBox component with individual team's name and game on them</p>
+</div>
 
 
 
-
-    <h5>Example</h5>
     
-    <pre class="prettyprint"><code>const game = 'League of legends' const role = 'ADC' return (     &lt;GameRole game={game} role={role}/> )</code></pre>
+
+
 
 
 

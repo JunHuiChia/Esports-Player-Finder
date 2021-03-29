@@ -9,7 +9,12 @@ import csgoLogo from "../images/csgoLogo.png"
 
 import Popup from "../popup/popup.js";
 
-
+/**
+ * @component
+ * @description A component for displaying team names and their game 
+ * @property {object} teams - An object containing information about a team 
+ * @returns A box containing team's name and the game they play
+ */
 function TeamBox(teams) {
 
     const [isOpen, setIsOpen] = useState(false);

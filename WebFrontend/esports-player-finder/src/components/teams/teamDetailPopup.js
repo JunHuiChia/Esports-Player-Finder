@@ -1,6 +1,14 @@
 import { React , useState} from 'react';
 import "./css/teamDetailPopup.css";
 
+/**
+ * @component
+ * @description A Popup for displaying a team's details
+ * @property {object} teamDetail - An object of a team's detail
+ * @property {function} filler
+ * @returns A popup with all the details about a team
+ */
+
 function TeamDetailPopup(props){
     
     const teamDetail = props.teamDetail

@@ -7,7 +7,12 @@ import { useAlert } from 'react-alert'
 
 import {Link , useHistory} from "react-router-dom";
 
-// export default class Register extends React.Component{
+/**
+ *  Component for the register page 
+ * @component
+ * @returns 
+ * HTML for register page and the functionality
+ */
     const Register = (props) => {
     const alert = useAlert();
     const history = useHistory();
@@ -25,10 +30,21 @@ import {Link , useHistory} from "react-router-dom";
 
     const [hidePassword, setHidePassword] = useState(true);
 
+    /**
+     * @function
+     * @description Toggling whether the password is visible or not
+     */
     function togglePassword() {
     setHidePassword(!hidePassword);
     }
 
+    /**
+     * @function
+     * @description Processes the registration and returns a message depending on the status of the registration
+     * @returns 
+     * if successful -> Logs the user in and redirect to their profile page
+     * else -> show error message and no redirects
+     */
     function signupMsg(){
         signup(function (statusMsg){
             alert.show(<div className="text-sm">{statusMsg}</div>)

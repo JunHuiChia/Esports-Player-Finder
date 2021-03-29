@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/profile/gameRole/newGameRole.js</title>
+    <title>JSDoc: Source: App.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/profile/gameRole/newGameRole.js</h1>
+    <h1 class="page-title">Source: App.js</h1>
 
     
 
@@ -27,30 +27,44 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from 'react';
-import GameRole from './gameRole';
+import AlertTemplate from 'react-alert-template-basic'
+import { transitions, positions, Provider as AlertProvider, types } from 'react-alert'
 
-/**
- *  Component for adding new game roles for users
- *  @component
- * 
- * @prop {object} gameRole - contains game name and roles for that game
- * @returns 
- * Maps the each object to its own component for displaying games and its role.
- */
+// import './App.css';
+import "./css/tailwind.css"
+import "./components/colour.css";
 
-function newGameRole(gameRole){
 
-    return (
-        &lt;div className="userGameRoles">
-            { gameRole.games.map(game => {
-                    return &lt;GameRole key={game.id} game={game.game.name} role={game.name} id={game["user_game_role"]["id"]}/>
-                })
-            }
-        &lt;/div>
-    )
+import Header from './components/header/header.js'
+
+import { AppProvider } from "./contexts/AppContext"
+
+const options = {
+  // you can also just use 'bottom center'
+  position: positions.TOP_CENTER,
+  timeout: 3500,
+  offset: '70px',
+  type: types.INFO,
+  // you can also just use 'scale'
+  transition: transitions.SCALE
 }
 
-export default newGameRole;
+/**
+ * @component 
+ * @description Handles rendering the app on load
+ * @returns The whole react app
+ */
+function App() {
+  return (
+    &lt;AlertProvider template={AlertTemplate} {...options}>
+      &lt;AppProvider>
+          &lt;Header/>
+      &lt;/AppProvider>
+    &lt;/AlertProvider>
+  );
+}
+
+export default App;
 </code></pre>
         </article>
     </section>

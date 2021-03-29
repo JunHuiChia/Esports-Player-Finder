@@ -21,6 +21,11 @@ const options = {
   transition: transitions.SCALE
 }
 
+/**
+ * @component 
+ * @description Handles rendering the app on load
+ * @returns The whole react app
+ */
 function App() {
   return (
     <AlertProvider template={AlertTemplate} {...options}>
