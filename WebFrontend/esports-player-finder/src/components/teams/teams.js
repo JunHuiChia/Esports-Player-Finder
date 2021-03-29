@@ -1,5 +1,5 @@
 import { React , useState, useContext} from 'react';
-import './teams.css';
+import './css/teams.css';
 
 import { AppContext } from "../../contexts/AppContext";
 import Popup from "../popup/popup.js";
@@ -16,6 +16,7 @@ import SearchTeam from "./searchTeam"
 
 function Teams() {
     const [isOpen, setIsOpen] = useState(false);
+    const [isSearched, setIsSearched] = useState(false)
 
     const appContext = useContext(AppContext);
     const {
@@ -27,6 +28,11 @@ function Teams() {
     const togglePopup = () => {
         setIsOpen(!isOpen);
     }
+
+    const searchedTrue = () => {
+        setIsSearched(true);
+    }
+
 
 
         return(
@@ -41,7 +47,13 @@ function Teams() {
                     </div>
                 </div>
                 <div id="searchTeam">
-                        <SearchTeam games={gameList}/>
+                        <SearchTeam games={gameList} handleSearch={searchedTrue}/>
+                        {console.log(isSearched)}
+                </div>
+                <div id="availableTeams">
+                    
+                    {isSearched &&
+                        <AvailableTeam teams={teamData}/>}
                 </div>
                 {isOpen && 
                     <Popup content={<CreateTeamPopup handleClose = {togglePopup} games={gameList}/>}

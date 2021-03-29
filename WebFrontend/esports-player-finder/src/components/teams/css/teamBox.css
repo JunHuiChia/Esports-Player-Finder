@@ -1,0 +1,37 @@
+.teamBox{
+    border: 2px solid var(--colour-palette-1);
+    max-width: 15rem;
+    min-height: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--colour-palette-10);
+    transition: all 0.3s;
+    flex: 1 1 25%;
+    cursor: pointer;
+}
+
+.teamBox:hover{
+    transform: scale(1.05);
+}
+
+.teamBoxName, .teamBoxGame{
+    font-weight: 600;
+}
+
+.teamBoxName{
+    font-size: 1.75rem;
+    color: var(--text-colour-secondary);
+}
+
+.teamBoxGame{
+    font-size: 1rem;
+    color: var(--text-colour-primary);
+}
+
+
+#gameLogo{
+    width: 64px;
+    height: 64px;
+    margin-top: 0.5rem;    
+}
