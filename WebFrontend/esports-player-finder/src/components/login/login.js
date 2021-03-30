@@ -44,13 +44,13 @@ import {Link, useHistory} from "react-router-dom";
      * @function
      * @description Processes the login and returns a message depending on the status of the login
      * @returns 
-     * if successful -> redirects user to their profile page
+     * if successful -> redirects user to dashboard
      * else -> show error message and no redirects
      */
     function loginMsg(){
         login(function (statusMsg){
             alert.show(<div className="text-sm">{statusMsg}</div>)
-            return history.push("/profile");
+            return history.push("/");
             })
     }
 

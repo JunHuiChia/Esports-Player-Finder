@@ -42,13 +42,13 @@ import {Link , useHistory} from "react-router-dom";
      * @function
      * @description Processes the registration and returns a message depending on the status of the registration
      * @returns 
-     * if successful -> Logs the user in and redirect to their profile page
+     * if successful -> Logs the user in and redirect the page
      * else -> show error message and no redirects
      */
     function signupMsg(){
         signup(function (statusMsg){
             alert.show(<div className="text-sm">{statusMsg}</div>)
-            if(statusMsg === "Successful Sign Up"){return history.push("/profile");}
+            if(statusMsg === "Successful Sign Up"){return history.push("/");}
         })
     }
         return(

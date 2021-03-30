@@ -26,6 +26,7 @@
     font-size: 1.5rem;
     max-width: 30rem;
     word-wrap: break-word;
+    color: var(--text-colour-primary);
 }
 
 #teamDetailJoinBtn{
@@ -41,4 +42,9 @@
 #teamDetailJoinBtn:hover{
     background-color: var(--colour-palette-0);
     color: var(--text-colour-tertiary);
+}
+
+.discord {
+    color: var(--text-colour-secondary);
+    font-weight: 700;
 }

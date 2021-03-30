@@ -57,7 +57,7 @@ import PrivateRoute from '../routes/PrivateRoute.js';
             <header className="header">
                 <Link to="/" className="logo"><img alt="logo" src={logo} id="logo"></img></Link>
                 <div className="navArea">
-                    <Link to="/" className="navButton active hidden" >Dashboard</Link>
+                    <Link to="/" className="navButton " >Dashboard</Link>
                     <Link to="/teams" className="navButton">Teams</Link>
                     {/* <Link to="/help" className= "navButton">Help</Link> */}
                 </div>
