@@ -128,12 +128,14 @@ class TeamController extends Controller
      *       "team_name": "test2",
      *       "game_name": "testgame",
      *       "team_desc": "testd"
+     *       "team_discord": "testd"
      *   },
      *   {
      *       "team_id": 4,
      *       "team_name": "test3",
      *       "game_name": "testgame",
      *       "team_desc": "testd"
+     *       "team_discord": "testd"
      *   }
      * ]
      * }
@@ -145,25 +147,25 @@ class TeamController extends Controller
                               
         try {
             $user_role = UserGameRole::select("user_game_roles.game_role_id")
-                                       ->join("game_roles", "game_roles.id", "=", "user_game_roles.game_role_id")
-                                       ->where("game_roles.game_id", $request->game_id)
-                                       ->where("user_game_roles.user_id",  $request->user()->id)
-                                       ->first();
+                                    ->join("game_roles", "game_roles.id", "=", "user_game_roles.game_role_id")
+                                    ->where("game_roles.game_id", $request->game_id)
+                                    ->where("user_game_roles.user_id",  $request->user()->id)
+                                    ->first();
 
             $team_data = Team::select("teams.id as team_id",
                                       "teams.name as team_name",
                                       "games.name as game_name",
                                       "teams.description as team_desc",
                                       "teams.discord_channel_id as team_discord",)
-                             ->join("team_participants","team_participants.team_id", "=", "teams.id")
-                             ->join("users", "users.id", "=", "team_participants.user_id")
-                             ->join("user_game_roles","user_game_roles.user_id", "=", "users.id")
-                             ->join("game_roles","game_roles.id", "=", "user_game_roles.game_role_id")
-                             ->join("games", "games.id", "=", "game_roles.game_id")
-                             ->where("teams.game_id", $request->game_id)
-                             ->where("user_game_roles.game_role_id", "!=", $user_role->game_role_id)
-                             ->take(10)
-                             ->get();
+                                ->join("team_participants","team_participants.team_id", "=", "teams.id")
+                                ->join("users", "users.id", "=", "team_participants.user_id")
+                                ->join("user_game_roles","user_game_roles.user_id", "=", "users.id")
+                                ->join("game_roles","game_roles.id", "=", "user_game_roles.game_role_id")
+                                ->join("games", "games.id", "=", "game_roles.game_id")
+                                ->where("teams.game_id", $request->game_id)
+                                ->where("user_game_roles.game_role_id", "!=", $user_role->game_role_id)
+                                ->take(10)
+                                ->get();
             $response = response()->json([
                 "Teams" => $team_data,
             ],200);
@@ -172,13 +174,34 @@ class TeamController extends Controller
                 "Error" => "Invalid Request",
             ], 400);
         }
-        return $user_role;
+        return $team_data;
     }
 
     public function join(Request $request) {
+
+        $team_participants = TeamParticipant::select("team_participants.team_id",
+                                                     "team_participants.user_id",
+                                                     "user_game_roles.game_role_id",
+                                                     "game_roles.name as role_name" )
+                                            ->join("user_game_roles", "user_game_roles.user_id", "=", "team_participants.user_id")
+                                            ->join("game_roles", "game_roles.id", "=", "user_game_roles.game_role_id")
+                                            ->where("team_participants.team_id", "=", $request->team_id ) 
+                                            ->get();
+
+        return $team_participants;
+        # check team current roles
+        # is team full?
+        # does team have someone with that role?
+        # check if user has a team
+        
+        # add user to team
         
     }
     public function leave(Request $request) {
-        
+        # check if user is in that team
+        # check if user is owner
+
+        # remove user
+        # if owner remove team
     }
 }

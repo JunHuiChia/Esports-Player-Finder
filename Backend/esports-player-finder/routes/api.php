@@ -21,6 +21,8 @@ Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout']);
 
 //Teams
 Route::middleware('auth:sanctum')->get('/teams/find', [App\Http\Controllers\TeamController::class, 'find']);
+Route::middleware('auth:sanctum')->get('/teams/join', [App\Http\Controllers\TeamController::class, 'join']);
+Route::middleware('auth:sanctum')->get('/teams/leave', [App\Http\Controllers\TeamController::class, 'leave']);
 Route::middleware('auth:sanctum')->post('/teams', [App\Http\Controllers\TeamController::class, 'create']);
 Route::get('/teams', [App\Http\Controllers\TeamController::class, 'get']);
 
