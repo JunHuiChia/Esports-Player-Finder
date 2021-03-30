@@ -119,25 +119,10 @@ class TeamController extends Controller
      * 
      * @group Teams
      * 
-     * @queryParam game_id required The Id of the game being queried
+     * @queryParam team id of the team the user wants to join
      * 
      * @response {
-     * "Teams": [
-     *   {
-     *       "team_id": 3,
-     *       "team_name": "test2",
-     *       "game_name": "testgame",
-     *       "team_desc": "testd"
-     *       "team_discord": "testd"
-     *   },
-     *   {
-     *       "team_id": 4,
-     *       "team_name": "test3",
-     *       "game_name": "testgame",
-     *       "team_desc": "testd"
-     *       "team_discord": "testd"
-     *   }
-     * ]
+     * "Created": "User added to team"
      * }
      * 
      * @param Illuminate\Http\Request $request
@@ -174,12 +159,13 @@ class TeamController extends Controller
                 "Error" => "Invalid Request",
             ], 400);
         }
-        return $team_data;
+        return $response;
     }
 
     public function join(Request $request) {
 
-        $team_participants = TeamParticipant::select("team_participants.team_id",
+        $team_participants = TeamParticipant::select("game_roles.game_id",
+                                                     "team_participants.team_id",
                                                      "team_participants.user_id",
                                                      "user_game_roles.game_role_id",
                                                      "game_roles.name as role_name" )
@@ -188,7 +174,43 @@ class TeamController extends Controller
                                             ->where("team_participants.team_id", "=", $request->team_id ) 
                                             ->get();
 
-        return $team_participants;
+        $user_role_id = UserGameRole::select("user_game_roles.game_role_id")
+                                            ->join("game_roles", "game_roles.id", "=", "user_game_roles.game_role_id")
+                                            ->where("game_roles.game_id", $team_participants[0]->game_id)
+                                            ->where("user_game_roles.user_id",  $request->user()->id)
+                                            ->first();
+
+        $user_team_id = TeamParticipant::select("team_participants.team_id",
+                                                "team_participants.user_id")
+                                        ->join("teams", "teams.id", "=", "team_participants.team_id")
+                                        ->where("team_participants.user_id", "=", $request->user()->id ) 
+                                        ->where("teams.game_id", "=", $team_participants[0]->game_id ) 
+                                        ->get();
+
+        if (isset($user_team_id->team_id)){
+            return response()->json([
+                "Error" => "You are already in a team",
+            ], 400);}
+
+        foreach ($team_participants as &$user_of_joining_team) {
+            if( $user_of_joining_team->game_role_id == $user_role_id->game_role_id){
+                return response()->json([
+                    "Error" => "User in team has same role as you",
+                ], 400);
+            }
+            
+        }
+
+        TeamParticipant::create([
+            'team_id' => $request->team_id,
+            'user_id' => $request->user()->id,
+            'status' => 1, # 0 = owner 1 = member
+        ]);
+
+        return response()->json([
+            "Created" => "User added to team",
+        ], 200);
+
         # check team current roles
         # is team full?
         # does team have someone with that role?
