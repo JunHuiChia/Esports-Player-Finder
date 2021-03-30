@@ -41,13 +41,14 @@ describe('Login Component Test', () => {
 
     test('Login with enter button after password entered',  () => {
         const signupMsg = jest.fn()
-        const signup = jest.fn()
+        const status = jest.fn()
+        const signup = jest.fn(status)
         
         render(
             <AlertProvider template={AlertTemplate}>
                 <AppProvider>
                     <Router>
-                        <Register signupMsg={signupMsg()} signup={signup()}/>
+                        <Register signupMsg={signupMsg()} signup={signup(status)}/>
                     </Router>
                 </AppProvider>
             </AlertProvider>
@@ -56,6 +57,7 @@ describe('Login Component Test', () => {
         fireEvent.keyDown(button, {key: 'Click'})
         expect(signupMsg).toHaveBeenCalledTimes(1);
         expect(signup).toHaveBeenCalledTimes(1);
+        expect(status).toHaveBeenCalledTimes(1);
     })
 
 })

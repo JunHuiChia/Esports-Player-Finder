@@ -8,6 +8,8 @@ import ProfileTeamBox from "./profileTeamBox"
  */
 function TeamContent(team){
 
+    console.log(team);
+
     return (
         <div className="userTeams">
         {team.teamDetail.map((team) => {return <ProfileTeamBox key={team.id} teams={team}/>})}

@@ -21,7 +21,6 @@ function Teams() {
     const appContext = useContext(AppContext);
     const {
         gameList,
-        getTeamByID,
         teamData,
     } = appContext;
 
@@ -61,7 +60,6 @@ function Teams() {
                     
                     {isSearched &&
                         <AvailableTeam teams={teamData}/>}
-                        {console.log(teamData)}
                 </div>
                 {isOpen && 
                     <Popup content={<CreateTeamPopup handleClose = {togglePopup} games={gameList}/>}
