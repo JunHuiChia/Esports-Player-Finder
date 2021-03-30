@@ -199,3 +199,9 @@
     color: var(--red-9);
     padding-bottom: 1rem;
 }
+
+.userTeamTitle{
+    font-size: 3rem;
+    color: var(--text-colour-tertiary);
+    text-decoration-thickness: 3px;
+}

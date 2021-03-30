@@ -1,5 +1,4 @@
-import { React } from 'react';
-import "./css/teamDetailPopup.css";
+import { React , useState} from 'react';
 
 /**
  * @component
@@ -16,25 +15,24 @@ function TeamDetailPopup(props){
         <>
         <div id="teamDetailPopup">
             <div id="teamDetailName">
-                {teamDetail["team_name"]}
+                {teamDetail.name}
             </div>
             <div id="teamDetailGame">
                 <div className="teamDetailHeader">Game</div>
-                <div className="teamDetailContent">{teamDetail["game_name"]}</div>
+                <div className="teamDetailContent">{teamDetail.game.name}</div>
             </div>
             <div id="teamDetailDesc">
                 <div className="teamDetailHeader">Description</div>
-                <div className="teamDetailContent">{teamDetail["team_desc"]}</div>
+                <div className="teamDetailContent">{teamDetail.description}</div>
             </div>
             <div id="teamDetailDiscordID">
                 <div className="teamDetailHeader">Discord channel ID</div>
-                <div className="teamDetailContent">Disc ID here</div>
+                <div className="teamDetailContent discord"><a href={`https://discord.gg/${teamDetail.discord_channel_id}`} target="_blank" rel="noreferrer">Join Discord</a></div>
             </div>
             <div id="teamDetailJoin">
-                <button id="teamDetailJoinBtn">Join</button>
+                <button id="teamDetailJoinBtn">Leave</button>
             </div>
         </div>
-        {console.log(props.teamDetail)}
         </>
     )
 }
