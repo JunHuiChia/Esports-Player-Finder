@@ -35,7 +35,9 @@ const AppProvider = (props) => {
   const [gameRoleError, setGameRoleError] = useState("");
   const [teamData, setTeamData] = useState([]);
   const [userTeamID, setUserTeamID] = useState([]);
-  const [userTeamData, setUserTeamData] = useState();
+  const [userTeamData, setUserTeamData] = useState([]);
+  const [userTeamDataDetail, setUserTeamDataDetail] = useState([]);
+  const [userTeamDataDetailStatus, setUserTeamDataDetailStatus] = useState(false);
 
   /**
    * @function
@@ -245,6 +247,7 @@ const AppProvider = (props) => {
                 setUserGameRoles(response.data["game_roles"])
                 setUserTeamID(response.data.teams)
                 setErrorMessage("");
+
             },
             // GET USER ERROR
             (error) => {
@@ -477,19 +480,19 @@ const AppProvider = (props) => {
        * @description gets the team details by ID
        * @param {string} teamID - ID of the team 
        */
-        const getTeamByID = (teamID) => {
+        const getTeamByID = (teamID, data) => {
           axios.get(hostName + "api/sanctum/csrf-cookie").then(
             (response) => {
               axios.get(hostName + `api/teams?id=${teamID}`)
               .then(
                 async (response) => {
-                  console.log("res: " , response);
-                  if(userTeamData[0] === undefined){
-                    await setUserTeamData([response.data.Team])
-                  }else{
-                    await setUserTeamData([userTeamData[0], response.data.Team])
+                  if(userTeamData.length < userTeamID.length){
+                    userTeamData.push(response.data.Team)
                   }
-                  await console.log(userTeamData);
+                  if(userTeamData.length === userTeamID.length){
+                    setUserTeamDataDetailStatus(true);
+                  }
+                  setUserTeamDataDetail(userTeamData)
                 },
                 (error) => {
                   setErrorMessage("Cannot get team")
@@ -564,7 +567,10 @@ const AppProvider = (props) => {
         getTeamByGame,
         userTeamID,
         userTeamData,
+        userTeamDataDetail,
+        userTeamDataDetailStatus,
         setUserTeamData,
+        setUserTeamDataDetailStatus,
       }}
       >
       {props.children}

@@ -56,7 +56,7 @@
 #searchTeam{
     display: flex;
     justify-content: space-between;
-    margin: 0 5rem;
+    margin: 0 5rem 0 2rem;
     font-size: 2rem;
     align-items: center;
 }

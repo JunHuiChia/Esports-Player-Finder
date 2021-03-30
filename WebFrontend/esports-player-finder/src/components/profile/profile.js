@@ -1,7 +1,7 @@
 import {React, useContext, useEffect} from 'react';
 import './profile.css';
 import { AppContext } from "../../contexts/AppContext";
-import TeamContent from "../teams/TeamContent.js";
+import ProfileTeamContent from "./userTeam/profileTeamContent.js";
 
 import {Link} from "react-router-dom";
 
@@ -22,24 +22,26 @@ const Profile = () => {
         userTeamID,
         getTeamByID,
         teamData,
-        userTeamData,
         setUserTeamData,
+        userTeamDataDetail,
+        userTeamDataDetailStatus,
+        setUserTeamDataDetailStatus,
     } = appContext;
     
-    for(const teamID of userTeamID){
-        console.log("Getting teams");
-        getTeamByID(teamID.id);
-    }
-    
-    function test() {
-        console.log(userTeamData);
+
+    async function getTeamData(){
+        setUserTeamData([])
+        setUserTeamDataDetailStatus(false);
+        for(const teamID of userTeamID){
+            await getTeamByID(teamID.id)
+        }
     }
 
     useEffect(() =>{
         getGames();
         checkDetails();
+        getTeamData();
     }, [])
-
 
     
     return(
@@ -49,10 +51,10 @@ const Profile = () => {
                 <Link to="/profile/edit" id="editProfile">Edit Profile</Link>
             </div>
             <div className="profilePageTeamContent mx-16 mt-5 mb-10 p-8"> 
-                <span className="my-8 underline">Teams</span>
-                <div>Team details here</div>
-                
-                <div onClick={test}>get</div>
+                <span className="my-8 underline userTeamTitle">Teams</span>
+                {userTeamDataDetailStatus && 
+                    <ProfileTeamContent teamDetail={userTeamDataDetail}/>
+                    }
             </div>
         </div>
     );
