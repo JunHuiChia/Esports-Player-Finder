@@ -485,6 +485,11 @@ public class Account_Settings extends AppCompatActivity implements AdapterView.O
                 Intent intentFindTeam = new Intent(Account_Settings.this, Find_Team.class);
                 startActivity(intentFindTeam);
                 return true;
+            case R.id.myTeams:
+                //Redirect to find team page
+                Intent intentMyTeams = new Intent(Account_Settings.this, My_Teams.class);
+                startActivity(intentMyTeams);
+                return true;
 
 
         }

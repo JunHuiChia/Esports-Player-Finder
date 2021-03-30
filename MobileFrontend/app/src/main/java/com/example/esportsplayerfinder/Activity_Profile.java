@@ -94,10 +94,15 @@ public class Activity_Profile extends AppCompatActivity {
                 Intent intentAccountSettings = new Intent(Activity_Profile.this, Account_Settings.class);
                 startActivity(intentAccountSettings);
                 return true;
-            case R.id.findTeam:
+            case R.id.findOrCreateTeam:
                 //Redirect to find team page
                 Intent intentFindTeam = new Intent(Activity_Profile.this, Find_Team.class);
                 startActivity(intentFindTeam);
+                return true;
+            case R.id.myTeams:
+                //Redirect to find team page
+                Intent intentMyTeams = new Intent(Activity_Profile.this, My_Teams.class);
+                startActivity(intentMyTeams);
                 return true;
 
 

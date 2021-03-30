@@ -290,10 +290,15 @@ public class Create_Team extends AppCompatActivity implements AdapterView.OnItem
                 Intent intentAccountSettings = new Intent(Create_Team.this, Account_Settings.class);
                 startActivity(intentAccountSettings);
                 return true;
-            case R.id.findTeam:
+            case R.id.findOrCreateTeam:
                 //Redirect to find team page
                 Intent intentFindTeam = new Intent(Create_Team.this, Find_Team.class);
                 startActivity(intentFindTeam);
+                return true;
+            case R.id.myTeams:
+                //Redirect to find team page
+                Intent intentMyTeams = new Intent(Create_Team.this, My_Teams.class);
+                startActivity(intentMyTeams);
                 return true;
 
 

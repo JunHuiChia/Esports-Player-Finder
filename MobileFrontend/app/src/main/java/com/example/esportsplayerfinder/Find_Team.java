@@ -145,6 +145,13 @@ public class Find_Team extends AppCompatActivity {
             }
         });
 
+        firstTeambtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
     }
 
     private void getNextPageOfTeams() {
@@ -382,6 +389,11 @@ public class Find_Team extends AppCompatActivity {
                 //Redirect to find team page
                 Intent intentFindTeam = new Intent(Find_Team.this, Find_Team.class);
                 startActivity(intentFindTeam);
+                return true;
+            case R.id.myTeams:
+                //Redirect to find team page
+                Intent intentMyTeams = new Intent(Find_Team.this, My_Teams.class);
+                startActivity(intentMyTeams);
                 return true;
 
 

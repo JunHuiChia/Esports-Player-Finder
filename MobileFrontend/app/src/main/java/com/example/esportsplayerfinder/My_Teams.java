@@ -101,7 +101,11 @@ public class My_Teams extends AppCompatActivity {
         pageNumber = findViewById(R.id.pageNumbertxt);
         prevPagebtn = findViewById(R.id.prevPagebtn);
 
-        getNextPageOfTeams();
+        try {
+            getNextPageOfTeams();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         if (page == 0){
             prevPagebtn.setVisibility(prevPagebtn.INVISIBLE);
@@ -113,7 +117,11 @@ public class My_Teams extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 page++;
-                getNextPageOfTeams();
+                try {
+                    getNextPageOfTeams();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 pageNumber.setText(String.valueOf(page+1));
                 prevPagebtn.setVisibility(prevPagebtn.VISIBLE);
 
@@ -124,7 +132,11 @@ public class My_Teams extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 page--;
-                getNextPageOfTeams();
+                try {
+                    getNextPageOfTeams();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 pageNumber.setText(String.valueOf(page+1));
 
                 if (page == 0){
@@ -188,14 +200,14 @@ public class My_Teams extends AppCompatActivity {
         Log.d("usrdeats", "getUserDetails: check");
     }
 
-    private void getNextPageOfTeams() {
+    private void getNextPageOfTeams() throws JSONException {
 
         JSONArray teams = ProfileMan.teams;
-        for (int i = 0; i < teams.length(); i++) {
+        for (int i = ((page*4) + 1); i < ((page*4) + 5); i++) {
 
 
             RequestQueue queue = Volley.newRequestQueue(My_Teams.this);
-            String url = "http://192.168.0.15:80/api/teams?id="+ i;
+            String url = "http://192.168.0.15:80/api/teams?id="+ teams.getJSONObject(i).getJSONObject("pivot").getString("team_id");
             int finalI = i;
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                     (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -424,6 +436,11 @@ public class My_Teams extends AppCompatActivity {
                 //Redirect to find team page
                 Intent intentFindTeam = new Intent(My_Teams.this, Find_Team.class);
                 startActivity(intentFindTeam);
+                return true;
+            case R.id.myTeams:
+                //Redirect to find team page
+                Intent intentMyTeams = new Intent(My_Teams.this, My_Teams.class);
+                startActivity(intentMyTeams);
                 return true;
 
 

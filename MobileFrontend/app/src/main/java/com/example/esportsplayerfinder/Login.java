@@ -269,6 +269,11 @@ public void changeToRegisterPage(View view) {
                 Intent intentFindTeam = new Intent(Login.this, Find_Team.class);
                 startActivity(intentFindTeam);
                 return true;
+            case R.id.myTeams:
+                //Redirect to find team page
+                Intent intentMyTeams = new Intent(Login.this, My_Teams.class);
+                startActivity(intentMyTeams);
+                return true;
 
 
         }

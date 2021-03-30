@@ -319,10 +319,15 @@ public class Register extends AppCompatActivity {
                 Intent intentAccountSettings = new Intent(Register.this, Account_Settings.class);
                 startActivity(intentAccountSettings);
                 return true;
-            case R.id.findTeam:
+            case R.id.findOrCreateTeam:
                 //Redirect to find team page
                 Intent intentFindTeam = new Intent(Register.this, Find_Team.class);
                 startActivity(intentFindTeam);
+                return true;
+            case R.id.myTeams:
+                //Redirect to find team page
+                Intent intentMyTeams = new Intent(Register.this, My_Teams.class);
+                startActivity(intentMyTeams);
                 return true;
 
 
