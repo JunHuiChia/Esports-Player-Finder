@@ -34,6 +34,8 @@ const AppProvider = (props) => {
   const [userGameRoles, setUserGameRoles] = useState([]);
   const [gameRoleError, setGameRoleError] = useState("");
   const [teamData, setTeamData] = useState([]);
+  const [userTeamID, setUserTeamID] = useState([]);
+  const [userTeamData, setUserTeamData] = useState();
 
   /**
    * @function
@@ -231,7 +233,7 @@ const AppProvider = (props) => {
   }
     
     
-  const checkDetails = () => {
+  const checkDetails = async () => {
     axios.defaults.withCredentials = true;
         // GET USER
         axios.get(hostName + "api/user").then(
@@ -241,6 +243,7 @@ const AppProvider = (props) => {
                 setUserName(response.data.username);
                 setUserEmail(response.data.email)
                 setUserGameRoles(response.data["game_roles"])
+                setUserTeamID(response.data.teams)
                 setErrorMessage("");
             },
             // GET USER ERROR
@@ -479,9 +482,14 @@ const AppProvider = (props) => {
             (response) => {
               axios.get(hostName + `api/teams?id=${teamID}`)
               .then(
-                (response) => {
-                  setTeamData(response.team);
-                  // console.log(response);
+                async (response) => {
+                  console.log("res: " , response);
+                  if(userTeamData[0] === undefined){
+                    await setUserTeamData([response.data.Team])
+                  }else{
+                    await setUserTeamData([userTeamData[0], response.data.Team])
+                  }
+                  await console.log(userTeamData);
                 },
                 (error) => {
                   setErrorMessage("Cannot get team")
@@ -504,6 +512,7 @@ const AppProvider = (props) => {
             axios.get(hostName + `api/teams/find?game_id=${gameID}`)
             .then(
               (response) => {
+                console.log(response);
                 setTeamData(response.data.Teams);
                 handleSearch()
                 // console.log(response.data.Teams);
@@ -553,6 +562,9 @@ const AppProvider = (props) => {
         teamData,
         deleteGameRole,
         getTeamByGame,
+        userTeamID,
+        userTeamData,
+        setUserTeamData,
       }}
       >
       {props.children}

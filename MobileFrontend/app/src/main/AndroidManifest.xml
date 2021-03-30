@@ -13,9 +13,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ESportsPlayerFinder"
         android:usesCleartextTraffic="true">
+        <activity 
+            android:name=".Team_Details"
+            android:theme="@style/Theme.ESportsPlayerFinder.ActionBar" ></activity>
+        <activity
+            android:name=".My_Teams"
+            android:theme="@style/Theme.ESportsPlayerFinder.ActionBar" />
+        <activity
+            android:name=".Create_Team"
+            android:theme="@style/Theme.ESportsPlayerFinder.ActionBar" />
+        <activity
+            android:name=".Find_Team"
+            android:theme="@style/Theme.ESportsPlayerFinder.ActionBar" />
         <activity
             android:name=".Account_Settings"
-            android:theme="@style/Theme.ESportsPlayerFinder.ActionBar"/>
+            android:theme="@style/Theme.ESportsPlayerFinder.ActionBar" />
         <activity
             android:name=".Activity_Profile"
             android:theme="@style/Theme.ESportsPlayerFinder.ActionBar" />

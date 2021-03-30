@@ -26,6 +26,7 @@ function AddGameRole(games){
     const changeSelectOptionHandler = (event) => { 
         setSelected(event.target.value); 
     }; 
+    
     let gameList = games.games;
     let roles = null;
     let options = null;

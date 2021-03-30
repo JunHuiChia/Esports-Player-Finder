@@ -7,8 +7,13 @@ import { useAlert } from 'react-alert'
 
 import {Link , useHistory} from "react-router-dom";
 
-// export default class Register extends React.Component{
-    const Register = () => {
+/**
+ *  Component for the register page 
+ * @component
+ * @returns 
+ * HTML for register page and the functionality
+ */
+    const Register = (props) => {
     const alert = useAlert();
     const history = useHistory();
 
@@ -25,20 +30,27 @@ import {Link , useHistory} from "react-router-dom";
 
     const [hidePassword, setHidePassword] = useState(true);
 
+    /**
+     * @function
+     * @description Toggling whether the password is visible or not
+     */
     function togglePassword() {
     setHidePassword(!hidePassword);
     }
 
+    /**
+     * @function
+     * @description Processes the registration and returns a message depending on the status of the registration
+     * @returns 
+     * if successful -> Logs the user in and redirect to their profile page
+     * else -> show error message and no redirects
+     */
     function signupMsg(){
         signup(function (statusMsg){
-            console.log(statusMsg);
             alert.show(<div className="text-sm">{statusMsg}</div>)
-            if(statusMsg === "Successful Sign Up"){
-                return history.push("/profile");
-            }
+            if(statusMsg === "Successful Sign Up"){return history.push("/profile");}
         })
     }
-    // render(){
         return(
                 <div className="page">
                     <div id="registerArea">
@@ -93,10 +105,10 @@ import {Link , useHistory} from "react-router-dom";
                                 value={userPassword}
                                 onChange={handleUserPassword}>
                                 </input>
-                                <div className="showPassword" onClick={() => togglePassword()}>Show</div>
+                                <div className="showPassword" onClick={togglePassword}>Show</div>
                             </div>
                             <p className="agreement">By clicking Agree & Join, you agree to our User Agreement, Privacy Policy, and Cookie Policy.</p>
-                            <button onClick={() => signupMsg()}>Agree & Join</button>
+                            <button onClick={signupMsg}>Agree & Join</button>
                             <span>Already on ESPFinder? <Link to="/login" className="sign-in">Log in</Link></span>
                         </div>
                     </div>

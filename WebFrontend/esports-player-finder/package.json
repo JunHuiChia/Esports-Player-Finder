@@ -25,7 +25,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --coverage",
+    "test": "react-scripts test --coverage --watchAll",
     "eject": "react-scripts eject",
     "docs": "jsdoc -c jsdoc.conf.json"
   },
@@ -45,6 +45,18 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.0"
+  },
+  "jest": {
+    "coveragePathIgnorePatterns":[
+      "src/contexts/AppContext.js",
+      "src/reportWebVitals.js",
+      "src/index.js",
+      "src/components/profile/profileEdit.js",
+      "src/components/profile/gameRole/addGameRole.js"
     ]
   }
 }

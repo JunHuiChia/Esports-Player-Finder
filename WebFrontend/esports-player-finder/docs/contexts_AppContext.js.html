@@ -62,6 +62,8 @@ const AppProvider = (props) => {
   const [userGameRoles, setUserGameRoles] = useState([]);
   const [gameRoleError, setGameRoleError] = useState("");
   const [teamData, setTeamData] = useState([]);
+  const [userTeamID, setUserTeamID] = useState([]);
+  const [userTeamData, setUserTeamData] = useState();
 
   /**
    * @function
@@ -259,7 +261,7 @@ const AppProvider = (props) => {
   }
     
     
-  const checkDetails = () => {
+  const checkDetails = async () => {
     axios.defaults.withCredentials = true;
         // GET USER
         axios.get(hostName + "api/user").then(
@@ -269,6 +271,7 @@ const AppProvider = (props) => {
                 setUserName(response.data.username);
                 setUserEmail(response.data.email)
                 setUserGameRoles(response.data["game_roles"])
+                setUserTeamID(response.data.teams)
                 setErrorMessage("");
             },
             // GET USER ERROR
@@ -324,6 +327,34 @@ const AppProvider = (props) => {
     },
     (error) => {
       console.log(error);
+    })
+    }
+
+        /**
+   * @function
+   * @description Post API for deleting game role for user
+   */
+  const deleteGameRole = (roleID) => {
+    console.log(roleID);
+
+    axios.get(hostName + "api/sanctum/csrf-cookie").then(
+    (response) => {
+      axios.delete(hostName + "api/user/gamerole", {
+        data:{
+          user_game_role_id : roleID
+        }
+      })
+      .then(
+        (response) => {
+          checkDetails();
+        },
+        (error) => {
+          setGameRoleError("Invalid game role");
+          console.log("error1: ",error);
+        })
+    },
+    (error) => {
+      console.log("error2", error);
     })
     }
 
@@ -479,9 +510,14 @@ const AppProvider = (props) => {
             (response) => {
               axios.get(hostName + `api/teams?id=${teamID}`)
               .then(
-                (response) => {
-                  setTeamData(response.team);
-                  console.log(response);
+                async (response) => {
+                  console.log("res: " , response);
+                  if(userTeamData[0] === undefined){
+                    await setUserTeamData([response.data.Team])
+                  }else{
+                    await setUserTeamData([userTeamData[0], response.data.Team])
+                  }
+                  await console.log(userTeamData);
                 },
                 (error) => {
                   setErrorMessage("Cannot get team")
@@ -491,6 +527,32 @@ const AppProvider = (props) => {
               console.log(error);
             })
         }
+
+        
+      /**
+       * @function
+       * @description gets the team details by Game
+       * @param {string} gameID - ID of the game 
+       */
+      const getTeamByGame = (gameID , handleSearch) => {
+        axios.get(hostName + "api/sanctum/csrf-cookie").then(
+          (response) => {
+            axios.get(hostName + `api/teams/find?game_id=${gameID}`)
+            .then(
+              (response) => {
+                console.log(response);
+                setTeamData(response.data.Teams);
+                handleSearch()
+                // console.log(response.data.Teams);
+              },
+              (error) => {
+                setErrorMessage("Cannot get team")
+              })
+          },
+          (error) => {
+            console.log(error);
+          })
+      }
   
   return (
     &lt;AppContext.Provider
@@ -526,6 +588,11 @@ const AppProvider = (props) => {
         createTeam,
         getTeamByID,
         teamData,
+        deleteGameRole,
+        getTeamByGame,
+        userTeamID,
+        userTeamData,
+        setUserTeamData,
       }}
       >
       {props.children}
@@ -544,13 +611,13 @@ export { AppContext, AppProvider };
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AddGameRole.html">AddGameRole</a></li><li><a href="AppProvider.html">AppProvider</a></li><li><a href="CreateTeamPopup.html">CreateTeamPopup</a></li><li><a href="GameRole.html">GameRole</a></li><li><a href="GameSelection.html">GameSelection</a></li><li><a href="Header.html">Header</a></li><li><a href="Login.html">Login</a></li><li><a href="newGameRole.html">newGameRole</a></li><li><a href="Popup.html">Popup</a></li><li><a href="PrivateRoute.html">PrivateRoute</a></li><li><a href="Profile.html">Profile</a></li><li><a href="ProfileEdit.html">ProfileEdit</a></li><li><a href="RoleSelection.html">RoleSelection</a></li><li><a href="Teams.html">Teams</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AddGameRole.html">AddGameRole</a></li><li><a href="App.html">App</a></li><li><a href="AppProvider.html">AppProvider</a></li><li><a href="availableTeam.html">availableTeam</a></li><li><a href="CreateTeamPopup.html">CreateTeamPopup</a></li><li><a href="GameRole.html">GameRole</a></li><li><a href="GameSelection.html">GameSelection</a></li><li><a href="Header.html">Header</a></li><li><a href="Login.html">Login</a></li><li><a href="newGameRole.html">newGameRole</a></li><li><a href="Popup.html">Popup</a></li><li><a href="PrivateRoute.html">PrivateRoute</a></li><li><a href="Profile.html">Profile</a></li><li><a href="ProfileEdit.html">ProfileEdit</a></li><li><a href="Register.html">Register</a></li><li><a href="RoleSelection.html">RoleSelection</a></li><li><a href="SearchGame.html">SearchGame</a></li><li><a href="TeamBox.html">TeamBox</a></li><li><a href="TeamDetailPopup.html">TeamDetailPopup</a></li><li><a href="Teams.html">Teams</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Wed Mar 24 2021 23:32:11 GMT+0000 (Greenwich Mean Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Mon Mar 29 2021 23:21:03 GMT+0100 (British Summer Time)
 </footer>
 
 <script> prettyPrint(); </script>

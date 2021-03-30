@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/register/register.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/register/register.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useContext, useState } from "react";
+import './register.css';
+import logo from '../images/logo.png';
+
+import { AppContext } from "../../contexts/AppContext";
+import { useAlert } from 'react-alert'
+
+import {Link , useHistory} from "react-router-dom";
+
+/**
+ *  Component for the register page 
+ * @component
+ * @returns 
+ * HTML for register page and the functionality
+ */
+    const Register = (props) => {
+    const alert = useAlert();
+    const history = useHistory();
+
+    const appContext = useContext(AppContext);
+    const {
+        userNameInput,
+        userEmail,
+        userPassword,
+        handleUserNameInput,
+        handleUserEmail,
+        handleUserPassword,
+        signup,
+    } = appContext;
+
+    const [hidePassword, setHidePassword] = useState(true);
+
+    /**
+     * @function
+     * @description Toggling whether the password is visible or not
+     */
+    function togglePassword() {
+    setHidePassword(!hidePassword);
+    }
+
+    /**
+     * @function
+     * @description Processes the registration and returns a message depending on the status of the registration
+     * @returns 
+     * if successful -> Logs the user in and redirect to their profile page
+     * else -> show error message and no redirects
+     */
+    function signupMsg(){
+        signup(function (statusMsg){
+            alert.show(&lt;div className="text-sm">{statusMsg}&lt;/div>)
+            if(statusMsg === "Successful Sign Up"){return history.push("/profile");}
+        })
+    }
+        return(
+                &lt;div className="page">
+                    &lt;div id="registerArea">
+                        &lt;div id="headingArea">
+                            &lt;img src={logo} alt="Logo"/>
+                            &lt;span>Register&lt;/span>
+                        &lt;/div>
+                        &lt;div id="inputArea">
+                            &lt;label 
+                                htmlFor="username" 
+                                className="registerUsernameText">
+                                    Username
+                                    &lt;p className="required">
+                                        *
+                                    &lt;/p>
+                            &lt;/label>
+                            &lt;input 
+                            type="text" 
+                            name="username" 
+                            id="registerUsernameInput"
+                            value={userNameInput}
+                            onChange={handleUserNameInput}
+                            />
+                            &lt;label 
+                                htmlFor="email" 
+                                className="registerEmailText">
+                                    Email
+                                    &lt;p className="required">
+                                        *
+                                    &lt;/p>
+                            &lt;/label>
+                            &lt;input 
+                            type="text" 
+                            name="email" 
+                            id="registerEmailInput"
+                            value={userEmail}
+                            onChange={handleUserEmail}
+                            />
+                            &lt;label 
+                                htmlFor="password" 
+                                className="registerPasswordText">
+                                    Password
+                                    &lt;p className="required">
+                                        *
+                                    &lt;/p>
+                            &lt;/label>
+                            &lt;div className="registerPasswordSpan">
+                                &lt;input 
+                                type={(hidePassword) ? "password":"text"} 
+                                name="password" 
+                                id="registerPasswordInput"
+                                value={userPassword}
+                                onChange={handleUserPassword}>
+                                &lt;/input>
+                                &lt;div className="showPassword" onClick={togglePassword}>Show&lt;/div>
+                            &lt;/div>
+                            &lt;p className="agreement">By clicking Agree &amp; Join, you agree to our User Agreement, Privacy Policy, and Cookie Policy.&lt;/p>
+                            &lt;button onClick={signupMsg}>Agree &amp; Join&lt;/button>
+                            &lt;span>Already on ESPFinder? &lt;Link to="/login" className="sign-in">Log in&lt;/Link>&lt;/span>
+                        &lt;/div>
+                    &lt;/div>
+                    
+                &lt;/div>
+        )
+    // }
+}
+
+export default Register;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AddGameRole.html">AddGameRole</a></li><li><a href="App.html">App</a></li><li><a href="AppProvider.html">AppProvider</a></li><li><a href="availableTeam.html">availableTeam</a></li><li><a href="CreateTeamPopup.html">CreateTeamPopup</a></li><li><a href="GameRole.html">GameRole</a></li><li><a href="GameSelection.html">GameSelection</a></li><li><a href="Header.html">Header</a></li><li><a href="Login.html">Login</a></li><li><a href="newGameRole.html">newGameRole</a></li><li><a href="Popup.html">Popup</a></li><li><a href="PrivateRoute.html">PrivateRoute</a></li><li><a href="Profile.html">Profile</a></li><li><a href="ProfileEdit.html">ProfileEdit</a></li><li><a href="Register.html">Register</a></li><li><a href="RoleSelection.html">RoleSelection</a></li><li><a href="SearchGame.html">SearchGame</a></li><li><a href="TeamBox.html">TeamBox</a></li><li><a href="TeamDetailPopup.html">TeamDetailPopup</a></li><li><a href="Teams.html">Teams</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Mon Mar 29 2021 23:21:04 GMT+0100 (British Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

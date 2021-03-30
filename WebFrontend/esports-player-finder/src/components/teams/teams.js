@@ -25,10 +25,18 @@ function Teams() {
         teamData,
     } = appContext;
 
+    /**
+     * @function
+     * @description For closing and opening the popups on this page
+     */
     const togglePopup = () => {
         setIsOpen(!isOpen);
     }
 
+    /**
+     * @function
+     * @description Changes isSearched variable to True depending on whether the user has searched for a team or not
+     */
     const searchedTrue = () => {
         setIsSearched(true);
     }
@@ -48,12 +56,12 @@ function Teams() {
                 </div>
                 <div id="searchTeam">
                         <SearchTeam games={gameList} handleSearch={searchedTrue}/>
-                        {console.log(isSearched)}
                 </div>
                 <div id="availableTeams">
                     
                     {isSearched &&
                         <AvailableTeam teams={teamData}/>}
+                        {console.log(teamData)}
                 </div>
                 {isOpen && 
                     <Popup content={<CreateTeamPopup handleClose = {togglePopup} games={gameList}/>}

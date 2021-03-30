@@ -6,20 +6,6 @@ import TeamContent from "../teams/TeamContent.js";
 import {Link} from "react-router-dom";
 
 
-
-function userTeams(){
-
-    const teamName = "Team Gamer"
-    const teamName2 = "Team Noobs"
-
-    return (
-    <div className="userTeams my-6">
-        <TeamContent teamName={teamName}/>
-        <TeamContent teamName={teamName2}/>
-    </div>
-    );
-}
-
 /**
  *  Component for profile page
  * @component
@@ -33,13 +19,29 @@ const Profile = () => {
         userName,
         getGames,
         checkDetails,
+        userTeamID,
+        getTeamByID,
+        teamData,
+        userTeamData,
+        setUserTeamData,
     } = appContext;
     
+    for(const teamID of userTeamID){
+        console.log("Getting teams");
+        getTeamByID(teamID.id);
+    }
+    
+    function test() {
+        console.log(userTeamData);
+    }
+
     useEffect(() =>{
         getGames();
         checkDetails();
     }, [])
 
+
+    
     return(
         <div id="profilePage" className="rounded-md">
             <div className="mx-16 mt-8 profileTitle">
@@ -48,7 +50,9 @@ const Profile = () => {
             </div>
             <div className="profilePageTeamContent mx-16 mt-5 mb-10 p-8"> 
                 <span className="my-8 underline">Teams</span>
-                {userTeams()}
+                <div>Team details here</div>
+                
+                <div onClick={test}>get</div>
             </div>
         </div>
     );

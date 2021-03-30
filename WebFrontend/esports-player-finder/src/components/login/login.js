@@ -10,14 +10,14 @@ import {Link, useHistory} from "react-router-dom";
 
 // export default class Login extends React.Component{
 /**
- *  Component for adding new game roles
- *  @component
+ *  Component for the login page 
+ * @component
  * 
  * @returns 
- * HTML of select for choosing games and roles to add
+ * HTML for login page and the functionality
  */
 
-    const Login = () => {
+    const Login = (props) => {
         
     const alert = useAlert();
     const appContext = useContext(AppContext);
@@ -31,6 +31,11 @@ import {Link, useHistory} from "react-router-dom";
     } = appContext;
 
     const [hidePassword, setHidePassword] = useState(true);
+    
+    /**
+     * @function
+     * @description Toggling whether the password is visible or not
+     */
     function togglePassword() {
     setHidePassword(!hidePassword);
     }
@@ -49,6 +54,11 @@ import {Link, useHistory} from "react-router-dom";
             })
     }
 
+    /**
+     * @function
+     * @description Calls the loginMsg() function which processes the login. When the user presses the "Enter" key while on the password input
+     * @param {event} event - Takes the event the user is inputting
+     */
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             loginMsg();
@@ -93,14 +103,16 @@ import {Link, useHistory} from "react-router-dom";
                             type={(hidePassword) ? "password":"text"} 
                             name="password" 
                             id="passwordInput"
+                            aria-label="passwordBox"
+                            alt="passwordBox"
                             value={userPassword}
                             onChange={handleUserPassword}
                             onKeyDown={handleKeyDown}>
                             </input>
-                            <div className="showPassword" onClick={() => togglePassword()}>Show</div>
+                            <div className="showPassword" onClick={togglePassword}>Show</div>
                         </div>
-                        <a href="." className="forgotPassword">Forgot password?</a>
-                        <button onClick={() => loginMsg()}>Log In</button>
+                        {/* <a href="." className="forgotPassword">Forgot password?</a> */}
+                        <button onClick={loginMsg}>Log In</button>
                         <span>New to ESPFinder?<Link to="/register" className="joinNow"> Join now</Link></span>
                     </div>
                 </div>
