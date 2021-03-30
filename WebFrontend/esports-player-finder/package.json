@@ -25,7 +25,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --coverage --forceExit",
+    "test": "react-scripts test --coverage ",
     "eject": "react-scripts eject",
     "docs": "jsdoc -c jsdoc.conf.json"
   },
