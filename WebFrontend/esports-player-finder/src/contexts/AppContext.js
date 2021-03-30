@@ -235,7 +235,7 @@ const AppProvider = (props) => {
   }
     
     
-  const checkDetails = async () => {
+  const checkDetails = () => {
     axios.defaults.withCredentials = true;
         // GET USER
         axios.get(hostName + "api/user").then(
@@ -247,11 +247,10 @@ const AppProvider = (props) => {
                 setUserGameRoles(response.data["game_roles"])
                 setUserTeamID(response.data.teams)
                 setErrorMessage("");
-
             },
             // GET USER ERROR
             (error) => {
-                setErrorMessage("Could not complete the login");
+                setErrorMessage("Could not complete the login check details");
             }
         );
   };
@@ -485,7 +484,7 @@ const AppProvider = (props) => {
             (response) => {
               axios.get(hostName + `api/teams?id=${teamID}`)
               .then(
-                async (response) => {
+                (response) => {
                   if(userTeamData.length < userTeamID.length){
                     userTeamData.push(response.data.Team)
                   }
@@ -495,7 +494,7 @@ const AppProvider = (props) => {
                   setUserTeamDataDetail(userTeamData)
                 },
                 (error) => {
-                  setErrorMessage("Cannot get team")
+                  setErrorMessage("Cannot get team from ID")
                 })
             },
             (error) => {
@@ -521,7 +520,7 @@ const AppProvider = (props) => {
                 // console.log(response.data.Teams);
               },
               (error) => {
-                setErrorMessage("Cannot get team")
+                setErrorMessage("Cannot get team from game")
               })
           },
           (error) => {

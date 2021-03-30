@@ -4,21 +4,23 @@ import Team from "../components/teams/teams";
 import { AppProvider } from "../contexts/AppContext"
 
 
-test("Renders without crashing" , () => {
+test("Renders without crashing" , async() => {
 
-    render(
+    
+    await act( async() =>{
+        await render(
         <AppProvider>
-            <Team />
+            <Team/>
         </AppProvider>
-    )
+    )})
 
-})
+}, 15000)
 
-test("toggle pop up", () => {
+test("toggle pop up", async() => {
     const togglePopup = jest.fn()
 
-    act( () =>{
-        render(
+    await act( async() =>{
+        await render(
         <AppProvider>
             <Team togglePopup={togglePopup()}/>
         </AppProvider>
@@ -27,13 +29,13 @@ test("toggle pop up", () => {
     const createTeam = screen.getByText(/Create Team/i)
     fireEvent.click(createTeam)
     expect(togglePopup).toHaveBeenCalled();
-})
+}, 15000)
 
-test("searched for team", () => {
+test("searched for team", async() => {
     const searchedTrue = jest.fn()
 
-    act( () =>{
-        render(
+    await act( async() =>{
+        await render(
         <AppProvider>
             <Team searchedTrue={searchedTrue()}/>
         </AppProvider>
@@ -42,4 +44,4 @@ test("searched for team", () => {
     const searchTeam = screen.getByText(/Search/i)
     fireEvent.click(searchTeam)
     expect(searchedTrue).toHaveBeenCalled();
-})
+}, 15000)

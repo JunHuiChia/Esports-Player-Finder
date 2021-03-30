@@ -18,7 +18,7 @@ describe("Profile component test" , () => {
                 </Router>
             </AppProvider>
         )
-    })
+    }, 15000)
 
     test("get team function works", () => {
         const history = createMemoryHistory();
@@ -36,7 +36,7 @@ describe("Profile component test" , () => {
         expect(getTeamByID).toHaveBeenCalled();
         expect(getTeamData).toHaveBeenCalled();
 
-    })
+    }, 15000)
 
 
 

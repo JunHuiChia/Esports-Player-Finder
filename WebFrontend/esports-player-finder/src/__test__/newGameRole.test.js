@@ -1,13 +1,13 @@
 import React from 'react';
 import NewGameRole from '../components/profile/gameRole/newGameRole.js';
 import { mount, shallow} from 'enzyme';
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import { AppProvider } from "../contexts/AppContext"
 
 
 
 
-test('Game role creates successfully', () => {
+test('Game role creates successfully', async () => {
     const gameRole = {
         games: [{
             "id": 1,
@@ -46,10 +46,12 @@ test('Game role creates successfully', () => {
             }
         }]}
 
-    const wrapper = mount(
+    await act( async () => {
+        await render( 
         <AppProvider>
             <NewGameRole {...gameRole}/>
         </AppProvider>
-    )
+    
+    )});
 
-})
+}, 15000)

@@ -20,7 +20,7 @@ describe('Login Component Test', () => {
             </AlertProvider>
         )
         expect(screen.getByRole('button', {name: /Agree & Join/i})).toBeDefined()
-    })
+    }, 15000)
     
     test('toggle show password', () => {
         
@@ -37,7 +37,7 @@ describe('Login Component Test', () => {
         const showPassword = screen.getByText(/Show/i)
         fireEvent.click(showPassword)
         expect(togglePasswordMock).toHaveBeenCalledTimes(0);
-    })
+    }, 15000)
 
     test('Login with enter button after password entered',  () => {
         const signupMsg = jest.fn()
@@ -58,6 +58,6 @@ describe('Login Component Test', () => {
         expect(signupMsg).toHaveBeenCalledTimes(1);
         expect(signup).toHaveBeenCalledTimes(1);
         expect(status).toHaveBeenCalledTimes(1);
-    })
+    }, 15000)
 
 })

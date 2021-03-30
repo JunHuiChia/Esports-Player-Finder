@@ -32,6 +32,7 @@ function SearchGame(props){
     }
     useEffect(() =>{
         getGames();
+        return () => {}
     }, [])
 
     return (

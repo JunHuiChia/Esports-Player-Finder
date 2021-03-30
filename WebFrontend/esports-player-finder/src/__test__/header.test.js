@@ -18,7 +18,7 @@ it('renders without crashing', () => {
         </AppProvider>
     )
 
-});
+}, 15000);
 
 it('Renders proper navigation', () => {
     const history = createMemoryHistory()
@@ -37,4 +37,4 @@ it('Renders proper navigation', () => {
     expect(screen.getByText(/Register/)).toBeInTheDocument()
     
 
-});
+}, 15000);

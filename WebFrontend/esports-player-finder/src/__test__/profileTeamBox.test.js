@@ -18,19 +18,19 @@ describe("TeamBox component test", () => {
             }
     }
 
-    test("Renders without crashing", () => {
+    test("Renders without crashing", async() => {
     
-        act( () => {
+        await act( async() => {
             render(
             <ProfileTeamBox teams={mockTeam1}/>
         )});
     
-    })
+    }, 15000)
     
-    test("toggle pop up", () => {
+    test("toggle pop up", async() => {
         const togglePopup = jest.fn()
     
-        act( () => {
+        await act( async() => {
             render(
                 <ProfileTeamBox togglePopup={togglePopup()} teams={mockTeam2}/>
         )});
@@ -39,6 +39,6 @@ describe("TeamBox component test", () => {
         fireEvent.click(box)
         expect(togglePopup).toHaveBeenCalled();
         expect(box).toBeDefined()
-    })
+    }, 15000)
     
 })

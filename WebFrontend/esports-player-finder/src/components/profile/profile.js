@@ -41,6 +41,7 @@ const Profile = () => {
         getGames();
         checkDetails();
         getTeamData();
+        return () => {}
     }, [])
 
     

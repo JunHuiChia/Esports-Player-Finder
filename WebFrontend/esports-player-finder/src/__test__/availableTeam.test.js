@@ -1,8 +1,8 @@
 import React from "react";
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import AvailableTeam from "../components/teams/availableTeam";
 
-test("Renders without crashing", () => {
+test("Renders without crashing", async() => {
 
     const teams = {
         teams: {
@@ -13,8 +13,9 @@ test("Renders without crashing", () => {
         }
     }
 
-    render(
-        <AvailableTeam teams={teams}/>
-    )
+    await act(async() => {
+        await render(
+        await <AvailableTeam teams={teams}/>
+    )});
 
-})
+}, 15000)

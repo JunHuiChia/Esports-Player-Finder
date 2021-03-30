@@ -27,5 +27,5 @@ describe("TeamBox component test", () => {
             render(
             <ProfileTeamContent {...mockTeams}/>
         )});
-    })
+    }, 15000)
 })

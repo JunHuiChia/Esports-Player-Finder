@@ -18,7 +18,7 @@ describe("TeamBox component test", () => {
             <TeamBox teams={mockTeams}/>
         )});
     
-    })
+    }, 15000)
     
     test("toggle pop up", () => {
         const togglePopup = jest.fn()
@@ -32,6 +32,6 @@ describe("TeamBox component test", () => {
         fireEvent.click(box)
         expect(togglePopup).toHaveBeenCalled();
         expect(box).toBeDefined()
-    })
+    }, 15000)
     
 })

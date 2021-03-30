@@ -1,31 +1,32 @@
 import React from 'react';
 import GameRole from '../components/profile/gameRole/gameRole.js';
-import { shallow} from 'enzyme';
-import { render, screen } from '@testing-library/react';
-import { AppContext } from "../contexts/AppContext";
+import {act, render, screen } from '@testing-library/react';
 import { AppProvider } from "../contexts/AppContext"
 
 
 
-test('Game role creates successfully', () => {
+test('Game role creates successfully', async () => {
 
-    render(
+    await act( async () => {
+        await render(
         <AppProvider>
             <GameRole game='CSGO' role='Gunner'/>
         </AppProvider>
-    )
-    expect(screen.getByText('Game:')).toBeInTheDocument()
+    )});
 
-})
+    await expect(screen.getByText('Game:')).toBeInTheDocument()
 
-test('Game and role are of expected value', () => {
+}, 15000)
 
-    render(
+test('Game and role are of expected value', async () => {
+
+    await act( async() => {
+        await render(
     <AppProvider>
         <GameRole game='CSGO' role='Gunner'/>
     </AppProvider>
-    )
+    )});
 
-    expect(screen.getByText('Game:')).toHaveTextContent('CSGO')
+    await expect(screen.getByText('Game:')).toHaveTextContent('CSGO')
     
-})
+}, 15000)
