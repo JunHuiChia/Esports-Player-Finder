@@ -7,7 +7,7 @@ on:
     paths: MobileFrontend/**
     
 jobs:
-  Linting-And-Unit-Testing:
+  Lint-And-Unit:
   
     runs-on: ubuntu-latest
     defaults:
@@ -44,7 +44,7 @@ jobs:
           name: reports
           path: MobileFrontend/app/build/reports/tests
           
-  UI-Testing:
+  UI-Test:
     runs-on: macos-latest
       
     defaults:
@@ -82,6 +82,7 @@ jobs:
           path: MobileFrontend/app/build/reports/androidTests/connected
   
   Generate-APK:
+    needs: [Lint-And-Unit, UI-Test]
     runs-on: ubuntu-latest
     
     defaults:
