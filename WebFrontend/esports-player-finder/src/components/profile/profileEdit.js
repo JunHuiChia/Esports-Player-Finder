@@ -1,4 +1,4 @@
-import {React, useContext, useEffect, useState} from 'react';
+import {React, useContext } from 'react';
 import './profile.css';
 import { AppContext } from "../../contexts/AppContext";
 
@@ -30,6 +30,10 @@ function ProfileEdit(){
         gameRoleError,
     } = appContext;
 
+    /**
+     * @function
+     * @description Handles all the input and details that needs to be changed
+     */
     function handleUpdateDetails(){
         let username = document.querySelector("#changeUsernameNew").value
         let email = document.querySelector("#changeEmailNew").value

@@ -26,14 +26,14 @@
     content: 'x';
     cursor: pointer;
     position: fixed;
-    right: calc(19% + 5px);
+    right: calc(19% + 2px);
     top: calc(100vh - 85vh - 33px);
     background-color: var(--colour-palette-3);
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
-    line-height: 20px;
+    line-height: 22px;
     text-align: center;
     border: 1px solid var(--colour-palette-0);
-    font-size: 20px;
+    font-size: 22.5px;
 }

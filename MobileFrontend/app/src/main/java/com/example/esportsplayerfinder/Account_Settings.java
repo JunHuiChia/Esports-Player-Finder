@@ -257,7 +257,7 @@ public class Account_Settings extends AppCompatActivity implements AdapterView.O
             for (int j = 0; j < games.length(); j++) {
                 JSONArray roles = games.getJSONArray("game_roles");
                 gameChoices.add(roles.getJSONObject(j).getString("name"));
-                Log.d("role check", "setGameRoleSpinner: role "+ j + roles.getJSONObject(j).getString("name"));
+                Log.d("role check ", "setGameRoleSpinner: role "+ j + roles.getJSONObject(j).getString("name"));
             }
 
         }
@@ -276,7 +276,9 @@ public class Account_Settings extends AppCompatActivity implements AdapterView.O
         for (int i = 0; i < gamesArrayList.size(); i++) {
             gameChoices.add(gamesArrayList.get(i).getString("name"));
 
+
         }
+        ProfileMan.games = gameChoices;
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, gameChoices);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
@@ -472,6 +474,21 @@ public class Account_Settings extends AppCompatActivity implements AdapterView.O
                 //Redirect to register page
                 Intent intentLogout = new Intent(Account_Settings.this, MainActivity.class);
                 startActivity(intentLogout);
+                return true;
+            case R.id.accountSettings:
+                //Redirect to account settings page
+                Intent intentAccountSettings = new Intent(Account_Settings.this, Account_Settings.class);
+                startActivity(intentAccountSettings);
+                return true;
+            case R.id.findOrCreateTeam:
+                //Redirect to find team page
+                Intent intentFindTeam = new Intent(Account_Settings.this, Find_Team.class);
+                startActivity(intentFindTeam);
+                return true;
+            case R.id.myTeams:
+                //Redirect to find team page
+                Intent intentMyTeams = new Intent(Account_Settings.this, My_Teams.class);
+                startActivity(intentMyTeams);
                 return true;
 
 

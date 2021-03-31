@@ -16,11 +16,16 @@ const options = {
   position: positions.TOP_CENTER,
   timeout: 3500,
   offset: '70px',
-  type: types.ERROR,
+  type: types.INFO,
   // you can also just use 'scale'
   transition: transitions.SCALE
 }
 
+/**
+ * @component 
+ * @description Handles rendering the app on load
+ * @returns The whole react app
+ */
 function App() {
   return (
     <AlertProvider template={AlertTemplate} {...options}>

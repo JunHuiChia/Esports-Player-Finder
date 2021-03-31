@@ -5,7 +5,6 @@ import { Provider as AlertProvider } from 'react-alert'
 import { AppProvider } from "../contexts/AppContext"
 import { BrowserRouter as Router } from "react-router-dom";
 import AlertTemplate from 'react-alert-template-basic'
-import { mount, shallow } from 'enzyme';
 
 
 describe('Login Component Test', () => {
@@ -21,40 +20,40 @@ describe('Login Component Test', () => {
             </AlertProvider>
         )
         expect(screen.getByRole('button', {name: /Log In/i})).toBeDefined()
-    })
+    }, 15000)
     
     test('toggle show password', () => {
+        const togglePasswordMock = jest.fn()
         
         render(
             <AlertProvider template={AlertTemplate}>
                 <AppProvider>
                     <Router>
-                        <Login />
+                        <Login togglePasswordMock={togglePasswordMock()}/>
                     </Router>
                 </AppProvider>
             </AlertProvider>
         )
-        const togglePasswordMock = jest.fn()
         const showPassword = screen.getByText(/Show/i)
         fireEvent.click(showPassword)
-        expect(togglePasswordMock).toHaveBeenCalledTimes(0);
-    })
+        expect(togglePasswordMock).toHaveBeenCalledTimes(1);
+    }, 15000)
 
     test('Login with enter button after password entered',  () => {
-        const handleKeyDownMock = jest.spyOn(console, 'log')
+        const handleKeyDownMock = jest.fn()
 
         render(
             <AlertProvider template={AlertTemplate}>
                 <AppProvider>
                     <Router>
-                        <Login handleKeyDownMock={handleKeyDownMock}/>
+                        <Login handleKeyDownMock={handleKeyDownMock()}/>
                     </Router>
                 </AppProvider>
             </AlertProvider>
         )
         const passwordInput = screen.getByAltText('passwordBox')
         fireEvent.keyDown(passwordInput, {key: 'Enter'})
-        expect(handleKeyDownMock).toHaveBeenCalledTimes(0);
-    })
+        expect(handleKeyDownMock).toHaveBeenCalledTimes(1);
+    }, 15000)
 
 })

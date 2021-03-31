@@ -10,11 +10,11 @@ import {Link, useHistory} from "react-router-dom";
 
 // export default class Login extends React.Component{
 /**
- *  Component for adding new game roles
- *  @component
+ *  Component for the login page 
+ * @component
  * 
  * @returns 
- * HTML of select for choosing games and roles to add
+ * HTML for login page and the functionality
  */
 
     const Login = (props) => {
@@ -32,6 +32,10 @@ import {Link, useHistory} from "react-router-dom";
 
     const [hidePassword, setHidePassword] = useState(true);
     
+    /**
+     * @function
+     * @description Toggling whether the password is visible or not
+     */
     function togglePassword() {
     setHidePassword(!hidePassword);
     }
@@ -40,16 +44,21 @@ import {Link, useHistory} from "react-router-dom";
      * @function
      * @description Processes the login and returns a message depending on the status of the login
      * @returns 
-     * if successful -> redirects user to their profile page
+     * if successful -> redirects user to dashboard
      * else -> show error message and no redirects
      */
     function loginMsg(){
         login(function (statusMsg){
             alert.show(<div className="text-sm">{statusMsg}</div>)
-            return history.push("/profile");
+            return history.push("/");
             })
     }
 
+    /**
+     * @function
+     * @description Calls the loginMsg() function which processes the login. When the user presses the "Enter" key while on the password input
+     * @param {event} event - Takes the event the user is inputting
+     */
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             loginMsg();

@@ -21,7 +21,6 @@ import LoginPage from '../login/login.js';
 import RegisterPage from '../register/register.js';
 import Dashboard from '../dashboard/dashboard.js';
 // import Games from '../games/games.js';
-import Matchfinding from '../matchfinding/matchfinding.js';
 import Teams from '../teams/teams.js';
 import Profile from '../profile/profile.js';
 import ProfileEdit from '../profile/profileEdit.js';
@@ -58,8 +57,7 @@ import PrivateRoute from '../routes/PrivateRoute.js';
             <header className="header">
                 <Link to="/" className="logo"><img alt="logo" src={logo} id="logo"></img></Link>
                 <div className="navArea">
-                    <Link to="/" className="navButton active hidden" >Dashboard</Link>
-                    <Link to="/matchfinding" className="navButton">Matchfinding</Link>
+                    <Link to="/" className="navButton " >Dashboard</Link>
                     <Link to="/teams" className="navButton">Teams</Link>
                     {/* <Link to="/help" className= "navButton">Help</Link> */}
                 </div>
@@ -72,7 +70,6 @@ import PrivateRoute from '../routes/PrivateRoute.js';
             </header>
 
             <Switch>
-                <Route path="/matchfinding"><Matchfinding/></Route>
                 <PrivateRoute component={Teams} path="/teams" exact/>
 
                 <Route path="/login"><LoginPage/></Route>

@@ -24,7 +24,6 @@ public class Activity_Profile extends AppCompatActivity {
 
         usernameTextView = findViewById(R.id.username);
         usernameTextView.setText(ProfileMan.username);
-        Log.d("Username test:", ProfileMan.username);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.Dashbar);
         setSupportActionBar(myToolbar);
@@ -90,10 +89,20 @@ public class Activity_Profile extends AppCompatActivity {
                 Intent intentLogout = new Intent(Activity_Profile.this, MainActivity.class);
                 startActivity(intentLogout);
                 return true;
-                case R.id.accountSettings:
-                //Redirect to dashboard
+            case R.id.accountSettings:
+                //Redirect to account settings page
                 Intent intentAccountSettings = new Intent(Activity_Profile.this, Account_Settings.class);
                 startActivity(intentAccountSettings);
+                return true;
+            case R.id.findOrCreateTeam:
+                //Redirect to find team page
+                Intent intentFindTeam = new Intent(Activity_Profile.this, Find_Team.class);
+                startActivity(intentFindTeam);
+                return true;
+            case R.id.myTeams:
+                //Redirect to find team page
+                Intent intentMyTeams = new Intent(Activity_Profile.this, My_Teams.class);
+                startActivity(intentMyTeams);
                 return true;
 
 

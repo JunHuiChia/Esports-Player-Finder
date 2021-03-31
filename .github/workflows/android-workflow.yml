@@ -1,0 +1,113 @@
+name: Android Workflow
+# This workflow is responsible for linting, testing and building an APK for the android app.
+on:
+  workflow_dispatch:
+  push:
+    branches: main
+    paths: MobileFrontend/**
+    # Workflow triggers when an update occurs in the main branch within the MobileFrontend directory.
+    
+jobs:
+  Lint-And-Unit:
+    # Runs the linter then runs the unit tests. Generating reports for both.
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./MobileFrontend
+        
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      
+      - name: Setup JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+          
+      - name: Upgrade Gradlew Executable
+        run: chmod +x ./gradlew
+        
+      - name: Run Android Linter
+        run: ./gradlew lint
+        
+      - name: Run Unit Tests
+        run: ./gradlew test
+
+      - name: Upload Lint Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: Lint Report
+          path: MobileFrontend/app/build/reports/lint-results.html
+          
+      - name: Upload Unit Test Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: Test Reports
+          path: MobileFrontend/app/build/reports/tests
+          
+  UI-Test:
+    runs-on: macos-latest
+    # Tests UI functionality within the android application
+    defaults:
+      run:
+        working-directory: ./MobileFrontend
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v1
+
+      - name: Setup JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+          
+      - name: Upgrade Gradlew Executable
+        run: chmod +x ./gradlew
+
+      - name: Run Instrumentation Tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          working-directory: ./MobileFrontend
+          api-level: 29
+          arch: x86
+          profile: Nexus 6
+          avd-name: test
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -camera-back none
+          disable-animations: true
+          script: ./gradlew connectedCheck --stacktrace
+
+      - name: Upload UI Test Report
+        uses: actions/upload-artifact@v1
+        with:
+          name: Test Reports
+          path: MobileFrontend/app/build/reports/androidTests/connected
+  
+  Generate-APK:
+    needs: [Lint-And-Unit, UI-Test]
+    runs-on: ubuntu-latest
+    # Generates APK only after both testing jobs have passed.
+    defaults:
+      run:
+        working-directory: ./MobileFrontend
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      
+      - name: Setup JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+          
+      - name: Upgrade Gradlew Executable
+        run: chmod +x ./gradlew
+        
+      - name: Generate APK
+        run: ./gradlew assembleDebug
+        
+      - name: Upload APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: Android APK
+          path: MobileFrontend/app/build/outputs/apk/debug/
+          

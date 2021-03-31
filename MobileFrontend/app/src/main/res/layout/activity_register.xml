@@ -38,7 +38,7 @@
         app:srcCompat="@android:drawable/arrow_down_float" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/regName"
+        android:id="@+id/teamName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -63,7 +63,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/regEmail"
+        android:id="@+id/teamDiscordCode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -84,11 +84,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regPassword"
+        app:layout_constraintTop_toBottomOf="@+id/teamDescription"
         app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/regPassword"
+        android:id="@+id/teamDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -109,11 +109,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regName"
+        app:layout_constraintTop_toBottomOf="@+id/teamName"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/btnRegister"
+        android:id="@+id/btnCreateTeam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -126,7 +126,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regEmail"
+        app:layout_constraintTop_toBottomOf="@+id/teamDiscordCode"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -140,7 +140,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegister"
+        app:layout_constraintTop_toBottomOf="@+id/btnCreateTeam"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button

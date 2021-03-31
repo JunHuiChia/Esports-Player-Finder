@@ -34,6 +34,10 @@ const AppProvider = (props) => {
   const [userGameRoles, setUserGameRoles] = useState([]);
   const [gameRoleError, setGameRoleError] = useState("");
   const [teamData, setTeamData] = useState([]);
+  const [userTeamID, setUserTeamID] = useState([]);
+  const [userTeamData, setUserTeamData] = useState([]);
+  const [userTeamDataDetail, setUserTeamDataDetail] = useState([]);
+  const [userTeamDataDetailStatus, setUserTeamDataDetailStatus] = useState(false);
 
   /**
    * @function
@@ -241,11 +245,12 @@ const AppProvider = (props) => {
                 setUserName(response.data.username);
                 setUserEmail(response.data.email)
                 setUserGameRoles(response.data["game_roles"])
+                setUserTeamID(response.data.teams)
                 setErrorMessage("");
             },
             // GET USER ERROR
             (error) => {
-                setErrorMessage("Could not complete the login");
+                setErrorMessage("Could not complete the login check details");
             }
         );
   };
@@ -474,23 +479,54 @@ const AppProvider = (props) => {
        * @description gets the team details by ID
        * @param {string} teamID - ID of the team 
        */
-        const getTeamByID = (teamID) => {
+        const getTeamByID = (teamID, data) => {
           axios.get(hostName + "api/sanctum/csrf-cookie").then(
             (response) => {
               axios.get(hostName + `api/teams?id=${teamID}`)
               .then(
                 (response) => {
-                  setTeamData(response.team);
-                  console.log(response);
+                  if(userTeamData.length < userTeamID.length){
+                    userTeamData.push(response.data.Team)
+                  }
+                  if(userTeamData.length === userTeamID.length){
+                    setUserTeamDataDetailStatus(true);
+                  }
+                  setUserTeamDataDetail(userTeamData)
                 },
                 (error) => {
-                  setErrorMessage("Cannot get team")
+                  setErrorMessage("Cannot get team from ID")
                 })
             },
             (error) => {
               console.log(error);
             })
         }
+
+        
+      /**
+       * @function
+       * @description gets the team details by Game
+       * @param {string} gameID - ID of the game 
+       */
+      const getTeamByGame = (gameID , handleSearch) => {
+        axios.get(hostName + "api/sanctum/csrf-cookie").then(
+          (response) => {
+            axios.get(hostName + `api/teams/find?game_id=${gameID}`)
+            .then(
+              (response) => {
+                console.log(response);
+                setTeamData(response.data.Teams);
+                handleSearch()
+                // console.log(response.data.Teams);
+              },
+              (error) => {
+                setErrorMessage("Cannot get team from game")
+              })
+          },
+          (error) => {
+            console.log(error);
+          })
+      }
   
   return (
     <AppContext.Provider
@@ -527,6 +563,13 @@ const AppProvider = (props) => {
         getTeamByID,
         teamData,
         deleteGameRole,
+        getTeamByGame,
+        userTeamID,
+        userTeamData,
+        userTeamDataDetail,
+        userTeamDataDetailStatus,
+        setUserTeamData,
+        setUserTeamDataDetailStatus,
       }}
       >
       {props.children}

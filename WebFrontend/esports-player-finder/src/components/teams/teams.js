@@ -1,5 +1,5 @@
 import { React , useState, useContext} from 'react';
-import './teams.css';
+import './css/teams.css';
 
 import { AppContext } from "../../contexts/AppContext";
 import Popup from "../popup/popup.js";
@@ -16,17 +16,30 @@ import SearchTeam from "./searchTeam"
 
 function Teams() {
     const [isOpen, setIsOpen] = useState(false);
+    const [isSearched, setIsSearched] = useState(false)
 
     const appContext = useContext(AppContext);
     const {
         gameList,
-        getTeamByID,
         teamData,
     } = appContext;
 
+    /**
+     * @function
+     * @description For closing and opening the popups on this page
+     */
     const togglePopup = () => {
         setIsOpen(!isOpen);
     }
+
+    /**
+     * @function
+     * @description Changes isSearched variable to True depending on whether the user has searched for a team or not
+     */
+    const searchedTrue = () => {
+        setIsSearched(true);
+    }
+
 
 
         return(
@@ -41,7 +54,12 @@ function Teams() {
                     </div>
                 </div>
                 <div id="searchTeam">
-                        <SearchTeam games={gameList}/>
+                        <SearchTeam games={gameList} handleSearch={searchedTrue}/>
+                </div>
+                <div id="availableTeams">
+                    
+                    {isSearched &&
+                        <AvailableTeam teams={teamData}/>}
                 </div>
                 {isOpen && 
                     <Popup content={<CreateTeamPopup handleClose = {togglePopup} games={gameList}/>}

@@ -17,7 +17,6 @@ function CreateTeamPopup(props) {
         createTeam,
     } = appContext;
 
-    console.log(props);
     let game = props.games.map((game) => <GameSelection game={game.name} gameID={game.id} key={game.id}/>)
 
     /**
@@ -29,9 +28,7 @@ function CreateTeamPopup(props) {
         let game = document.querySelector("#teamGame").value
         let desc = document.querySelector("#teamDesc").value
         let discID = document.querySelector("#teamDiscord").value
-        
         createTeam(name,game,desc,discID,props.handleClose);
-
     }
 
 
@@ -40,9 +37,9 @@ function CreateTeamPopup(props) {
             <div className="createTeam">
                 <div className="createTeamDetails teamDetailsLabels">
                     <label htmlFor="teamName">Team Name:</label>
-                    <label htmlFor="teamGame">Game: </label>
-                    <label htmlFor="teamDesc">Description: </label>
-                    <label htmlFor="teamDiscord">Discord channel ID: </label>
+                    <label htmlFor="teamGame">Game:</label>
+                    <label htmlFor="teamDesc">Description:</label>
+                    <label htmlFor="teamDiscord">Discord channel ID:</label>
                 </div>
 
                 <div className="createTeamDetails teamDetailsInput" >
