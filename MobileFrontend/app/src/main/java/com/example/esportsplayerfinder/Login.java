@@ -82,7 +82,7 @@ public class Login extends AppCompatActivity {
 
     }
 
-    public boolean validEmail(String inputEmail) {
+    boolean validEmail(String inputEmail) {
         String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         Log.d("email check", "validEmail: " +  inputEmail.matches(regex));
         if (!( inputEmail.matches(regex))){
@@ -91,7 +91,7 @@ public class Login extends AppCompatActivity {
         return inputEmail.matches(regex);
     }
 
-    public boolean validPassword(String inputPassword) {
+    boolean validPassword(String inputPassword) {
         if (!(inputPassword.equals(""))){
             Log.d("Valid Password:", "valid Password:" + true);
             return true;

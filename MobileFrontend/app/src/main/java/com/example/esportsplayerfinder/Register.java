@@ -124,7 +124,7 @@ public class Register extends AppCompatActivity {
     }
 
 
-    private boolean validEmail(String inputEmail) {
+    boolean validEmail(String inputEmail) {
             String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
             Log.d("email check", "validEmail: " +  inputEmail.matches(regex));
             if (!( inputEmail.matches(regex))){
@@ -139,7 +139,7 @@ public class Register extends AppCompatActivity {
         startActivity(intentProfile);
     }
 
-    private boolean validPassword(String inputPassword) {
+    boolean validPassword(String inputPassword) {
         if (!(inputPassword.equals(""))){
             if (Character.isUpperCase(inputPassword.charAt(0))){
                 Log.d("Valid Password:", "valid Password");

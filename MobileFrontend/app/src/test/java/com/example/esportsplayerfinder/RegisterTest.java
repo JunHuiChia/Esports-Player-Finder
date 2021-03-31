@@ -26,40 +26,7 @@ import org.mockito.MockitoAnnotations;
 import static org.mockito.Mockito.*;
 
 public class RegisterTest {
-    @Mock
-    TextInputEditText regInputUsername;
-    @Mock
-    TextInputEditText regInputEmail;
-    @Mock
-    TextInputEditText regInputPassword;
-    @Mock
-    Button buttonRegister;
-    @Mock
-    TextView textViewLogin;
-    @Mock
-    Menu menu;
-    @Mock
-    AppCompatDelegate mDelegate;
-    @Mock
-    Resources mResources;
-    @Mock
-    FragmentController mFragments;
-    @Mock
-    LifecycleRegistry mFragmentLifecycleRegistry;
-    @Mock
-    SparseArrayCompat<String> mPendingFragmentActivityResults;
-    @Mock
-    LifecycleRegistry mLifecycleRegistry;
-    //Field mSavedStateRegistryController of type SavedStateRegistryController - was not mocked since Mockito doesn't mock a Final class when 'mock-maker-inline' option is not set
-    @Mock
-    ViewModelStore mViewModelStore;
-    @Mock
-    ViewModelProvider.Factory mDefaultFactory;
-    //Field mOnBackPressedDispatcher of type OnBackPressedDispatcher - was not mocked since Mockito doesn't mock a Final class when 'mock-maker-inline' option is not set
-    @Mock
-    SimpleArrayMap<Class<? extends ComponentActivity.ExtraData>, ComponentActivity.ExtraData> mExtraDataMap;
-    @Mock
-    LifecycleRegistry mLifecycleRegistry;
+
     @InjectMocks
     Register register;
 
@@ -68,7 +35,7 @@ public class RegisterTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void testOnCreate() throws Exception {
         register.onCreate(null);
     }
@@ -83,15 +50,46 @@ public class RegisterTest {
         register.changeToLoginPage(null);
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void testOnCreateOptionsMenu() throws Exception {
         boolean result = register.onCreateOptionsMenu(null);
         Assert.assertEquals(true, result);
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void testOnOptionsItemSelected() throws Exception {
         boolean result = register.onOptionsItemSelected(null);
+        Assert.assertEquals(true, result);
+    }
+
+    @Test
+    public void testValidPassword_EmptyPassword() throws Exception {
+        boolean result = register.validPassword("");
+        Assert.assertEquals(false, result);
+    }
+
+    @Test
+    public void testValidPassword_GoodPassword() throws Exception {
+        boolean result = register.validPassword("Password");
+        Assert.assertEquals(true, result);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testValidEmail_NullEmail() throws Exception {
+
+        boolean result = register.validEmail("email");
+        Assert.assertEquals(false, result);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testValidEmail_EmptyEmail() throws Exception {
+        boolean result = register.validEmail("");
+        Assert.assertEquals(false, result);
+    }
+
+    @Test
+    public void testValidEmail_GoodEmail() throws Exception {
+        boolean result = register.validEmail("email@gmail.com");
         Assert.assertEquals(true, result);
     }
 }

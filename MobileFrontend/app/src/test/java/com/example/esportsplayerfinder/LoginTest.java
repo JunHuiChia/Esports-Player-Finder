@@ -34,6 +34,23 @@ public class LoginTest {
     }
 
     @Test(expected = NullPointerException.class)
+    public void testOnCreate() throws Exception {
+        login.onCreate(null);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testOnCreateOptionsMenu() throws Exception {
+        boolean result = login.onCreateOptionsMenu(null);
+        Assert.assertEquals(true, result);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testOnOptionsItemSelected() throws Exception {
+        boolean result = login.onOptionsItemSelected(null);
+        Assert.assertEquals(true, result);
+    }
+
+    @Test(expected = NullPointerException.class)
     public void testValidPassword_NullPassword() throws Exception {
         boolean result = login.validPassword(null);
         Assert.assertEquals(null, result);
