@@ -10,8 +10,8 @@ import TeamBox from "./teamBox";
 
 function availableTeam(teams) {
 
-    // const teamData = teams.teams.map((team) =>  <TeamBox key={team.team_id} teams={team}/>)
-    let teamData = null;
+    console.log(teams.teams);
+    const teamData = teams.teams.map((team) =>  <TeamBox key={team.team_id} teams={team}/>)
     return(
         <>
         {teamData}

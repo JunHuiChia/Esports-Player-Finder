@@ -4,6 +4,7 @@ import { AppContext } from "../../contexts/AppContext";
 import ProfileTeamContent from "./userTeam/profileTeamContent.js";
 
 import {Link} from "react-router-dom";
+import availableTeam from '../teams/availableTeam';
 
 
 /**
@@ -44,6 +45,9 @@ const Profile = () => {
         return () => {}
     }, [])
 
+    const noTeam = () => {
+        return <div>"No Teams Available"</div> 
+    }
     
     return(
         <div id="profilePage" className="rounded-md">

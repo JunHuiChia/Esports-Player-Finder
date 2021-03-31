@@ -19,6 +19,7 @@ function SearchGame(props){
     const {
         getTeamByGame,
         getGames,
+        setTeamData,
     } = appContext;
 
 
@@ -26,13 +27,13 @@ function SearchGame(props){
     let game = gameList.map((game) => <GameSelection game={game.name} gameID={game.id} key={game.id}/>)
 
     function handleSearchGameRole(){
+        setTeamData([]);
         let gameID = document.querySelector("#searchGame").value 
         const handleSearch = props.handleSearch
         getTeamByGame(gameID, handleSearch)
     }
     useEffect(() =>{
         getGames();
-        return () => {}
     }, [])
 
     return (

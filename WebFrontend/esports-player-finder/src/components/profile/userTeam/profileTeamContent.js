@@ -15,4 +15,5 @@ function TeamContent(team){
     )
 };
 
+
 export default TeamContent;

@@ -1,16 +1,27 @@
-import React from 'react';
+import {React, useEffect, useContext} from 'react';
 import './dashboard.css';
 import csgoLogo from '../images/csgoLogo.png'
 import LeagueLogo from '../images/LeagueLogo.png'
+import { AppContext } from "../../contexts/AppContext";
 
 
 /**
  * @component
  * @description Component for the dashboard page
  */
-class Dashboard extends React.Component{
+function Dashboard(){
 
-    render(){
+    const appContext = useContext(AppContext);
+    const {
+        getGames,
+        checkDetails,
+    } = appContext;
+
+    useEffect(() =>{
+        getGames();
+        checkDetails();
+    }, [])
+
         return(
             <>
             <div className="dashboard">
@@ -30,7 +41,6 @@ class Dashboard extends React.Component{
             </div>
             </>
         )
-    }
 }
 
 export default Dashboard;

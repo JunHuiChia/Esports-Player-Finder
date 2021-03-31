@@ -5,17 +5,15 @@ import AvailableTeam from "../components/teams/availableTeam";
 test("Renders without crashing", async() => {
 
     const teams = {
-        teams: {
-            team : {
-                team_id: 1,
-                name: "Team1",
-            }
-        }
+        teams: [
+            {team_id: 1,},
+            {team_id: 2}
+        ]
     }
 
     await act(async() => {
         await render(
-        await <AvailableTeam teams={teams}/>
+        await <AvailableTeam {...teams}/>
     )});
 
 }, 15000)

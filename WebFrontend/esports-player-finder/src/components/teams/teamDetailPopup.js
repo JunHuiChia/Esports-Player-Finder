@@ -1,5 +1,7 @@
-import { React } from 'react';
+import { React, useContext } from 'react';
 import "./css/teamDetailPopup.css";
+import { AppContext } from "../../contexts/AppContext";
+import { useAlert } from 'react-alert'
 
 /**
  * @component
@@ -9,8 +11,23 @@ import "./css/teamDetailPopup.css";
  */
 
 function TeamDetailPopup(props){
-    
+    const appContext = useContext(AppContext);
+    const alert = useAlert();
+
+    const {
+        joinTeam,
+    } = appContext;
+
     const teamDetail = props.teamDetail
+
+
+    function handleJoinTeam(){
+        const handleClose = props.handleClose
+        joinTeam(teamDetail["team_id"], handleClose, function(statusMsg){
+            alert.show(<div className="text-sm">{statusMsg}</div>)
+        })
+    }
+
     
     return(
         <>
@@ -28,10 +45,10 @@ function TeamDetailPopup(props){
             </div>
             <div id="teamDetailDiscordID">
                 <div className="teamDetailHeader">Discord channel ID</div>
-                <div className="teamDetailContent">Disc ID here</div>
+                <div className="teamDetailContent"><a href={`https://discord.gg/${teamDetail["team_discord"]}`} target="_blank" rel="noreferrer">Join Discord</a></div>
             </div>
             <div id="teamDetailJoin">
-                <button id="teamDetailJoinBtn">Join</button>
+                <button id="teamDetailJoinBtn" onClick={handleJoinTeam}>Join</button>
             </div>
         </div>
         {console.log(props.teamDetail)}

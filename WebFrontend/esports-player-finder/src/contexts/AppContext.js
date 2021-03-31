@@ -527,6 +527,30 @@ const AppProvider = (props) => {
             console.log(error);
           })
       }
+
+      const joinTeam = (teamID, handleClose, statusMsg) => {
+        console.log("Team id = " , teamID);
+        axios.get(hostName + "api/sanctum/csrf-cookie").then(
+          (response) => {
+            axios.get(hostName + `api/teams/join?team_id=${teamID}`)
+            .then(
+              (response) => {
+                console.log(response);
+                checkDetails()
+                handleClose()
+                statusMsg("Successfully joined team")
+                // console.log(response.data.Teams);
+              },
+              (error) => {
+                console.log(error);
+                console.log("Cannot join team");
+              })
+          },
+          (error) => {
+            console.log(error);
+          })
+
+      }
   
   return (
     <AppContext.Provider
@@ -564,12 +588,15 @@ const AppProvider = (props) => {
         teamData,
         deleteGameRole,
         getTeamByGame,
+        setTeamData,
         userTeamID,
         userTeamData,
         userTeamDataDetail,
         userTeamDataDetailStatus,
         setUserTeamData,
         setUserTeamDataDetailStatus,
+        joinTeam,
+        setErrorMessage,
       }}
       >
       {props.children}

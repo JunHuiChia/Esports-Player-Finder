@@ -1,6 +1,11 @@
 import React from "react";
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import TeamBox from "../components/teams/teamBox";
+import { Provider as AlertProvider } from 'react-alert'
+import { AppProvider } from "../contexts/AppContext"
+import { BrowserRouter as Router } from "react-router-dom";
+import AlertTemplate from 'react-alert-template-basic'
+
 
 describe("TeamBox component test", () => {
     
@@ -15,7 +20,13 @@ describe("TeamBox component test", () => {
     
         act( () => {
             render(
-            <TeamBox teams={mockTeams}/>
+            <AlertProvider template={AlertTemplate}>
+                <AppProvider>
+                    <Router>
+                        <TeamBox teams={mockTeams}/>    
+                    </Router>
+                </AppProvider>
+            </AlertProvider>
         )});
     
     }, 15000)
@@ -25,7 +36,13 @@ describe("TeamBox component test", () => {
     
         act( () => {
             render(
-                <TeamBox togglePopup={togglePopup()} teams={mockTeams}/>
+            <AlertProvider template={AlertTemplate}>
+                <AppProvider>
+                    <Router>
+                        <TeamBox togglePopup={togglePopup()} teams={mockTeams}/>    
+                    </Router>
+                </AppProvider>
+            </AlertProvider>
         )});
 
         const box = screen.getByRole('img')
