@@ -7,10 +7,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class Team_Details extends AppCompatActivity {
 
     Menu menu;
+
+    private TextView teamNameTextView;
+    private TextView teamDiscordCodeTextView;
+    private TextView teamGameNameTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +26,14 @@ public class Team_Details extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setLogo(R.drawable.logo6);
         getSupportActionBar().setTitle(R.string.Empty_String);
+
+        teamNameTextView = findViewById(R.id.teamNametxt);
+        teamNameTextView.setText(TeamMan.teamName);
+        teamDiscordCodeTextView = findViewById(R.id.teamDiscordCodetxt);
+        teamDiscordCodeTextView.setText(TeamMan.discordChannelCode);
+        teamGameNameTextView = findViewById(R.id.teamGametxt);
+        teamGameNameTextView.setText(ProfileMan.games.get(TeamMan.gameID));
+
     }
 
     @Override

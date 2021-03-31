@@ -20,7 +20,7 @@ describe('Login Component Test', () => {
             </AlertProvider>
         )
         expect(screen.getByRole('button', {name: /Log In/i})).toBeDefined()
-    })
+    }, 15000)
     
     test('toggle show password', () => {
         const togglePasswordMock = jest.fn()
@@ -37,7 +37,7 @@ describe('Login Component Test', () => {
         const showPassword = screen.getByText(/Show/i)
         fireEvent.click(showPassword)
         expect(togglePasswordMock).toHaveBeenCalledTimes(1);
-    })
+    }, 15000)
 
     test('Login with enter button after password entered',  () => {
         const handleKeyDownMock = jest.fn()
@@ -54,6 +54,6 @@ describe('Login Component Test', () => {
         const passwordInput = screen.getByAltText('passwordBox')
         fireEvent.keyDown(passwordInput, {key: 'Enter'})
         expect(handleKeyDownMock).toHaveBeenCalledTimes(1);
-    })
+    }, 15000)
 
 })

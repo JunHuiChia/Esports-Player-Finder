@@ -20,7 +20,7 @@ function TeamBox(teams) {
         setIsOpen(!isOpen);
     }
     const team = teams.teams
-
+    
     let logo = null;
     if(team.game.name === "League Of Legends"){
         logo = lolLogo

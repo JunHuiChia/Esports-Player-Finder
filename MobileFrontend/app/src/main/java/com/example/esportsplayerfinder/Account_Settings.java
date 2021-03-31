@@ -410,7 +410,7 @@ public class Account_Settings extends AppCompatActivity implements AdapterView.O
         queue.add(jsonObjectRequest);
     }
 
-    private boolean validEmail(String inputEmail) {
+    boolean validEmail(String inputEmail) {
         String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         Log.d("email check", "validEmail: " +  inputEmail.matches(regex));
         if (!( inputEmail.matches(regex))){

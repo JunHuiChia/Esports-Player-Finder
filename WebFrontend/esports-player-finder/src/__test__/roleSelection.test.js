@@ -1,6 +1,6 @@
 import React from 'react';
 import RoleSelection from '../components/profile/gameRole/roleSelection.js';
-import { render, screen } from '@testing-library/react';
+import {act, render, screen } from '@testing-library/react';
 
 
 test("renders without crashing" , async () => {
@@ -12,10 +12,13 @@ test("renders without crashing" , async () => {
         }
     }
 
-    render(
-        <RoleSelection {...roles}/>
-    )
+    await act( async() => {
+        render(
+            <RoleSelection {...roles}/>
+        )
+    })
+    
 
     expect(await screen.findByText("attack")).toBeInTheDocument();
 
-})
+}, 15000)

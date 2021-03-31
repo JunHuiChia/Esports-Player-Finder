@@ -149,10 +149,96 @@ public class Find_Team extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                setTeamDetails((page*4) + 1);
+
+            }
+        });
+
+        firstTeambtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                setTeamDetails((page*4) + 1);
+
+            }
+        });
+
+        firstTeambtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                setTeamDetails((page*4) + 1);
+
+            }
+        });
+
+        firstTeambtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                setTeamDetails((page*4) + 1);
+
             }
         });
 
     }
+
+    private void setTeamDetails(int i) {
+
+        RequestQueue queue = Volley.newRequestQueue(Find_Team.this);
+        String url = "http://192.168.0.15:80/api/teams?id="+ i;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("finalI check", "onResponse: " + i);
+                        Log.d("response check", "onResponse: " + response.toString());
+                        try {
+                            TeamMan.teamName = response.getJSONObject("teams").getString("name");
+                            TeamMan.teamName = response.getJSONObject("teams").getString("discord_channel_id");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        goToTeamDetailsPage();
+
+
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(Find_Team.this, error.toString(), Toast.LENGTH_LONG).show();
+                        Log.e("VOLLEY", "get team " + i + " " + error.toString());
+                        error.printStackTrace();
+
+
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/json");
+                params.put("Accept", "application/json");
+                Log.d("token test", "get token:" + "Bearer " + ProfileMan.token);
+
+                return params;
+            }
+        };
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 2, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        queue.add(jsonObjectRequest);
+
+
+
+    }
+
+    private void goToTeamDetailsPage() {
+        Intent intentTeamDetails = new Intent(Find_Team.this, Team_Details.class);
+        startActivity(intentTeamDetails);
+    }
+
 
     private void getNextPageOfTeams() {
 
