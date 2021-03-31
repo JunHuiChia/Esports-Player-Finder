@@ -107,6 +107,5 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: reports
-          path: MobileFrontend/app/build/reports/androidTests/connected
-
+          path: MobileFrontend/app/build/outputs/apk/debug/
           
