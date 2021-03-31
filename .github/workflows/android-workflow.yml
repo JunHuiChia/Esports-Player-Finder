@@ -1,14 +1,15 @@
-name: Android Build
-
+name: Android Workflow
+# This workflow is responsible for linting, testing and building an APK for the android app.
 on:
   workflow_dispatch:
   push:
     branches: main
     paths: MobileFrontend/**
+    # Workflow triggers when an update occurs in the main branch within the MobileFrontend directory.
     
 jobs:
   Lint-And-Unit:
-  
+    # Runs the linter then runs the unit tests. Generating reports for both.
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -35,18 +36,18 @@ jobs:
       - name: Upload Lint Report
         uses: actions/upload-artifact@v2
         with:
-          name: reports
+          name: Lint Report
           path: MobileFrontend/app/build/reports/lint-results.html
           
       - name: Upload Unit Test Report
         uses: actions/upload-artifact@v2
         with:
-          name: reports
+          name: Test Reports
           path: MobileFrontend/app/build/reports/tests
           
   UI-Test:
     runs-on: macos-latest
-      
+    # Tests UI functionality within the android application
     defaults:
       run:
         working-directory: ./MobileFrontend
@@ -78,13 +79,13 @@ jobs:
       - name: Upload UI Test Report
         uses: actions/upload-artifact@v1
         with:
-          name: reports
+          name: Test Reports
           path: MobileFrontend/app/build/reports/androidTests/connected
   
   Generate-APK:
     needs: [Lint-And-Unit, UI-Test]
     runs-on: ubuntu-latest
-    
+    # Generates APK only after both testing jobs have passed.
     defaults:
       run:
         working-directory: ./MobileFrontend
@@ -107,6 +108,6 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v1
         with:
-          name: reports
+          name: Android APK
           path: MobileFrontend/app/build/outputs/apk/debug/
           
