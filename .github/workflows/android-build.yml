@@ -7,8 +7,81 @@ on:
     paths: MobileFrontend/**
     
 jobs:
-  build:
+  Linting-And-Unit-Testing:
+  
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./MobileFrontend
+        
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
       
+      - name: Setup JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+          
+      - name: Upgrade Gradlew Executable
+        run: chmod +x ./gradlew
+        
+      - name: Run Android Linter
+        run: ./gradlew lint
+        
+      - name: Run Unit Tests
+        run: ./gradlew test
+
+      - name: Upload Lint Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: reports
+          path: MobileFrontend/app/build/reports/lint-results.html
+          
+      - name: Upload Unit Test Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: reports
+          path: MobileFrontend/app/build/reports/tests
+          
+  UI-Testing:
+    runs-on: macos-latest
+      
+    defaults:
+      run:
+        working-directory: ./MobileFrontend
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v1
+
+      - name: Setup JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+          
+      - name: Upgrade Gradlew Executable
+        run: chmod +x ./gradlew
+
+      - name: Run Instrumentation Tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          working-directory: ./MobileFrontend
+          api-level: 29
+          arch: x86
+          profile: Nexus 6
+          avd-name: test
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -camera-back none
+          disable-animations: true
+          script: ./gradlew connectedCheck --stacktrace
+
+      - name: Upload UI Test Report
+        uses: actions/upload-artifact@v1
+        with:
+          name: reports
+          path: MobileFrontend/app/build/reports/androidTests/connected
+  
+  Generate-APK:
     runs-on: ubuntu-latest
     
     defaults:
@@ -24,26 +97,16 @@ jobs:
         with:
           java-version: 1.8
           
-      - name: Make gradlew executable
+      - name: Upgrade Gradlew Executable
         run: chmod +x ./gradlew
-          
-      - name: Run Linter
-        run: ./gradlew lint
-          
-      - name: Run Unit Tests
-        run: ./gradlew test
         
-      - name: Build Project
-        run: ./gradlew assemble
+      - name: Generate APK
+        run: ./gradlew assembleDebug
+        
+      - name: Upload APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: reports
+          path: MobileFrontend/app/build/reports/androidTests/connected
 
-      - name: Upload Lint Report
-        uses: actions/upload-artifact@v2
-        with:
-          name: reports
-          path: MobileFrontend/app/build/reports/lint-results.html
           
-      - name: Upload Test Report
-        uses: actions/upload-artifact@v2
-        with:
-          name: reports
-          path: MobileFrontend/app/build/reports/test/debug
