@@ -3,7 +3,7 @@ package com.example.esportsplayerfinder;
 import android.content.res.Resources;
 import android.view.Menu;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.collection.SimpleArrayMap;
@@ -14,6 +14,8 @@ import androidx.lifecycle.LifecycleRegistry;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStore;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,15 +25,17 @@ import org.mockito.MockitoAnnotations;
 
 import static org.mockito.Mockito.*;
 
-public class LoginTest3 {
+public class RegisterTest {
     @Mock
-    EditText eEmail;
+    TextInputEditText regInputUsername;
     @Mock
-    EditText ePassword;
+    TextInputEditText regInputEmail;
     @Mock
-    Button eLogin;
+    TextInputEditText regInputPassword;
     @Mock
-    Button registerLink;
+    Button buttonRegister;
+    @Mock
+    TextView textViewLogin;
     @Mock
     Menu menu;
     @Mock
@@ -54,9 +58,10 @@ public class LoginTest3 {
     //Field mOnBackPressedDispatcher of type OnBackPressedDispatcher - was not mocked since Mockito doesn't mock a Final class when 'mock-maker-inline' option is not set
     @Mock
     SimpleArrayMap<Class<? extends ComponentActivity.ExtraData>, ComponentActivity.ExtraData> mExtraDataMap;
-
+    @Mock
+    LifecycleRegistry mLifecycleRegistry;
     @InjectMocks
-    Login login;
+    Register register;
 
     @Before
     public void setUp() {
@@ -65,47 +70,30 @@ public class LoginTest3 {
 
     @Test
     public void testOnCreate() throws Exception {
-        login.onCreate(null);
-    }
-
-    @Test
-    public void testValidEmail() throws Exception {
-        boolean result = login.validEmail("inputEmail");
-        Assert.assertEquals(true, result);
-    }
-
-    @Test
-    public void testValidPassword() throws Exception {
-        boolean result = login.validPassword("inputPassword");
-        Assert.assertEquals(true, result);
-    }
-
-    @Test
-    public void testGetUserDetails() throws Exception {
-        login.getUserDetails();
-    }
-
-    @Test
-    public void testGetToken() throws Exception {
-        login.getToken("inputEmail", "inputPassword");
-    }
-
-    @Test
-    public void testChangeToRegisterPage() throws Exception {
-        login.changeToRegisterPage(null);
+        register.onCreate(null);
     }
 
     @Test
     public void testChangeToProfilePage() throws Exception {
-        login.changeToProfilePage(null);
+        register.changeToProfilePage(null);
+    }
+
+    @Test
+    public void testChangeToLoginPage() throws Exception {
+        register.changeToLoginPage(null);
     }
 
     @Test
     public void testOnCreateOptionsMenu() throws Exception {
-        boolean result = login.onCreateOptionsMenu(menu);
+        boolean result = register.onCreateOptionsMenu(null);
         Assert.assertEquals(true, result);
     }
 
+    @Test
+    public void testOnOptionsItemSelected() throws Exception {
+        boolean result = register.onOptionsItemSelected(null);
+        Assert.assertEquals(true, result);
+    }
 }
 
 //Generated with love by TestMe :) Please report issues and submit feature requests at: http://weirddev.com/forum#!/testme
