@@ -63,7 +63,9 @@ const AppProvider = (props) => {
   const [gameRoleError, setGameRoleError] = useState("");
   const [teamData, setTeamData] = useState([]);
   const [userTeamID, setUserTeamID] = useState([]);
-  const [userTeamData, setUserTeamData] = useState();
+  const [userTeamData, setUserTeamData] = useState([]);
+  const [userTeamDataDetail, setUserTeamDataDetail] = useState([]);
+  const [userTeamDataDetailStatus, setUserTeamDataDetailStatus] = useState(false);
 
   /**
    * @function
@@ -261,7 +263,7 @@ const AppProvider = (props) => {
   }
     
     
-  const checkDetails = async () => {
+  const checkDetails = () => {
     axios.defaults.withCredentials = true;
         // GET USER
         axios.get(hostName + "api/user").then(
@@ -276,7 +278,7 @@ const AppProvider = (props) => {
             },
             // GET USER ERROR
             (error) => {
-                setErrorMessage("Could not complete the login");
+                setErrorMessage("Could not complete the login check details");
             }
         );
   };
@@ -489,6 +491,7 @@ const AppProvider = (props) => {
           .then(
             (response) => {
               console.log(response);
+              checkDetails();
               handleClose();
             },
             (error) => {
@@ -505,22 +508,22 @@ const AppProvider = (props) => {
        * @description gets the team details by ID
        * @param {string} teamID - ID of the team 
        */
-        const getTeamByID = (teamID) => {
+        const getTeamByID = (teamID, data) => {
           axios.get(hostName + "api/sanctum/csrf-cookie").then(
             (response) => {
               axios.get(hostName + `api/teams?id=${teamID}`)
               .then(
-                async (response) => {
-                  console.log("res: " , response);
-                  if(userTeamData[0] === undefined){
-                    await setUserTeamData([response.data.Team])
-                  }else{
-                    await setUserTeamData([userTeamData[0], response.data.Team])
+                (response) => {
+                  if(userTeamData.length &lt; userTeamID.length){
+                    userTeamData.push(response.data.Team)
                   }
-                  await console.log(userTeamData);
+                  if(userTeamData.length === userTeamID.length){
+                    setUserTeamDataDetailStatus(true);
+                  }
+                  setUserTeamDataDetail(userTeamData)
                 },
                 (error) => {
-                  setErrorMessage("Cannot get team")
+                  setErrorMessage("Cannot get team from ID")
                 })
             },
             (error) => {
@@ -546,12 +549,36 @@ const AppProvider = (props) => {
                 // console.log(response.data.Teams);
               },
               (error) => {
-                setErrorMessage("Cannot get team")
+                setErrorMessage("Cannot get team from game")
               })
           },
           (error) => {
             console.log(error);
           })
+      }
+
+      const joinTeam = (teamID, handleClose, statusMsg) => {
+        console.log("Team id = " , teamID);
+        axios.get(hostName + "api/sanctum/csrf-cookie").then(
+          (response) => {
+            axios.get(hostName + `api/teams/join?team_id=${teamID}`)
+            .then(
+              (response) => {
+                console.log(response);
+                checkDetails()
+                handleClose()
+                statusMsg("Successfully joined team")
+                // console.log(response.data.Teams);
+              },
+              (error) => {
+                console.log(error);
+                console.log("Cannot join team");
+              })
+          },
+          (error) => {
+            console.log(error);
+          })
+
       }
   
   return (
@@ -590,9 +617,15 @@ const AppProvider = (props) => {
         teamData,
         deleteGameRole,
         getTeamByGame,
+        setTeamData,
         userTeamID,
         userTeamData,
+        userTeamDataDetail,
+        userTeamDataDetailStatus,
         setUserTeamData,
+        setUserTeamDataDetailStatus,
+        joinTeam,
+        setErrorMessage,
       }}
       >
       {props.children}
@@ -611,13 +644,13 @@ export { AppContext, AppProvider };
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AddGameRole.html">AddGameRole</a></li><li><a href="App.html">App</a></li><li><a href="AppProvider.html">AppProvider</a></li><li><a href="availableTeam.html">availableTeam</a></li><li><a href="CreateTeamPopup.html">CreateTeamPopup</a></li><li><a href="GameRole.html">GameRole</a></li><li><a href="GameSelection.html">GameSelection</a></li><li><a href="Header.html">Header</a></li><li><a href="Login.html">Login</a></li><li><a href="newGameRole.html">newGameRole</a></li><li><a href="Popup.html">Popup</a></li><li><a href="PrivateRoute.html">PrivateRoute</a></li><li><a href="Profile.html">Profile</a></li><li><a href="ProfileEdit.html">ProfileEdit</a></li><li><a href="Register.html">Register</a></li><li><a href="RoleSelection.html">RoleSelection</a></li><li><a href="SearchGame.html">SearchGame</a></li><li><a href="TeamBox.html">TeamBox</a></li><li><a href="TeamDetailPopup.html">TeamDetailPopup</a></li><li><a href="Teams.html">Teams</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AddGameRole.html">AddGameRole</a></li><li><a href="App.html">App</a></li><li><a href="AppProvider.html">AppProvider</a></li><li><a href="availableTeam.html">availableTeam</a></li><li><a href="CreateTeamPopup.html">CreateTeamPopup</a></li><li><a href="Dashboard.html">Dashboard</a></li><li><a href="GameRole.html">GameRole</a></li><li><a href="GameSelection.html">GameSelection</a></li><li><a href="Header.html">Header</a></li><li><a href="Login.html">Login</a></li><li><a href="newGameRole.html">newGameRole</a></li><li><a href="Popup.html">Popup</a></li><li><a href="PrivateRoute.html">PrivateRoute</a></li><li><a href="Profile.html">Profile</a></li><li><a href="ProfileEdit.html">ProfileEdit</a></li><li><a href="Register.html">Register</a></li><li><a href="RoleSelection.html">RoleSelection</a></li><li><a href="SearchGame.html">SearchGame</a></li><li><a href="TeamBox.html">TeamBox</a></li><li><a href="TeamContent.html">TeamContent</a></li><li><a href="TeamDetailPopup.html">TeamDetailPopup</a></li><li><a href="Teams.html">Teams</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Mon Mar 29 2021 23:21:03 GMT+0100 (British Summer Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Thu Apr 01 2021 15:14:22 GMT+0100 (British Summer Time)
 </footer>
 
 <script> prettyPrint(); </script>

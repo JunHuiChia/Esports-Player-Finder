@@ -463,6 +463,7 @@ const AppProvider = (props) => {
           .then(
             (response) => {
               console.log(response);
+              checkDetails();
               handleClose();
             },
             (error) => {

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/teams/availableTeam.js</title>
+    <title>JSDoc: Source: components/dashboard/dashboard.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/teams/availableTeam.js</h1>
+    <h1 class="page-title">Source: components/dashboard/dashboard.js</h1>
 
     
 
@@ -26,29 +26,52 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { React , useContext} from 'react';
+            <pre class="prettyprint source linenums"><code>import {React, useEffect, useContext} from 'react';
+import './dashboard.css';
+import csgoLogo from '../images/csgoLogo.png'
+import LeagueLogo from '../images/LeagueLogo.png'
 import { AppContext } from "../../contexts/AppContext";
-import TeamBox from "./teamBox";
+
 
 /**
  * @component
- * @property {Object} teams - Object containing an array of teams
- * @returns A whole array of TeamBox component with individual team's name and game on them
+ * @description Component for the dashboard page
  */
+function Dashboard(){
 
-function availableTeam(teams) {
+    const appContext = useContext(AppContext);
+    const {
+        getGames,
+        checkDetails,
+    } = appContext;
 
-    console.log(teams.teams);
-    const teamData = teams.teams.map((team) =>  &lt;TeamBox key={team.team_id} teams={team}/>)
-    return(
-        &lt;>
-        {teamData}
-        &lt;/>
-    )
+    useEffect(() =>{
+        getGames();
+        checkDetails();
+    }, [])
+
+        return(
+            &lt;>
+            &lt;div className="dashboard">
+                &lt;div className="dashboardTitle">Welcome to Esports Player Finder&lt;/div>
+                &lt;div className="dashboardIntro">
+                    &lt;span>At Esports Player Finder, we are dedicated to help you find players to play games with and have fun!&lt;/span>
+                    &lt;span>No matter what skill level you are, you'll be able to fit into any team!&lt;/span>
+                    &lt;span>Find players to compete in the top eSports games with right now!&lt;/span>
+                &lt;/div>
+                &lt;div className="dashboardCurrentGames">
+                    &lt;div id="dashboardGamesTitle">Currently supported games: &lt;/div>
+                    &lt;div id="dashboardGamesContent">
+                        &lt;img src={csgoLogo} alt="logo for csgo"/>
+                        &lt;img src={LeagueLogo} alt="logo for league of legends"/>
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+            &lt;/>
+        )
 }
 
-
-export default availableTeam;</code></pre>
+export default Dashboard;</code></pre>
         </article>
     </section>
 

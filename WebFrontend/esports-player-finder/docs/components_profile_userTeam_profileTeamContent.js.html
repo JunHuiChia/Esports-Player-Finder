@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/teams/availableTeam.js</title>
+    <title>JSDoc: Source: components/profile/userTeam/profileTeamContent.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/teams/availableTeam.js</h1>
+    <h1 class="page-title">Source: components/profile/userTeam/profileTeamContent.js</h1>
 
     
 
@@ -26,29 +26,25 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { React , useContext} from 'react';
-import { AppContext } from "../../contexts/AppContext";
-import TeamBox from "./teamBox";
+            <pre class="prettyprint source linenums"><code>import {React} from 'react';
+import './profileTeamContent.css';
+import ProfileTeamBox from "./profileTeamBox"
 
 /**
  * @component
- * @property {Object} teams - Object containing an array of teams
- * @returns A whole array of TeamBox component with individual team's name and game on them
+ * @property {Array} team - Takes in a array of objects of teams the user is in
  */
+function TeamContent(team){
 
-function availableTeam(teams) {
-
-    console.log(teams.teams);
-    const teamData = teams.teams.map((team) =>  &lt;TeamBox key={team.team_id} teams={team}/>)
-    return(
-        &lt;>
-        {teamData}
-        &lt;/>
+    return (
+        &lt;div className="userTeams">
+        {team.teamDetail.map((team) => {return &lt;ProfileTeamBox key={team.id} teams={team}/>})}
+        &lt;/div>
     )
-}
+};
 
 
-export default availableTeam;</code></pre>
+export default TeamContent;</code></pre>
         </article>
     </section>
 

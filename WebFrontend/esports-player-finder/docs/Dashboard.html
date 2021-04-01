@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/teams/availableTeam.js</title>
+    <title>JSDoc: Class: Dashboard</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,40 +17,137 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/teams/availableTeam.js</h1>
+    <h1 class="page-title">Class: Dashboard</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import { React , useContext} from 'react';
-import { AppContext } from "../../contexts/AppContext";
-import TeamBox from "./teamBox";
+        <h2><span class="attribs"><span class="type-signature"></span></span>Dashboard<span class="signature">()</span><span class="type-signature"></span></h2>
+        
+    
+</header>
 
-/**
- * @component
- * @property {Object} teams - Object containing an array of teams
- * @returns A whole array of TeamBox component with individual team's name and game on them
- */
+<article>
+    <div class="container-overview">
+    
+        
 
-function availableTeam(teams) {
+    
 
-    console.log(teams.teams);
-    const teamData = teams.teams.map((team) =>  &lt;TeamBox key={team.team_id} teams={team}/>)
-    return(
-        &lt;>
-        {teamData}
-        &lt;/>
-    )
-}
+    
+    <h4 class="name" id="Dashboard"><span class="type-signature"></span>new Dashboard<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
 
 
-export default availableTeam;</code></pre>
-        </article>
-    </section>
+
+<div class="description">
+    <p>Component for the dashboard page</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_dashboard_dashboard.js.html">components/dashboard/dashboard.js</a>, <a href="components_dashboard_dashboard.js.html#line12">line 12</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
