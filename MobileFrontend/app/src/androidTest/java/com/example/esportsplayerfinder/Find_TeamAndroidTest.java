@@ -16,21 +16,23 @@ import org.junit.runner.RunWith;
 
 
 @RunWith(AndroidJUnit4ClassRunner.class)
-public class RegisterTest {
+public class Find_TeamAndroidTest {
 
     @Rule
-    public ActivityScenarioRule<Register> activityRule =
-            new ActivityScenarioRule<>(Register.class);
-    // Assigns Register activity to be subject of the tests.
+    public ActivityScenarioRule<Find_Team> activityRule =
+            new ActivityScenarioRule<>(Find_Team.class);
+    // Assigns Account_Settings to be subject of the tests.
 
     @Test
     public void test_isActivityInView() {
-
         //Launches activity to test within.
-
-        onView(withId(R.id.register)) //Get object on current view with ID = register
+        onView(withId(R.id.findTeamPage)) //Get object on current view with ID
                 .check(matches(isDisplayed())); //check if displayed
+    }
 
-
+    @Test
+    public void test_isDashbarInView() {
+        onView(withId(R.id.Dashbar))
+                .check(matches(isDisplayed()));
     }
 }

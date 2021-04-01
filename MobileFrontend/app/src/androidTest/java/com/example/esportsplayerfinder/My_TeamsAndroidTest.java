@@ -14,38 +14,25 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@RunWith(AndroidJUnit4ClassRunner.class)
-public class LoginTest {
 
+@RunWith(AndroidJUnit4ClassRunner.class)
+public class My_TeamsAndroidTest {
 
     @Rule
-    public ActivityScenarioRule<Login> activityRule =
-            new ActivityScenarioRule<>(Login.class);
-    // Assigns Login activity to be subject of the tests.
+    public ActivityScenarioRule<My_Teams> activityRule =
+            new ActivityScenarioRule<>(My_Teams.class);
+    // Assigns Account_Settings to be subject of the tests.
 
     @Test
     public void test_isActivityInView() {
-
-        onView(withId(R.id.login)) //Get object on current view with ID = login
+        //Launches activity to test within.
+        onView(withId(R.id.myTeamsPage)) //Get object on current view with ID
                 .check(matches(isDisplayed())); //check if displayed
-
     }
 
     @Test
-    public void test_visibility_newUserHintRegisterButton() {
-
-        onView(withId(R.id.textNewUserQuestion))
+    public void test_isDashbarInView() {
+        onView(withId(R.id.Dashbar))
                 .check(matches(isDisplayed()));
-
-        onView(withId(R.id.linkToRegister))
-                .check(matches(isDisplayed()));
-
-    }
-
-    @Test
-    public void test_isLoginButtonTextDisplayed() {
-
-        onView(withId(R.id.btnLogin))
-                .check(matches(withText("Login")));
     }
 }
