@@ -10,7 +10,7 @@ on:
 jobs:
   Lint-And-Unit:
     # Runs the linter then runs the unit tests. Generating reports for both.
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     defaults:
       run:
         working-directory: ./MobileFrontend
@@ -46,7 +46,7 @@ jobs:
           path: MobileFrontend/app/build/reports/tests
           
   UI-Test:
-    runs-on: macos-latest
+    runs-on: macos-10.15
     # Tests UI functionality within the android application
     defaults:
       run:
@@ -90,7 +90,7 @@ jobs:
   
   Generate-APK:
     needs: [Lint-And-Unit, UI-Test]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     # Generates APK only after both testing jobs have passed.
     defaults:
       run:
