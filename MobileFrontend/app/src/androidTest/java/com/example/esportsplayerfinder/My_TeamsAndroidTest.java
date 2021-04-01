@@ -10,11 +10,12 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-
+@Ignore("Ignored due to emulator crashing")
 @RunWith(AndroidJUnit4ClassRunner.class)
 public class My_TeamsAndroidTest {
 
